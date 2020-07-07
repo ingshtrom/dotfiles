@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+
+set -o pipefail
+set -o nounset
+set -o errexit
+
+
+cd "$(dirname $0)"/..
+
+echo 'Please stick around, this may require that you enter y/n or your password to make changes'
+
+# Run Homebrew through the Brewfile
+echo "››› brew update"
+brew update
+
+echo "››› brew upgrade"
+brew upgrade
+
+echo "››› brew bundle"
+brew bundle
+
+echo "››› brew update again now that we have new stuff"
+brew update
+
+echo "››› brew upgrade again now that we have new stuff"
+brew upgrade
+
+echo "››› brew cleanup --prune-prefix"
+brew cleanup --prune-prefix
+
+echo "››› files to run during installation: \n$(find $DOTFILES -iname "install.sh")"
+for file in $(find $DOTFILES -iname "install.sh"); do
+  if [[ "$file" == "$DOTFILES/homebrew/install" ]]; then
+    continue
+  fi
+  if echo "$file" | grep -E -i 'python/pyenv' > /dev/null
+  then
+    continue
+  fi
+
+  echo ""
+  echo "#############################################"
+  echo "Executing file: $file ---->"
+  echo "#############################################"
+  echo ""
+
+  sh -c $file
+
+  echo ""
+  echo "<---- Done executing file: $file"
+  echo "---------------------------------------------"
+done
+
+if [[ "$(uname)" == "Linux" ]]; then
+  echo "checking on apt cleanup and updates"
+  sudo apt update -y
+  sleep 1
+  sudo apt upgrade -y
+  sleep 1
+  sudo apt autoremove
+  sleep 1
+fi

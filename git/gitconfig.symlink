@@ -1,0 +1,55 @@
+# Local/private config goes in the include
+[include]
+  path = ~/.gitconfig.local
+[hub]
+	protocol = git
+[alias]
+  co = checkout
+  promote = !$DOTFILES/bin/git-promote
+  wtf     = !$DOTFILES/bin/git-wtf
+  rank-contributors = !$DOTFILES/bin/git-rank-contributors
+  count   = !git shortlog -sn
+  code-changes = "!git log --format=format: --name-only | egrep -v '^$' | sort | uniq -c | sort -rg | head -10"
+  cc = "!git code-changes"
+  lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+  lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+  lg = !"git lg1"
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  ui = true
+[core]
+  excludesfile = ~/.gitignore
+  editor = nvim
+  pager = delta --plus-color="#012800" --minus-color="#340001" --theme='Monokai Extended'
+[apply]
+  whitespace = nowarn
+[mergetool]
+  keepBackup = false
+[help]
+	autocorrect = 0
+[push]
+  # See `git help config` (search for push.default)
+  # for more information on different options of the below setting.
+  #
+  # Setting to git 2.0 default to suppress warning message
+  default = simple
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[user]
+	name = Alex Hokanson
+	email = 571756+ingshtrom@users.noreply.github.com
+	# signingkey = 8B2A1867146CA994 # doesn't work in OSX
+	#signingkey = 146CA994
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[commit]
+	gpgsign = false
+[interactive]
+    diffFilter = delta --color-only
+[pull]
+	rebase = false

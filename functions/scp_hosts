@@ -1,0 +1,11 @@
+scp_hosts()
+{
+  set -e
+  src=$1
+  dest=$2
+  for host in $(cat hosts);
+  do
+    # scp --inline --host hosts --user ec2-user "$source" "${host}:${destination}"
+    scp $src ec2-user@${host}:${dest}
+  done
+}

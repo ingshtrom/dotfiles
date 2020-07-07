@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+#
+# standup
+#
+# `standup` generates a report of everything I did yesterday
+
+set -e
+
+FORCE_YESTERDAY=${1:-false}
+
+dotfilesDirectory="$HOME/.dotfiles"
+
+tw_yesterday="yesterday"
+gs_yesterday="1"
+
+if [[ "$(date +%a)" == "Mon" ]];
+then
+  tw_yesterday=$(date -d '-3 day' +%Y-%m-%d)
+  gs_yesterday="4"
+fi
+
+if [[ "$FORCE_YESTERDAY" != "false" ]];
+then
+  tw_yesterday=$(date -d "-$(echo $((FORCE_YESTERDAY - 1))) day" +%Y-%m-%d)
+  gs_yesterday="$FORCE_YESTERDAY"
+fi
+
+echo '>> tasks completed yesterday or today'
+task "end.after:${tw_yesterday}" completed || true
+
+git -C "$HOME" standup -m 1 -d $gs_yesterday -a 'Alex' -w 'MON-FI'
+git -C "$HOME/src" standup -m 1 -d $gs_yesterday -a 'Alex' -w 'MON-FI'

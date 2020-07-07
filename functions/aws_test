@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+
+aws() {
+  args=$@
+  ENVIRONMENT_VARIABLES=''
+  for env_var in $(env | grep AWS | cut -d'=' -f1)
+  do
+    ENVIRONMENT_VARIABLES="${ENVIRONMENT_VARIABLES:-} -e ${env_var}"
+  done
+  bash -c "docker run --rm -it $ENVIRONMENT_VARIABLES --entrypoint=aws ingshtrom/awscli:latest $args"
+}

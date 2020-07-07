@@ -1,0 +1,3 @@
+param_list() {
+  aws ssm get-parameters-by-path --path "$1"
+}

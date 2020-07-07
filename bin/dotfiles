@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+#
+# dot
+#
+# `dot` handles installation, updates, things like that. Run it periodically
+# to make sure you're on the latest and greatest.
+
+set -e
+
+#dotfilesDirectory="$HOME/.dotfiles"
+
+displayUsageAndExit() {
+	echo "dot -- dotfiles management"
+	echo ""
+	echo "Usage: dot [options]"
+	echo ""
+	echo "Options:"
+  echo "  -s, --skip   Skip steps involving running long or api limited commands (Brew and fonts)"
+	echo "  -e, --edit   Open dotfiles directory for editing"
+	echo "  -h, --help   Show this help message and exit"
+	exit
+}
+
+while test $# -gt 0; do
+	case "$1" in
+		"-h"|"--help")
+			displayUsageAndExit
+			;;
+		*)
+			echo "Invalid option: $1"
+			displayUsageAndExit
+			;;
+	esac
+	shift
+done
+
+if [[ "$DOTFILES_GITHUB_TOKEN" == "" ]]
+then
+  echo 'There is no point in running this without access to GitHub to download releases!'
+  echo 'Please run the following after generating a new token at https://github.com/settings/tokens:'
+  echo ''
+  echo '`echo "export DOTFILES_GITHUB_TOKEN=<token>" >> ~/.localrc`'
+fi
+
+
+
+export DOTFILES=$HOME/.dotfiles
+
+# Install homebrew
+$DOTFILES/homebrew/install.sh 2>&1
+
+# Install software
+echo "› $DOTFILES/script/linker"
+$DOTFILES/script/linker
+echo "› $DOTFILES/script/install"
+GITHUB_AUTHORIZATION_HEADER="Authorization: Token ${DOTFILES_GITHUB_TOKEN}" $DOTFILES/script/install
+
+echo "JOBS DONE" | cowsay | lolcat

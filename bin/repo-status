@@ -1,0 +1,55 @@
+#!/bin/sh
+#
+# repo-status
+#
+# goes through all repositories in ~/code and checks for unfinished work or being on a branch that is not master
+
+set -e
+
+message () {
+  echo "[INFO] $*"
+}
+
+debug_message () {
+  if [ "$debug" = "true" ]; then
+    echo "[DEBUG] $*"
+  fi
+}
+
+warn_message () {
+  echo "[WARN] $*" > /dev/stderr
+}
+
+main_directory="$HOME/src"
+debug=false
+
+if [ "$1" = "debug" ]; then
+  debug=true
+fi
+
+cd "$main_directory"
+
+for dir in */ ; do
+    debug_message "$dir"
+    cd "$dir"
+
+    git_branch="$(git rev-parse --abbrev-ref HEAD)"
+    if [ "$git_branch" != "master" ]; then
+      warn_message "[$dir][$git_branch] branch is NOT master. work in progress??"
+    else
+      debug_message "[$dir][$git_branch] branch set as expected"
+    fi
+
+    git_status_line_count="$(git status -s | wc -l)"
+    if [ "$git_status_line_count" = "0" ]; then
+      debug_message "[$dir][$git_branch] no changes found in branch"
+      if [ "$git_branch" = "master" ]; then
+        # only pull if we are on master and there are no changes
+        git pull
+      fi
+    else
+      warn_message "[$dir][$git_branch] work in progress. changes: \n$(git status -s)"
+    fi
+
+    cd -
+done

@@ -1,0 +1,5 @@
+#!/bin/bash
+/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt --text -k "" --pim=0 --protect-hidden=no $HOME/veracrypt/email /Volumes/encrypted_email
+# /Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt --text -k "" --pim=0 --protect-hidden=no $HOME/veracrypt/secrets /Volumes/encrypted_secrets
+# /Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt --text -k "" --pim=0 --protect-hidden=no $HOME/veracrypt/google_data_archive /Volumes/encrypted_google_data_archive
+# /Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt --text -k "" --pim=0 --protect-hidden=no $HOME/veracrypt/misc_archive /Volumes/encrypted_misc_archive

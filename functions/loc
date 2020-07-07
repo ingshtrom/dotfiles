@@ -1,0 +1,3 @@
+loc() {
+  ls -alth $(which $1)
+}

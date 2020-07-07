@@ -1,0 +1,7 @@
+dangerous_force_remove_stuck_namespace()
+{
+  ns=$1
+  kubectl get namespace "$ns" -o json \
+            | tr -d "\n" | sed "s/\"finalizers\": \[[^]]\+\]/\"finalizers\": []/" \
+            | kubectl replace --raw "/api/v1/namespaces/${ns}/finalize" -f -
+}

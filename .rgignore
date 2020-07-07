@@ -1,0 +1,8 @@
+.git/
+target/*
+zsh/LS_COLORS/*
+python/pyenv/
+fonts.symlink
+cursors/*
+node_modules/*
+**/.terraform/*
