@@ -43,12 +43,11 @@
 [user]
 	name = Alex Hokanson
 	email = 571756+ingshtrom@users.noreply.github.com
-	# signingkey = 8B2A1867146CA994 # doesn't work in OSX
-	#signingkey = 146CA994
+	signingkey = FBBCEDEC1FB752A1573AC782E9083B5DF5AB9391
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 [commit]
-	gpgsign = false
+	gpgsign = true
 [interactive]
     diffFilter = delta --color-only
 [pull]
