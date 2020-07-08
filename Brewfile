@@ -45,6 +45,7 @@ brew 'neovim'  # better vim, don't install the one from Ubuntu PPAs
 brew 'nextdns' # better, private, DOH provide (DNS)
 brew 'openssl'
 brew 'packer'  # most of my jobs will likely use Packer, I presume
+brew 'pinentry-mac' # better popup and mgmt of auth prompts in gpg2 in osx
 brew 'polaris'  # tool for validating kubernetes manifests
 brew 'powerlevel10k' # ZSH prompt/theme
 brew 'pssh' # ssh in parallel
