@@ -4,6 +4,7 @@ tap 'johanhaleby/kubetail'
 tap 'FairwindsOps/tap'
 tap 'jlesquembre/kubeprompt', 'https://github.com/jlesquembre/kubeprompt'
 tap 'romkatv/powerlevel10k'
+tap 'hashicorp/tap'
 
 brew 'ack'
 brew 'aws-okta'  # hopeful not much longer...
@@ -61,6 +62,7 @@ brew 'spark'
 brew 'starship' # https://starship.rs => terminal prompt
 brew 'task'  # taskwarrior
 brew 'terraform'
+brew 'terraform-ls'
 brew 'the_silver_searcher' # ripgrep alternative prior to rg being written. Not as fast, but some tools still use it
 brew 'tmux'
 # brew 'unrar'
