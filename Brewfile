@@ -5,6 +5,7 @@ tap 'FairwindsOps/tap'
 tap 'jlesquembre/kubeprompt', 'https://github.com/jlesquembre/kubeprompt'
 tap 'romkatv/powerlevel10k'
 tap 'hashicorp/tap'
+tap 'github/gh'
 
 brew 'ack'
 brew 'aws-okta'  # hopeful not much longer...
@@ -20,6 +21,7 @@ brew 'ed'
 brew 'findutils'
 brew 'fzf'  # awesome fuzzy finder
 brew 'gawk'
+brew 'gh'
 brew 'go'
 brew 'gopass' # password store rewritten in go--failing on linux
 brew 'grc'

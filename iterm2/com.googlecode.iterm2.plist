@@ -25,7 +25,7 @@
 	<key>AutoCommandHistory</key>
 	<false/>
 	<key>AutoHideTmuxClientSession</key>
-	<true/>
+	<false/>
 	<key>CGFontRenderingFontSmoothingDisabled</key>
 	<false/>
 	<key>CheckTestRelease</key>
@@ -2792,21 +2792,10 @@
 				<dict>
 					<key>algorithm</key>
 					<integer>1</integer>
+					<key>auto-rainbow style</key>
+					<integer>0</integer>
 					<key>font</key>
 					<string>.AppleSystemUIFont 12</string>
-					<key>separator color</key>
-					<dict>
-						<key>Alpha Component</key>
-						<real>0.25</real>
-						<key>Blue Component</key>
-						<real>0.0</real>
-						<key>Color Space</key>
-						<string>sRGB</string>
-						<key>Green Component</key>
-						<real>0.0</real>
-						<key>Red Component</key>
-						<real>0.0</real>
-					</dict>
 				</dict>
 				<key>components</key>
 				<array>
@@ -3156,6 +3145,7 @@
 	<array>
 		<string>3.3.6</string>
 		<string>3.3.7beta4</string>
+		<string>3.3.12beta3</string>
 		<string>3.3.8beta5</string>
 		<string>3.3.9beta1</string>
 		<string>3.3.8beta4</string>
@@ -3165,9 +3155,18 @@
 		<string>3.3.10beta1</string>
 		<string>3.3.8beta1</string>
 	</array>
+	<key>NoSyncBFPFavorites</key>
+	<array>
+		<string>CaskaydiaCove Nerd Font Mono</string>
+		<string>JetBrainsMono Nerd Font Mono</string>
+		<string>MesloLGS NF</string>
+	</array>
 	<key>NoSyncBFPRecents</key>
 	<array>
 		<string>MesloLGS NF</string>
+		<string>SauceCodePro Nerd Font Mono</string>
+		<string>SpaceMono Nerd Font Mono</string>
+		<string>JetBrainsMono Nerd Font Mono</string>
 	</array>
 	<key>NoSyncEnableAPIServer_selection</key>
 	<integer>0</integer>
@@ -3176,14 +3175,14 @@
 		<key>screenFrame</key>
 		<string>{{0, 0}, {1920, 1080}}</string>
 		<key>topLeft</key>
-		<string>{514, 826}</string>
+		<string>{513, 825}</string>
 	</dict>
 	<key>NoSyncInstallationId</key>
 	<string>C2E13225-DE71-40E0-A220-B0E8FAAFBDAF</string>
 	<key>NoSyncLastTipTime</key>
 	<real>600567504.61291301</real>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>133</integer>
+	<integer>142</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -3984,7 +3983,11 @@
 	<false/>
 	<key>OpenTmuxWindowsIn</key>
 	<integer>2</integer>
+	<key>OptionClickMovesCursor</key>
+	<false/>
 	<key>PMPrintingExpandedStateForPrint2</key>
+	<true/>
+	<key>PassOnControlClick</key>
 	<true/>
 	<key>PasteTabToStringTabStopSize</key>
 	<integer>2</integer>
@@ -4027,6 +4030,8 @@
 	<true/>
 	<key>PromptOnQuit</key>
 	<true/>
+	<key>PromptOnQuitEvenIfThereAreNoWindows</key>
+	<false/>
 	<key>QuitWhenAllWindowsClosed</key>
 	<true/>
 	<key>SGTRecentFileSearches</key>
@@ -4063,7 +4068,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-07-07T12:51:31Z</date>
+	<date>2020-07-15T15:05:33Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateGroupIdentifier</key>
@@ -4102,6 +4107,13 @@
 	<array>
 		<string>Captured Output</string>
 	</array>
+	<key>URLHandlersByGuid</key>
+	<dict>
+		<key>ssh</key>
+		<string>BEDE4ED2-2E74-4277-A796-03F3F80648DB</string>
+	</dict>
+	<key>Use background pattern indicator</key>
+	<true/>
 	<key>UseBorder</key>
 	<false/>
 	<key>UseLionStyleFullscreen</key>
@@ -4109,7 +4121,7 @@
 	<key>UseMetal</key>
 	<true/>
 	<key>UseTmuxStatusBar</key>
-	<true/>
+	<false/>
 	<key>VisualIndicatorForEsc</key>
 	<false/>
 	<key>WindowNumber</key>
@@ -4117,7 +4129,7 @@
 	<key>WordCharacters</key>
 	<string>/-+\~_.</string>
 	<key>disableMetalWhenUnplugged</key>
-	<false/>
+	<true/>
 	<key>findIgnoreCase_iTerm</key>
 	<true/>
 	<key>findMode_iTerm</key>
@@ -4125,7 +4137,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.3.12beta1</string>
+	<string>3.3.12beta3</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>

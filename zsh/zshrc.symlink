@@ -75,7 +75,8 @@ autoload -U +X bashcompinit && bashcompinit
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-KUBECONFIG=${KUBECONFIG:-$HOME/.kube/config}
+# ~/.kube/config is the source of truth, but we don't want to write to it
+KUBECONFIG=$HOME/.kube/config
 tmpdir=$(mktemp -d)
 new_kubeconfig="${tmpdir}/kubeconfig"
 cp $KUBECONFIG $new_kubeconfig

@@ -70,7 +70,7 @@ set mouse=a
 set shell=/usr/local/bin/zsh " osx
 set spelllang=en
 set laststatus=2
-set listchars=tab:»\ ,trail:¬,extends:>,precedes:< ",space:·
+set listchars=tab:»\ ,trail:¬,extends:>,precedes:<,space:·
 set list
 set cursorline
 set nocompatible
@@ -267,7 +267,7 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " format buffer contents
 command! -nargs=0 Format :call CocAction('format')
 noremap <Leader>f :Format<CR>
-autocmd FileType terraform noremap <Leader>f :TerraformFmt<CR>
+autocmd FileType terraform,tf noremap <Leader>f :TerraformFmt<CR>
 
 
 " rename symbol under cursor

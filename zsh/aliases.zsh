@@ -18,7 +18,10 @@ alias to='terraform output'
 alias tg='terraform graph'
 alias ts='terraform show'
 alias tp='terraform plan'
+
 alias cur='aws iam list-account-aliases | jq ".AccountAliases[0]"'
+alias awsd='aws-okta exec dockerinc.admin -- docker run --env AWS_ACCESS_KEY_ID --env AWS_SECRET_ACCESS_KEY --env AWS_SESSION_TOKEN --env AWS_SECURITY_TOKEN --rm -it amazon/aws-cli' # aws in docker
+alias a='awsd'
 
 # Pipe my public key to my clipboard.
 alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
@@ -42,13 +45,9 @@ alias dir_diff="diff -r -x .git -x .terraform -N"
 alias yk_code="ykman oath code $1"
 alias yk_code_search="ykman oath code | grep -i '$@'"
 
-# alias veracrypt="/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt --text"
-# alias vc="veracrypt"
+ alias veracrypt="/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt --text"
+ alias vc="veracrypt"
 
-# kapitan is cool, but overly complex and won't likely be used
-# alias kapitan='function(){docker run -t --rm -v $(pwd):/src:delegated deepmind/kapitan:0.26 "$@"}'
-# alias kap='kapitan $@'
-#
 
 # pulseaudio-equalizier
 alias peq="qpaeq"

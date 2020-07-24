@@ -1,0 +1,6 @@
+#!/bin/bash
+# mount the email Veracrypt Container and then start Thunderbird
+
+/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt --text -k "" --pim=0 --protect-hidden=no $HOME/veracrypt/email /Volumes/encrypted_email
+
+echo "Please open Thunderbird manually"
