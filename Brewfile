@@ -3,7 +3,7 @@ tap 'homebrew/cask-fonts'
 tap 'johanhaleby/kubetail'
 tap 'FairwindsOps/tap'
 tap 'jlesquembre/kubeprompt', 'https://github.com/jlesquembre/kubeprompt'
-tap 'romkatv/powerlevel10k'
+#tap 'romkatv/powerlevel10k'
 tap 'hashicorp/tap'
 tap 'github/gh'
 
@@ -50,7 +50,7 @@ brew 'openssl'
 brew 'packer'  # most of my jobs will likely use Packer, I presume
 brew 'pinentry-mac' # better popup and mgmt of auth prompts in gpg2 in osx
 brew 'polaris'  # tool for validating kubernetes manifests
-brew 'powerlevel10k' # ZSH prompt/theme
+#brew 'powerlevel10k' # ZSH prompt/theme
 brew 'pssh' # ssh in parallel
 brew 'rbenv'
 brew 'readline'

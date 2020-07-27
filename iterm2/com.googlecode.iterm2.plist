@@ -1875,6 +1875,8 @@
 	<string>~/.dotfiles/iterm2</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
 	<string>{799, 448}</string>
+	<key>NSOverlayScrollersFallBackForAccessoryViews</key>
+	<false/>
 	<key>NSQuotedKeystrokeBinding</key>
 	<string></string>
 	<key>NSRepeatCountBinding</key>
@@ -2731,7 +2733,7 @@
 			<key>Non-ASCII Ligatures</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>MesloLGSNer-Regular 14</string>
+			<string>agaveNerdFontComplete-r 16</string>
 			<key>Open Toolbelt</key>
 			<false/>
 			<key>Option Key Sends</key>
@@ -3143,17 +3145,18 @@
 	</array>
 	<key>NoSyncAllAppVersions</key>
 	<array>
-		<string>3.3.6</string>
-		<string>3.3.7beta4</string>
-		<string>3.3.12beta3</string>
-		<string>3.3.8beta5</string>
-		<string>3.3.9beta1</string>
-		<string>3.3.8beta4</string>
-		<string>3.3.11beta1</string>
-		<string>3.3.8beta3</string>
-		<string>3.3.12beta1</string>
-		<string>3.3.10beta1</string>
 		<string>3.3.8beta1</string>
+		<string>3.3.12beta3</string>
+		<string>3.3.8beta3</string>
+		<string>3.3.8beta5</string>
+		<string>3.3.6</string>
+		<string>3.3.8beta4</string>
+		<string>3.3.9beta1</string>
+		<string>3.3.10beta1</string>
+		<string>3.3.11beta1</string>
+		<string>3.4.0beta1</string>
+		<string>3.3.12beta1</string>
+		<string>3.3.7beta4</string>
 	</array>
 	<key>NoSyncBFPFavorites</key>
 	<array>
@@ -3163,10 +3166,10 @@
 	</array>
 	<key>NoSyncBFPRecents</key>
 	<array>
-		<string>MesloLGS NF</string>
-		<string>SauceCodePro Nerd Font Mono</string>
-		<string>SpaceMono Nerd Font Mono</string>
-		<string>JetBrainsMono Nerd Font Mono</string>
+		<string>agave NF</string>
+		<string>agave Nerd Font Mono</string>
+		<string>Monofur Nerd Font Mono</string>
+		<string>Hasklug Nerd Font Mono</string>
 	</array>
 	<key>NoSyncEnableAPIServer_selection</key>
 	<integer>0</integer>
@@ -3179,10 +3182,12 @@
 	</dict>
 	<key>NoSyncInstallationId</key>
 	<string>C2E13225-DE71-40E0-A220-B0E8FAAFBDAF</string>
+	<key>NoSyncLastOSVersion</key>
+	<string>Version 10.15.6 (Build 19G73)</string>
 	<key>NoSyncLastTipTime</key>
 	<real>600567504.61291301</real>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>142</integer>
+	<integer>156</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -3300,6 +3305,14 @@
 				<key>isTerminal</key>
 				<true/>
 				<key>name</key>
+				<string>selectionLength</string>
+				<key>nonterminalContext</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
+				<true/>
+				<key>name</key>
 				<string>path</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
@@ -3311,6 +3324,14 @@
 				<string>triggerName</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
+				<false/>
+				<key>name</key>
+				<string>parentSession</string>
+				<key>nonterminalContext</key>
+				<integer>1</integer>
 			</dict>
 			<dict>
 				<key>isTerminal</key>
@@ -3429,6 +3450,14 @@
 				<true/>
 				<key>name</key>
 				<string>tmuxStatusLeft</string>
+				<key>nonterminalContext</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
+				<true/>
+				<key>name</key>
+				<string>selection</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
 			</dict>
@@ -3696,11 +3725,11 @@
 		<array>
 			<dict>
 				<key>isTerminal</key>
-				<true/>
+				<false/>
 				<key>name</key>
-				<string>tmuxWindow</string>
+				<string>currentSession</string>
 				<key>nonterminalContext</key>
-				<integer>0</integer>
+				<integer>1</integer>
 			</dict>
 			<dict>
 				<key>isTerminal</key>
@@ -3890,6 +3919,14 @@
 				<key>isTerminal</key>
 				<true/>
 				<key>name</key>
+				<string>tmuxWindow</string>
+				<key>nonterminalContext</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
+				<true/>
+				<key>name</key>
 				<string>currentSession.pid</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
@@ -3901,14 +3938,6 @@
 				<string>currentSession</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
-			</dict>
-			<dict>
-				<key>isTerminal</key>
-				<false/>
-				<key>name</key>
-				<string>currentSession</string>
-				<key>nonterminalContext</key>
-				<integer>1</integer>
 			</dict>
 		</array>
 		<key>4</key>
@@ -3939,6 +3968,8 @@
 			</dict>
 		</array>
 	</dict>
+	<key>NoSyncRestoreWindowsCount</key>
+	<integer>0</integer>
 	<key>NoSyncTipOfTheDayEligibilityBeganTime</key>
 	<real>595781917.61684501</real>
 	<key>NoSyncTipsDisabled</key>
@@ -4064,11 +4095,11 @@
 	<key>SUFeedAlternateAppNameKey</key>
 	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>https://iterm2.com/appcasts/testing_new.xml?shard=11</string>
+	<string>https://iterm2.com/appcasts/testing_modern.xml?shard=11</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-07-15T15:05:33Z</date>
+	<date>2020-07-24T19:59:38Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateGroupIdentifier</key>
@@ -4137,7 +4168,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.3.12beta3</string>
+	<string>3.4.0beta1</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>

@@ -1,0 +1,12 @@
+# vi: ft=toml
+prompt_order=["kubernetes","directory","git_branch","git_commit","git_state", "git_status","python","docker_context","cmd_duration","line_break","character"]
+
+[kubernetes]
+symbol = "⛵  "
+style = "dimmed green"
+disabled = false
+[kubernetes.context_aliases]
+"arn:aws:eks:us-east-1:710015040892:cluster/stage-320d9422df2c52a0f810" = "stage"
+
+[package]
+disabled = true

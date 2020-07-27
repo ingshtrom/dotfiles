@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block, everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
- source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 export DOTFILES=$HOME/.dotfiles
@@ -19,7 +12,7 @@ fi
 export PROJECTS="$HOME/src"
 export ZSH_AUTOSUGGEST_USE_ASYNC=true
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=blue,bold'
-export ZSH_THEME="powerlevel10k/powerlevel10k"
+export ZSH_THEME=""
 export HYPHEN_INSENSITIVE="false"
 export UPDATE_ZSH_DAYS=1
 export ENABLE_CORRECTION="false" # do not autocomplete without me being prompted
@@ -37,7 +30,6 @@ source "$PROJECTS/tools/user/ahokanson/bash-functions.sh";
 source "$PROJECTS/tools/user/ahokanson/bash-functions-personal.sh"
 source "$PROJECTS/tools/user/ahokanson/aliases.sh";
 #source "$HOME/.local/share/lscolors.sh"
-source "$(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme"
 
 # Stash your environment variables in ~/.localrc. This means they'll stay out
 # of your main dotfiles repository (which may be public, like this one), but
@@ -71,8 +63,6 @@ done
 
 autoload -U +X bashcompinit && bashcompinit
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # ~/.kube/config is the source of truth, but we don't want to write to it
@@ -90,4 +80,8 @@ eval "$(pyenv virtualenv-init -)"
 eval "$(direnv hook $SHELL)"
 
 export GPG_TTY=$(tty)
+
+# STARSHIP Prompt Configuration
+export STARSHIP_CONFIG=$HOME/.starship.toml
+eval "$(starship init zsh)"
 
