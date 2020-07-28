@@ -43,6 +43,7 @@ brew 'kubetail' # easier logging for kube
 brew 'krew' # krew for kubernetes cli plugins
 brew 'less' # updated version of less tool
 brew 'make'
+brew 'mosh' # better ssh
 brew 'n'  # node version manager
 brew 'neovim'  # better vim, don't install the one from Ubuntu PPAs
 brew 'nextdns' # better, private, DOH provide (DNS)

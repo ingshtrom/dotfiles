@@ -1,2 +1,0 @@
-export PASSWORD_STORE_ENABLE_EXTENSIONS=true
-export PASSWORD_STORE_EXTENSIONS_DIR=$HOME/.dotfiles/password-store/extensions
