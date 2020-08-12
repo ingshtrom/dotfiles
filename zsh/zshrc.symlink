@@ -1006,14 +1006,7 @@ export VISUAL='nvim'
 mkdir -p "$HOME/.bin"
 export PATH="$HOME/.bin:$PATH"
 
-############################################################
-## PYENV VIRTUALENV Configuration
-############################################################
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-if ! (echo $VIRTUAL_ENV | grep general3 > /dev/null)
-then
-  pyenv activate general3 || true >/dev/null 2>/dev/null # I guess this is already set sometimes and so it fails?
-fi
+
 
 ############################################################
 ## General Shell Configuration
@@ -1105,7 +1098,12 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 eval "$(direnv hook $SHELL)"
-export GPG_TTY=$(tty)
+
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+if ! (echo $VIRTUAL_ENV | grep general3 > /dev/null)
+then
+  pyenv activate general3 || true >/dev/null 2>/dev/null # I guess this is already set sometimes and so it fails?
+fi
 
 ############################################################
 ## STARSHIP PROMPT INIT
@@ -1118,3 +1116,7 @@ eval "$(starship init zsh)"
 ############################################################
 eval "$(rbenv init -)"
 
+############################################################
+## GPG CONFIGURATION
+############################################################
+export GPG_TTY=$(tty)
