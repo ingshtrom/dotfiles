@@ -20,7 +20,7 @@ if has("clipboard")
   endif
 endif
 
-au BufRead,BufNewFile *.markdown,*.md set textwidth=120 fo+=t fo-=l
+au BufRead,BufNewFile *.markdown,*.md set textwidth=80 fo+=t fo-=l
 au BufRead,BufNewFile *.applescript setfiletype javascript
 au BufRead,BufNewFile Brewfile setfiletype python
 autocmd FileType python set shiftwidth=4 tabstop=4
@@ -108,6 +108,8 @@ Plug 'yegappan/greplace'
 Plug 'scrooloose/nerdcommenter'
 " Tree viewer
 Plug 'scrooloose/nerdtree'
+" git status in your Tree viewer
+Plug 'Xuyuanp/nerdtree-git-plugin'
 " status line at the bottom
 Plug 'itchyny/lightline.vim'
 " show buffers like tabs
@@ -115,7 +117,9 @@ Plug 'bling/vim-bufferline'
 " linting and fixing stuff
 "Plug 'dense-analysis/ale'
 " lots of languages
-Plug 'sheerun/vim-polyglot'
+"Plug 'sheerun/vim-polyglot'
+" Jinja
+Plug 'lepture/vim-jinja'
 " Cool icons (once I patch my font) for file types in the NERDTree
 Plug 'ryanoasis/vim-devicons'
 " better yaml parsing for large files
@@ -131,7 +135,6 @@ Plug 'editorconfig/editorconfig-vim'
 " awesome autocompletion
 "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-
 " Use release branch (recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -240,7 +243,7 @@ nnoremap <Leader>t :let _save_pos=getpos(".") <Bar>
     \ :call setpos('.', _save_pos)<Bar>
     \ :unlet _save_pos<CR><CR>
 
-set background=light
+set background=dark
 colorscheme challenger_deep
 let g:lightline.colorscheme='challenger_deep'
 
@@ -249,12 +252,12 @@ let g:lightline.colorscheme='challenger_deep'
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
-"inoremap <silent><expr> <TAB>
-"      \ pumvisible() ? "\<C-n>" :
-"      \ <SID>check_back_space() ? "\<TAB>" :
-"      \ coc#refresh()
-"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-n>"
-"inoremap <C-j> <C-n>
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-n>"
+inoremap <C-j> <C-n>
 
 "function! s:check_back_space() abort
 "  let col = col('.') - 1
@@ -269,12 +272,11 @@ command! -nargs=0 Format :call CocAction('format')
 noremap <Leader>f :Format<CR>
 autocmd FileType terraform,tf noremap <Leader>f :TerraformFmt<CR>
 
-
 " rename symbol under cursor
 nmap <leader>rn <Plug>(coc-rename)
 
 " Use K to show documentation in preview window.
-"nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 nnoremap <C-K><C-I> :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
@@ -321,17 +323,17 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Use <C-l> for trigger snippet expand.
-imap <C-l> <Plug>(coc-snippets-expand)
+"imap <C-l> <Plug>(coc-snippets-expand)
 
 " Use <C-j> for select text for visual placeholder of snippet.
-vmap <C-j> <Plug>(coc-snippets-select)
+"vmap <C-j> <Plug>(coc-snippets-select)
 
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<c-j>'
+"let g:coc_snippet_next = '<C-j>'
 
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<c-k>'
+"let g:coc_snippet_prev = '<C-k>'
 
 " Use <C-j> for both expand and jump (make expand higher priority.)
-imap <C-j> <Plug>(coc-snippets-expand-jump)
+"imap <C-j> <Plug>(coc-snippets-expand-jump)
 
