@@ -117,7 +117,7 @@ Plug 'bling/vim-bufferline'
 " linting and fixing stuff
 "Plug 'dense-analysis/ale'
 " lots of languages
-"Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot'
 " Jinja
 Plug 'lepture/vim-jinja'
 " Cool icons (once I patch my font) for file types in the NERDTree
@@ -137,6 +137,11 @@ Plug 'editorconfig/editorconfig-vim'
 "Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 " Use release branch (recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Git in your gutter!
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 
 " Snippets!
 Plug 'SirVer/ultisnips'
@@ -192,17 +197,17 @@ set showtabline=2
 " Formatting settings
 " -- use ALEFix for everything, except Terraform,
 "   which we will use TerraformFmt for
-let g:ale_fix_on_save = 1
-let g:ale_fixers = {
-      \ '*': ['trim_whitespace'],
-      \ 'sh': ['shfmt', 'trim_whitespace'],
-      \ 'yaml': ['prettier', 'trim_whitespace'],
-      \ 'terraform': ['terraform', 'trim_whitespace'],
-      \ 'html': ['prettier', 'html-beautify', 'tidy'],
-      \ 'hcl': ['terraform', 'trim_whitespace'],
-      \ 'python': ['reorder-python-imports', 'autopep8'],
-      \ 'go': ['gofmt', 'goimports']
-      \ }
+"let g:ale_fix_on_save = 1
+"let g:ale_fixers = {
+"      \ '*': ['trim_whitespace'],
+"      \ 'sh': ['shfmt', 'trim_whitespace'],
+"      \ 'yaml': ['prettier', 'trim_whitespace'],
+"      \ 'terraform': ['terraform', 'trim_whitespace'],
+"      \ 'html': ['prettier', 'html-beautify', 'tidy'],
+"      \ 'hcl': ['terraform', 'trim_whitespace'],
+"      \ 'python': ['reorder-python-imports', 'autopep8'],
+"      \ 'go': ['gofmt', 'goimports']
+"      \ }
 "noremap <Leader>f :ALEFix<CR>
 
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
@@ -270,7 +275,7 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " format buffer contents
 command! -nargs=0 Format :call CocAction('format')
 noremap <Leader>f :Format<CR>
-autocmd FileType terraform,tf noremap <Leader>f :TerraformFmt<CR>
+"autocmd FileType terraform,tf noremap <Leader>f :TerraformFmt<CR>
 
 " rename symbol under cursor
 nmap <leader>rn <Plug>(coc-rename)

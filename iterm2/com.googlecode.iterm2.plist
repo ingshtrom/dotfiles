@@ -25,7 +25,7 @@
 	<key>AutoCommandHistory</key>
 	<false/>
 	<key>AutoHideTmuxClientSession</key>
-	<false/>
+	<true/>
 	<key>CGFontRenderingFontSmoothingDisabled</key>
 	<false/>
 	<key>CheckTestRelease</key>
@@ -2175,7 +2175,7 @@
 	<key>DisableMetalWhenIdle</key>
 	<true/>
 	<key>DoubleReportScrollWheel</key>
-	<false/>
+	<true/>
 	<key>EnableAPIServer</key>
 	<false/>
 	<key>EnableDivisionView</key>
@@ -2183,6 +2183,8 @@
 	<key>EnableProxyIcon</key>
 	<false/>
 	<key>FlashTabBarInFullscreen</key>
+	<false/>
+	<key>FocusFollowsMouse</key>
 	<false/>
 	<key>HapticFeedbackForEsc</key>
 	<false/>
@@ -3491,11 +3493,13 @@
 		<string>3.4.0beta1</string>
 		<string>3.3.12beta3</string>
 		<string>3.3.8beta3</string>
-		<string>3.3.12beta1</string>
+		<string>3.4.0beta5</string>
 		<string>3.3.8beta5</string>
+		<string>3.3.12beta1</string>
 		<string>3.3.6</string>
 		<string>3.4.0beta4</string>
 		<string>3.3.8beta4</string>
+		<string>3.4.0beta6</string>
 		<string>3.3.9beta1</string>
 		<string>3.3.10beta1</string>
 		<string>3.3.7beta4</string>
@@ -3532,6 +3536,8 @@
 		<key>topLeft</key>
 		<string>{504, 872}</string>
 	</dict>
+	<key>NoSyncHaveUsedCopyMode</key>
+	<true/>
 	<key>NoSyncIgnoreSystemWindowRestoration</key>
 	<true/>
 	<key>NoSyncInstallationId</key>
@@ -3541,7 +3547,7 @@
 	<key>NoSyncLastTipTime</key>
 	<real>600567504.61291301</real>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>196</integer>
+	<integer>208</integer>
 	<key>NoSyncNeverAskAboutMouseReportingFrustration</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
@@ -3662,6 +3668,14 @@
 				<true/>
 				<key>name</key>
 				<string>selectionLength</string>
+				<key>nonterminalContext</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
+				<true/>
+				<key>name</key>
+				<string>processTitle</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
 			</dict>
@@ -3960,6 +3974,14 @@
 				<key>isTerminal</key>
 				<true/>
 				<key>name</key>
+				<string>currentTab.currentSession.processTitle</string>
+				<key>nonterminalContext</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
+				<true/>
+				<key>name</key>
 				<string>currentTab.currentSession</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
@@ -4081,11 +4103,11 @@
 		<array>
 			<dict>
 				<key>isTerminal</key>
-				<false/>
+				<true/>
 				<key>name</key>
-				<string>currentSession</string>
+				<string>currentSession.pid</string>
 				<key>nonterminalContext</key>
-				<integer>1</integer>
+				<integer>0</integer>
 			</dict>
 			<dict>
 				<key>isTerminal</key>
@@ -4203,6 +4225,14 @@
 				<key>isTerminal</key>
 				<true/>
 				<key>name</key>
+				<string>currentSession.processTitle</string>
+				<key>nonterminalContext</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
+				<true/>
+				<key>name</key>
 				<string>id</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
@@ -4283,17 +4313,17 @@
 				<key>isTerminal</key>
 				<true/>
 				<key>name</key>
-				<string>currentSession.pid</string>
+				<string>currentSession</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
 			</dict>
 			<dict>
 				<key>isTerminal</key>
-				<true/>
+				<false/>
 				<key>name</key>
 				<string>currentSession</string>
 				<key>nonterminalContext</key>
-				<integer>0</integer>
+				<integer>1</integer>
 			</dict>
 		</array>
 		<key>4</key>
@@ -4455,7 +4485,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-08-31T12:22:14Z</date>
+	<date>2020-09-16T12:19:24Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateGroupIdentifier</key>
@@ -4488,8 +4518,10 @@
 	<integer>5</integer>
 	<key>TabViewType</key>
 	<integer>0</integer>
+	<key>TmuxUnpauseAutomatically</key>
+	<true/>
 	<key>TmuxUsesDedicatedProfile</key>
-	<false/>
+	<true/>
 	<key>ToolbeltTools</key>
 	<array>
 		<string>Captured Output</string>
@@ -4524,7 +4556,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.4.0beta4</string>
+	<string>3.4.0beta6</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
