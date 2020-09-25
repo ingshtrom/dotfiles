@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+#
+# Usage: git-ups
+#
+# Like git fetch && git merge but show a short and sexy log of changes
+# immediately after merging (git-ups)
+#
+# Inspired by Kyle Neath's `git up' alias:
+# http://gist.github.com/249223
+
+# get the latest changes from upstream
+#if ! ( git remote | grep 'upstream' 2>&1 > /dev/null )
+#then
+#    echo "No upstream to sync with"
+#    exit 1
+#fi
+git fetch upstream
+
+# make sure there are no changes to the current branch before attempting to switch
+#if test "$(git status --porcelain | wc -l | tr -d '[:space:]')" = 0
+if ! ( git diff --exit-code && git diff --cached --exit-code )
+then
+    echo "Cannot sync the main/master branch when there are changes in the current branch"
+    exit 1
+fi
+
+# if we are not on main/master, then switch to it
+# we already know we do not have changes in our current branch
+if ! ( git branch | grep -E '\* (main|master)' 2>&1 > /dev/null )
+then
+    if git branch | grep 'main'; then
+        git checkout main
+        git merge upstream/main --no-log
+    elif git branch | grep 'master'; then
+        git checkout master
+        git merge upstream/master --no-log
+    else
+        echo "main or master not found in branch listing"
+        exit 1
+    fi
+fi
+
+echo "Log:"
+git log --color --pretty=tformat:'%C(yellow)%h %C(red)%an %C(reset)%s' --abbrev-commit HEAD@{1}.. | sed 's/^/  /'
+
+# make sure our forked main/master is up to date with the latest changes too
+#git push
+

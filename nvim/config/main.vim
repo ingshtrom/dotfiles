@@ -132,6 +132,8 @@ Plug 'fatih/vim-hclfmt'
 Plug 'wannesm/wmgraphviz.vim'
 " EditorConfig formatting
 Plug 'editorconfig/editorconfig-vim'
+" OPA integration
+Plug 'tsandall/vim-rego'
 " awesome autocompletion
 "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -235,6 +237,7 @@ noremap <Leader>s :Gsearch<space>
 noremap <Leader>r :Greplace<CR>
 " toggle NERDTree
 noremap <C-h> :NERDTreeToggle<CR>
+noremap <Leader>nr :NERDTreeRefreshRoot<CR>
 noremap :bw :bd<CR>
 " remove trailing whitespace
 " while keeping cursor position

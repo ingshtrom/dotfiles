@@ -159,8 +159,6 @@ alias gpg_list_encrypted_with='gpg --batch --list-packets $1 2>&1'
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-alias k='kubectl'
-
 ################################################################################################
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -330,3 +328,9 @@ eval "$(rbenv init -)"
 ## GPG CONFIGURATION
 ############################################################
 export GPG_TTY=$(tty)
+
+############################################################
+## CHAMBER CONFIGURATION
+############################################################
+CHAMBER_SECRET_BACKEND=ssm
+CHAMBER_KMS_KEY_ALIAS=aws/ssm
