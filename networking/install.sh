@@ -10,7 +10,7 @@ then
 fi
 
 # this is useful if i ever want to go back to nextdns for local DNS resolver
-sudo tee /etc/nextdns.conf > /dev/null < $DOTFILES/networking/nextdns.conf
+#sudo tee /etc/nextdns.conf > /dev/null < $DOTFILES/networking/nextdns.conf
 
 # sudo tee /etc/unbound/unbound.conf > /dev/null < $DOTFILES/networking/unbound.conf
 # sudo ln -s -f $DOTFILES/networking/resolv.conf /etc/resolv.conf

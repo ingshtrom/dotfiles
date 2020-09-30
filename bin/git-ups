@@ -28,24 +28,20 @@ MAIN_BRANCH='unknown'
 
 # if we are not on main/master, then switch to it
 # we already know we do not have changes in our current branch
-if ! ( git branch | grep -E '\* (main|master)' 2>&1 > /dev/null )
-then
-    if git branch | grep 'main'; then
-        MAIN_BRANCH='main'
-    elif git branch | grep 'master'; then
-        MAIN_BRANCH='master'
-    fi
+if git branch | grep 'main' 2>&1 > /dev/null; then
+    MAIN_BRANCH='main'
+elif git branch | grep 'master' 2>&1 > /dev/null; then
+    MAIN_BRANCH='master'
 fi
 
-if [[ "$MAIN_BRANCH" == "unknown" ]] then
+if [[ "$MAIN_BRANCH" == "unknown" ]]; then
     echo "main or master not found in branch listing"
     exit 1
 fi
 
-git checkout "$MAIN_BRANCH"
-echo
+git checkout "$MAIN_BRANCH" -q
 echo "EASY CHANGELOG:"
-git log --color --pretty=tformat:'%C(yellow)%h %C(red)%an %C(reset)%s' --abbrev-commit upstream/main..HEAD | sed 's/^/  /'
+git log --color --pretty=tformat:'%C(yellow)%h %C(red)%an %C(reset)%s' --abbrev-commit HEAD..upstream/main | sed 's/^/  /'
 echo
 echo "RAW CHANGELOG:"
 git merge "upstream/${MAIN_BRANCH}" --no-log

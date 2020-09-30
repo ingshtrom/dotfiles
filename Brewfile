@@ -13,7 +13,7 @@ brew 'bash'
 brew 'binutils'
 brew 'cmake'
 brew 'colordiff'  # add color to your diffs ;)
-brew 'consul'  # consul.io CLI
+brew 'hashicorp/tap/consul'  # consul.io CLI
 brew 'coreutils'
 brew 'dep'
 brew 'direnv' # load .envrc from a directory just by entering and existing the directory
@@ -64,12 +64,12 @@ brew 'spaceman-diff'
 brew 'spark'
 brew 'starship' # https://starship.rs => terminal prompt
 brew 'task'  # taskwarrior
-brew 'terraform'
-brew 'terraform-ls'
+brew 'hashicorp/tap/terraform'
+brew 'hashicorp/tap/terraform-ls'
 brew 'the_silver_searcher' # ripgrep alternative prior to rg being written. Not as fast, but some tools still use it
 brew 'tmux'
 # brew 'unrar'
-brew 'vault'  # Hashicorp Vault # failing because it needs node@10 apparrently, which is osx only
+brew 'hashicorp/tap/vault'  # Hashicorp Vault
 brew 'vegeta'  # load testing
 brew 'watch'
 brew 'wget' # curl alternative

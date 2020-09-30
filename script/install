@@ -28,28 +28,28 @@ brew upgrade
 echo "››› brew cleanup --prune-prefix"
 brew cleanup --prune-prefix
 
-echo "››› files to run during installation: \n$(find $DOTFILES -iname "install.sh")"
-for file in $(find $DOTFILES -iname "install.sh"); do
-  if [[ "$file" == "$DOTFILES/homebrew/install" ]]; then
-    continue
-  fi
-  if echo "$file" | grep -E -i 'python/pyenv' > /dev/null
-  then
-    continue
-  fi
+#echo "››› files to run during installation: \n$(find $DOTFILES -iname "install.sh")"
+#for file in $(find $DOTFILES -iname "install.sh"); do
+#  if [[ "$file" == "$DOTFILES/homebrew/install" ]]; then
+#    continue
+#  fi
+#  if echo "$file" | grep -E -i 'python/pyenv' > /dev/null
+#  then
+#    continue
+#  fi
 
-  echo ""
-  echo "#############################################"
-  echo "Executing file: $file ---->"
-  echo "#############################################"
-  echo ""
+#  echo ""
+#  echo "#############################################"
+#  echo "Executing file: $file ---->"
+#  echo "#############################################"
+#  echo ""
 
-  sh -c $file
+#  sh -c $file
 
-  echo ""
-  echo "<---- Done executing file: $file"
-  echo "---------------------------------------------"
-done
+#  echo ""
+#  echo "<---- Done executing file: $file"
+#  echo "---------------------------------------------"
+#done
 
 if [[ "$(uname)" == "Linux" ]]; then
   echo "checking on apt cleanup and updates"

@@ -35,7 +35,7 @@ else
   export TERM="screen-256color"
   export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
-  alias ls="ls -FG"
+  #alias ls="ls -FG"
 fi
 
 plugins=(zsh-autosuggestions zsh-syntax-highlighting)
@@ -297,6 +297,8 @@ tmpdir=$(mktemp -d)
 new_kubeconfig="${tmpdir}/kubeconfig"
 cp $KUBECONFIG $new_kubeconfig
 export KUBECONFIG=$new_kubeconfig
+
+alias ls="logo-ls --almost-all --human-readable --git-status"
 
 ############################################################
 ## PYENV INIT
