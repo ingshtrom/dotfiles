@@ -65,6 +65,7 @@ brew 'spaceman-diff'
 brew 'spark'
 brew 'starship' # https://starship.rs => terminal prompt
 brew 'task'  # taskwarrior
+brew 'terminal-notifier' # allow sending notifications from cli
 brew 'hashicorp/tap/terraform'
 brew 'hashicorp/tap/terraform-ls'
 brew 'the_silver_searcher' # ripgrep alternative prior to rg being written. Not as fast, but some tools still use it

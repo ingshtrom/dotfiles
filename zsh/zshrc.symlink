@@ -110,7 +110,9 @@ alias curl_gnu="/usr/local/opt/curl/bin/curl"
 
 #alias t="tmux"
 alias todo="$(brew --prefix)/bin/todo.sh -ANtc"
-alias t="task"
+#alias t="task"
+alias twitch=wtwitch
+alias t=wtwitch
 
 alias dir_diff="diff -r -x .git -x .terraform -N"
 
