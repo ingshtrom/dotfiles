@@ -30,6 +30,7 @@ autocmd User CocStatusChange,CocDiagnosticChange call lightline#update() " force
 autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 au VimLeave,VimSuspend * set guicursor=a:ver25
 
+set viminfo='100,<50,s10,h,f1 " do not lose information when restarting vim
 set number
 set modeline
 set modelines=10
@@ -212,7 +213,16 @@ set showtabline=2
 "      \ }
 "noremap <Leader>f :ALEFix<CR>
 
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+let g:fzf_layout = { 'window': { 'width': 0.95, 'height': 0.90 } }
+
+"command! FZFMru call fzf#run({
+"\  'source':  v:oldfiles,
+"\  'sink':    'e',
+"\  'options': '--no-sort --exact'})
+
+""nnoremap <c-p> :FZFMru<CR>
+"nnoremap <leader>o :FZF --no-sort --exact<CR>
+"nnoremap <leader>m :FZFMru<CR>
 
 " NOTE: refence => https://medium.com/@crashybang/supercharge-vim-with-fzf-and-ripgrep-d4661fc853d2
 " --column: Show column number

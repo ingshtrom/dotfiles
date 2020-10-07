@@ -300,7 +300,7 @@ new_kubeconfig="${tmpdir}/kubeconfig"
 cp $KUBECONFIG $new_kubeconfig
 export KUBECONFIG=$new_kubeconfig
 
-alias ls="logo-ls --almost-all --human-readable --git-status"
+alias ls="logo-ls --almost-all --human-readable"
 
 ############################################################
 ## PYENV INIT
@@ -338,3 +338,6 @@ export GPG_TTY=$(tty)
 ############################################################
 CHAMBER_SECRET_BACKEND=ssm
 CHAMBER_KMS_KEY_ALIAS=aws/ssm
+
+# we want to use the gnu grep, not osx versions of these tools
+PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
