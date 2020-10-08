@@ -151,6 +151,7 @@ Plug 'SirVer/ultisnips'
 
 " ColorSchemes
 "Plug 'NLKNguyen/papercolor-theme'
+"Plug 'connorholyday/vim-snazzy'
 Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 call plug#end()
 

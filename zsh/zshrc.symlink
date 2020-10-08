@@ -268,7 +268,8 @@ bindkey -s "\\C-r" "\\eqhh\\n"     # bind hh to Ctrl-r (for Vi mode check doc)
 # --files: List files that would be searched but do not search
 # --hidden: Search hidden files and folders
 # --follow: Follow symlinks
-export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
+# --glob: with the preceding `!` it negates the search, so we ignore .git/, .terraform/, node_modules/, vendor/
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob '"'"'!.git/*'"'"' --glob '"'"'!**/.terraform/*'"'"' --glob '"'"'!node_modules/*'"'"' --glob '"'"'!vendor/*'"'"''
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

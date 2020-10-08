@@ -1231,3 +1231,5 @@ run -b '[ -z "#{window_active}" ] && [ -z "#{version}" ] && tmux set display-tim
 
 # set -g pane-active-border-style fg=#ff901f,bg=#ff2975
 # set -g pane-border-style        fg=#ff901f,bg=#8c1eff
+
+#source-file ~/tmux-snazzy.theme.conf
