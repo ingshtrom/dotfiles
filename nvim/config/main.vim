@@ -277,6 +277,7 @@ inoremap <silent><expr> <TAB>
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-n>"
 inoremap <C-j> <C-n>
+inoremap <C-k> <C-p>
 
 "function! s:check_back_space() abort
 "  let col = col('.') - 1
@@ -324,12 +325,12 @@ nnoremap <silent><nowait> <Leader>c  :<C-u>CocList commands<cr>
 nnoremap <silent><nowait> <Leader>i  :<C-u>CocList outline<cr>
 " Search workspace symbols.
 nnoremap <silent><nowait> <Leader>u  :<C-u>CocList -I symbols<cr>
-"" Do default action for next item.
-"nnoremap <silent><nowait> <Leader>nn  :<C-u>CocNext<CR>
-"" Do default action for previous item.
-"nnoremap <silent><nowait> <Leader>np  :<C-u>CocPrev<CR>
-"" Resume latest coc list.
-"nnoremap <silent><nowait> <Leader>nc  :<C-u>CocListResume<CR>
+" Do default action for next item.
+nnoremap <silent><nowait> <Leader>nn  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent><nowait> <Leader>np  :<C-u>CocPrev<CR>
+" Resume latest coc list.
+nnoremap <silent><nowait> <Leader>nc  :<C-u>CocListResume<CR>
 
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
@@ -355,4 +356,5 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Use <C-j> for both expand and jump (make expand higher priority.)
 "imap <C-j> <Plug>(coc-snippets-expand-jump)
+
 
