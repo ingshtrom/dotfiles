@@ -141,6 +141,9 @@ Plug 'tsandall/vim-rego'
 " Use release branch (recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+"TPOPE does it again with detecting space/tabs/etc
+Plug 'tpope/vim-sleuth'
+
 " Git in your gutter!
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
