@@ -41,7 +41,7 @@ fi
 
 git checkout "$MAIN_BRANCH" -q
 echo "EASY CHANGELOG:"
-git log --color --pretty=tformat:'%C(yellow)%h %C(red)%an %C(reset)%s' --abbrev-commit HEAD..upstream/main | sed 's/^/  /'
+git log --color --pretty=tformat:'%C(yellow)%h %C(red)%an %C(reset)%s' --abbrev-commit "HEAD..upstream/${MAIN_BRANCH}" sed 's/^/  /'
 echo
 echo "RAW CHANGELOG:"
 git merge "upstream/${MAIN_BRANCH}" --no-log
