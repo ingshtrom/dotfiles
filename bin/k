@@ -12,7 +12,6 @@ then
   echo "Enabled verbose logging."
 fi
 
-
 KX_PATH="${KX_PATH:-$HOME/.kx}"
 mkdir -p "$KX_PATH/cache"
 
@@ -50,6 +49,8 @@ case $CPU_ARCHITECTURE in
   i686) CPU_ARCHITECTURE="386";;
   i386) CPU_ARCHITECTURE="386";;
 esac
+
+eval $(aws-okta env dockerinc.admin | sed "s/^/export /")
 
 # Ensure we have at least 1 kubectl version
 #

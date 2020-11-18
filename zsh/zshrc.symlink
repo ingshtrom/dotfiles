@@ -134,8 +134,8 @@ alias aoe='function(){aws-okta exec "$1" "${@:2}"}'
 alias aoed='function(){aws-okta exec dockerinc "${@:2}"}'
 alias ao='function(){aws-okta "$@"}'
 alias aod='function(){aws-okta dockerinc}'
-alias aox='function(){eval $(aws-okta exec "$@" -- env | grep AWS | sed "s/^/export /");}'
-alias aoxd='function(){eval $(aws-okta exec dockerinc -- env | grep AWS | sed "s/^/export /");}'
+alias aox='function(){eval $(aws-okta env "$@" | sed "s/^/export /");}'
+alias aoxd='function(){eval $(aws-okta env dockerinc.admin | sed "s/^/export /");}'
 
 alias lpass_search='lpass ls | grep -i "$@"'
 
