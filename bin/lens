@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set +xe
+
+eval $(aws-okta env dockerinc.admin | grep AWS | sed "s/^/export /")
+/Applications/Lens.app/Contents/MacOS/Lens "$@"

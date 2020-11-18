@@ -1,0 +1,6 @@
+#!/bin/bash
+# mount the notes Veracrypt Container and then start Obsidian
+
+lpass show 3899071518538380387 | egrep Password | cut -d: -f2 | tr -d '[:space:]' | pbcopy
+/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt --text -k "" --pim=0 --protect-hidden=no $HOME/veracrypt/email /Volumes/encrypted_email
+open -a Thunderbird

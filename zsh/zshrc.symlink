@@ -38,12 +38,9 @@ else
   #alias ls="ls -FG"
 fi
 
-plugins=(zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(zsh-autosuggestions zsh-syntax-highlighting git)
 
 source "$ZSH/oh-my-zsh.sh"
-
-autoload -Uz compinit
-compinit
 
 # only for Docker work
 source "$PROJECTS/tools/user/ahokanson/bash-functions.sh";
@@ -72,8 +69,8 @@ alias glg="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(
 alias gd='git diff'
 alias gc='git checkout'
 alias gb='git branch --sort=-committerdate'
-alias gcom='git add -A && git commit -s'
-alias gac='git add -A && git commit -s'
+alias gcom='git commit -s'
+alias gac='git commit -s'
 # alias gps='docker run --rm --name=gitleaks -v $(git rev-parse --show-toplevel):/tmp zricethezav/gitleaks -v --repo-path=/tmp && git push'
 alias gps='git push'
 alias gp='git pull'
@@ -196,7 +193,7 @@ export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
 # ZSH function fpath for loading auto-completion
-fpath=(/usr/local/share/zsh-completions $fpath)
+FPAT="/usr/local/share/zsh-completions:$FPATH"
 
 # Homebrew for linux/mac
 export PATH="$PATH:$(brew --prefix)/bin"
@@ -227,6 +224,9 @@ export CLICOLOR=true
 fpath=($DOTFILES/functions $fpath)
 
 autoload -U $DOTFILES/functions/*(:t)
+autoload -Uz compinit
+compinit
+
 
 setopt NO_BG_NICE # don't nice background tasks
 setopt NO_HUP
@@ -343,3 +343,5 @@ CHAMBER_KMS_KEY_ALIAS=aws/ssm
 
 # we want to use the gnu grep, not osx versions of these tools
 PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
+
+export AWS_OKTA_PROFILE=dockerinc.admin

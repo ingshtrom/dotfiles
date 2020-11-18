@@ -9,31 +9,77 @@ local units = {
 	maximum = {x = 0.00, y = 0.00, w = 1.00, h = 1.00}
 }
 
+function toggleZoomMute()
+  local zoom = hs.appfinder.appFromName("zoom.us")
+
+  if (zoom == nil) then
+    return
+  end
+
+  local unmute = {"Meeting", "Unmute Audio"}
+  local mute = {"Meeting", "Mute Audio"}
+
+  if (zoom:findMenuItem(mute)) then
+    zoom:selectMenuItem(mute)
+    hs.alert.show("Zoom Muted")
+  elseif (zoom:findMenuItem(unmute)) then
+    zoom:selectMenuItem(unmute)
+    hs.alert.show("Zoom Unmuted")
+  end
+end
+
+function toggleZoomVideo()
+  local zoom = hs.appfinder.appFromName("zoom.us")
+
+  if (zoom == nil) then
+    return
+  end
+
+  local stop = {"Meeting", "Stop Video"}
+  local start = {"Meeting", "Start Video"}
+
+  if (zoom:findMenuItem(start)) then
+    zoom:selectMenuItem(start)
+    hs.alert.show("Video started")
+  elseif (zoom:findMenuItem(stop)) then
+    zoom:selectMenuItem(stop)
+    hs.alert.show("Video stopped")
+  end
+end
+
+hs.hotkey.bind({"cmd", "shift"}, "A", function()
+  toggleZoomMute()
+end)
+
+-- hs.hotkey.bind({"cmd", "shift"}, "V", function()
+--   toggleZoomVideo()
+-- end)
+
 local mash = {"alt", "ctrl", "cmd"}
 hs.hotkey.bind(
 	mash,
-	"k",
+	"k", -- put window on top half of current screen
 	function()
 		hs.window.focusedWindow():move(units.top50, nil, true)
 	end
 )
 hs.hotkey.bind(
 	mash,
-	"j",
+	"j", -- put window on bottom half of current screen
 	function()
 		hs.window.focusedWindow():move(units.bot50, nil, true)
 	end
 )
 hs.hotkey.bind(
 	mash,
-	"u",
+	"u", -- put window on left half of current screen
 	function()
 		hs.window.focusedWindow():move(units.left50, nil, true)
 	end
 )
 hs.hotkey.bind(
 	mash,
-	"p",
+	"p", -- put window on right half of current screen
 	function()
 		hs.window.focusedWindow():move(units.right50, nil, true)
 	end
@@ -41,7 +87,7 @@ hs.hotkey.bind(
 
 hs.hotkey.bind(
 	mash,
-	"m",
+	"m", -- maximize (not full screen) window on current screen
 	function()
 		hs.window.focusedWindow():move(units.maximum, nil, true)
 	end
@@ -49,7 +95,7 @@ hs.hotkey.bind(
 
 hs.hotkey.bind(
 	mash,
-	"h",
+	"h", -- effectively move current window to the left screen 
 	function()
 		local win = hs.window.focusedWindow()
 		hs.grid.pushWindowPrevScreen(win)
@@ -57,17 +103,9 @@ hs.hotkey.bind(
 )
 hs.hotkey.bind(
 	mash,
-	"l",
+	"l", -- effectively move current window to the right screen
 	function()
 		local win = hs.window.focusedWindow()
 		hs.grid.pushWindowNextScreen(win)
 	end
 )
-
--- hs.hotkey.bind(
--- 	{"cmd", "alt"},
--- 	"V",
--- 	function()
--- 		hs.eventtap.keyStrokes(hs.pasteboard.getContents())
--- 	end
--- )
