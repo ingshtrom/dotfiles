@@ -4,29 +4,39 @@ set -o pipefail
 set -o nounset
 set -o errexit
 
+function perform_task() {
+  if which lolcat > /dev/null 2>&1 && which cowsay > /dev/null 2>&1;
+  then
+    echo "››› $@" | cowsay | lolcat
+    sh -c "$@"
+  else
+    echo "››› brew update"
+    brew update
+    echo
+    echo
+  fi
+}
+
 
 cd "$(dirname $0)"/..
 
-echo 'Please stick around, this may require that you enter y/n or your password to make changes'
-
 # Run Homebrew through the Brewfile
-echo "››› brew update"
-brew update
+perform_task 'brew update'
 
-echo "››› brew upgrade"
-brew upgrade
+perform_task 'brew upgrade'
 
-echo "››› brew bundle"
-brew bundle
+perform_task 'brew bundle'
 
-echo "››› brew update again now that we have new stuff"
-brew update
+perform_task 'brew update'
 
-echo "››› brew upgrade again now that we have new stuff"
-brew upgrade
+perform_task 'brew upgrade'
 
-echo "››› brew cleanup --prune-prefix"
-brew cleanup --prune-prefix
+perform_task 'brew cleanup --prune-prefix'
+
+if [[ "$(uname)" == "Darwin" ]];
+then
+  perform_task '$DOTFILES/macos/set-defaults.sh'
+fi
 
 #echo "››› files to run during installation: \n$(find $DOTFILES -iname "install.sh")"
 #for file in $(find $DOTFILES -iname "install.sh"); do
@@ -52,11 +62,10 @@ brew cleanup --prune-prefix
 #done
 
 if [[ "$(uname)" == "Linux" ]]; then
-  echo "checking on apt cleanup and updates"
-  sudo apt update -y
+  perform_task 'sudo apt update -y'
   sleep 1
-  sudo apt upgrade -y
+  perform_task 'sudo apt upgrade -y'
   sleep 1
-  sudo apt autoremove
+  perform_task 'sudo apt autoremove -y'
   sleep 1
 fi
