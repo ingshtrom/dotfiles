@@ -356,3 +356,4 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 "imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 let NERDTreeShowHidden=1
+let g:NERDTreeWinSize=60
