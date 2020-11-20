@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#
+# Describe ECR Repos from AWS
+#
+# USAGE:
+#
+#   $ aws-get-repos
+
+aws ecr list-images --repository-name "$@"

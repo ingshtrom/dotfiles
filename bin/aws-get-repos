@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#
+# Get ECR Repos from AWS
+#
+# USAGE:
+#
+#   $ aws-get-repos
+
+aws ecr describe-repositories "$@" | jq '.repositories[].repositoryName'
