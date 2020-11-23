@@ -7,13 +7,12 @@
 # and the current directory into `/tfdata`
 #
 
-arguments="$@"
+docker run --rm -ti \
+  --env AWS_ACCESS_KEY_ID \
+  --env AWS_SECRET_ACCESS_KEY \
+  --env AWS_SESSION_TOKEN \
+  --env AWS_SECURITY_TOKEN \
+  --volume "$(pwd):/tmp/tf_code" \
+  --volume "${HOME}/.ssh:/root/.ssh" \
+  hashicorp/terraform:0.12.29 $@
 
-if [[ "$(env | grep AWS | wc -l)" == "0" ]]
-then
-  echo 'Please log into AWS first!'
-  exit 1
-fi
-
-env_vars="-e $(env | grep AWS | cut -d'=' -f1 | sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/ -e /g')"
-bash -c "docker run --rm -ti $env_vars -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli $arguments"
