@@ -24,25 +24,7 @@ setopt HIST_REDUCE_BLANKS
 
 setopt complete_aliases
 
-# test test these, run `cat` and then type in the key combo you want to see printed
-#bindkey '^[b' backward-word
-#bindkey '^H' backward-word
-#bindkey '^[f' forward-word
-#bindkey '^L' forward-word
 
-#{ untested
-bindkey '^[[5D' beginning-of-line
-bindkey '^[[5C' end-of-line
-bindkey '^[[3~' delete-char
-bindkey '^?' backward-delete-char
-#}
-
-bindkey "\\C-f" forward-char
-bindkey "\\C-k" up-line-or-search
-bindkey "\\C-p" up-line-or-search
-bindkey "\\C-j" down-line-or-search
-bindkey "\\C-n" down-line-or-search
-bindkey -s "\\C-r" "\\eqhh\\n"     # bind hh to Ctrl-r (for Vi mode check doc)
 
 # Path to your oh-my-zsh installation.
 export PROJECTS="$HOME/src"
@@ -93,6 +75,32 @@ source "$ZSH/oh-my-zsh.sh"
 source "$PROJECTS/tools/user/ahokanson/bash-functions.sh";
 source "$PROJECTS/tools/user/ahokanson/bash-functions-personal.sh"
 source "$PROJECTS/tools/user/ahokanson/aliases.sh";
+
+#{ NOTE: these need to be after loading oh-my-zsh, otherwise they get overwritten
+#
+# test test these, run `cat` and then type in the key combo you want to see printed
+#bindkey '^[b' backward-word
+#bindkey '^H' backward-word
+#bindkey '^[f' forward-word
+#bindkey '^L' forward-word
+
+#{ untested
+bindkey '^[[5D' beginning-of-line
+bindkey '^[[5C' end-of-line
+bindkey '^[[3~' delete-char
+bindkey '^?' backward-delete-char
+#}
+
+run_hh() { hh; }
+zle -N run_hh
+
+bindkey "\\C-f" forward-char
+bindkey "\\C-k" up-line-or-search
+bindkey "\\C-p" up-line-or-search
+bindkey "\\C-j" down-line-or-search
+bindkey "\\C-n" down-line-or-search
+bindkey "^R" run_hh     # bind hh to Ctrl-r (for Vi mode check doc)
+#}
 
 # Stash your environment variables in ~/.localrc. This means they'll stay out
 # of your main dotfiles repository (which may be public, like this one), but
