@@ -24,9 +24,6 @@ setopt HIST_REDUCE_BLANKS
 
 setopt complete_aliases
 
-
-
-# Path to your oh-my-zsh installation.
 export PROJECTS="$HOME/src"
 export ZSH_AUTOSUGGEST_USE_ASYNC=true
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=blue,bold'
@@ -40,7 +37,7 @@ export DOTFILES=$HOME/.dotfiles
 export AWS_OKTA_PROFILE=dockerinc.admin
 export TERM="screen-256color"
 export GOPATH=$PROJECTS/go
-export PATH="/usr/local/opt/grep/libexec/gnubin:${HOME}/.krew/bin:$HOME/.bin:./bin:/usr/local/bin:/usr/local/sbin:$DOTFILES/bin:/usr/local/bin:/usr/local/buildkit/bin:/usr/local/opt/python/libexec/bin:/usr/local/opt/ruby/bin:/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/go/bin:$GOPATH/bin:$HOME/.cargo/bin:$PATH"
+export PATH="/usr/local/lib/ruby/gems/2.7.0/bin:/usr/local/opt/grep/libexec/gnubin:${HOME}/.krew/bin:$HOME/.bin:./bin:/usr/local/bin:/usr/local/sbin:$DOTFILES/bin:/usr/local/bin:/usr/local/buildkit/bin:/usr/local/opt/python/libexec/bin:/usr/local/opt/ruby/bin:/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/go/bin:$GOPATH/bin:$HOME/.cargo/bin:$PATH"
 export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
 export EDITOR='nvim'
 export VISUAL='nvim'
@@ -99,7 +96,7 @@ bindkey "\\C-k" up-line-or-search
 bindkey "\\C-p" up-line-or-search
 bindkey "\\C-j" down-line-or-search
 bindkey "\\C-n" down-line-or-search
-bindkey "^R" run_hh     # bind hh to Ctrl-r (for Vi mode check doc)
+bindkey -s "^R" hh
 #}
 
 # Stash your environment variables in ~/.localrc. This means they'll stay out
