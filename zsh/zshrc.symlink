@@ -111,7 +111,7 @@ fi
 # ALIASES
 alias reg=hub-tool
 alias git=/usr/local/bin/hub
-alias code="/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code"
+alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
 
 # The rest of my fun git aliases
 alias gl='git log'

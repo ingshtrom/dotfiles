@@ -31,6 +31,4 @@ defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool true
 #      is done in the app
 # defaults write -g com.apple.mouse.scaling 6
 
-# make sure indexing of spotlight is off
-# REF: https://osxdaily.com/2009/09/20/disable-spotlight-in-mac-os-x-10-6-snow-leopard/
-sudo mdutil -a -i off
+sudo mdutil -a -i on

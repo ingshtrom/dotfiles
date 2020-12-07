@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# vi: ft=sh
+#
+# Runs the Hashicorp Terraform binary in a Docker container
+#
+# It automatically mounts your ~/.aws directory to `/root/.aws` 
+# and the current directory into `/tfdata`
+#
+
+docker run --rm -ti \
+  --env AWS_ACCESS_KEY_ID \
+  --env AWS_SECRET_ACCESS_KEY \
+  --env AWS_SESSION_TOKEN \
+  --env AWS_SECURITY_TOKEN \
+  --volume "$(pwd):/tmp/tf_code" \
+  --volume "${HOME}/.ssh:/root/.ssh" \
+  hashicorp/terraform:0.12.29 $@
+

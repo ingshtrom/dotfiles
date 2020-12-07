@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# Formal XML in the terminal via stdin
+#
+# USAGE:
+#
+#   $ echo '<root><foo a="b">lorem</foo><bar value="ipsum" /></root>' | xml
+#
+python3 -c 'import sys;import xml.dom.minidom;s=sys.stdin.read();print(xml.dom.minidom.parseString(s).toprettyxml())'
