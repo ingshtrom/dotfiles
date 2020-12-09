@@ -1,1 +1,1 @@
---pager="less --RAW-CONTROL-CHARS --quit-if-one-screen"
+--pager="less --RAW-CONTROL-CHARS --quit-if-one-screen --theme OneHalfLight"
