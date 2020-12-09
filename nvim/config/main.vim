@@ -152,9 +152,10 @@ Plug 'tpope/vim-rhubarb'
 Plug 'SirVer/ultisnips'
 
 " ColorSchemes
-"Plug 'NLKNguyen/papercolor-theme'
+Plug 'NLKNguyen/papercolor-theme'
 "Plug 'connorholyday/vim-snazzy'
 Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+Plug 'noahfrederick/vim-hemisu'
 call plug#end()
 
 let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' }, 'haproxy': { 'left': '#' } }
@@ -266,9 +267,11 @@ nnoremap <Leader>t :let _save_pos=getpos(".") <Bar>
     \ :call setpos('.', _save_pos)<Bar>
     \ :unlet _save_pos<CR><CR>
 
-set background=dark
-colorscheme challenger_deep
-let g:lightline.colorscheme='challenger_deep'
+set background=light
+colorscheme hemisu
+"colorscheme papercolor
+"colorscheme challenger_deep
+"let g:lightline.colorscheme='challenger_deep'
 
 " CoC Configuration
 "
