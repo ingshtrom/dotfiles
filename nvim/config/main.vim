@@ -292,9 +292,9 @@ inoremap <C-k> <C-p>
 inoremap <silent><expr> <c-space> coc#refresh()
 
 " format buffer contents
-command! -nargs=0 Format :call CocAction('format')
-noremap <Leader>f :Format<CR>
-autocmd FileType terraform,tf noremap <Leader>f :!terraform fmt -write=true '%:p'<CR>
+"command! -nargs=0 Format :call CocAction('format')
+"noremap <Leader>f :Format<CR>
+"autocmd FileType terraform,tf noremap <Leader>f :!terraform fmt -write=true '%:p'<CR>
 
 " rename symbol under cursor
 nmap <leader>rn <Plug>(coc-rename)
