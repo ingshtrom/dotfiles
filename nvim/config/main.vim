@@ -135,6 +135,8 @@ Plug 'wannesm/wmgraphviz.vim'
 Plug 'editorconfig/editorconfig-vim'
 " OPA integration
 Plug 'tsandall/vim-rego'
+" Dash documentation integration
+Plug 'rizzatti/dash.vim'
 " awesome autocompletion
 "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
