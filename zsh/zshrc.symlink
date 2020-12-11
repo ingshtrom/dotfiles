@@ -46,7 +46,7 @@ export HISTSIZE=100000
 export SAVEHIST=100000
 export HISTFILE=~/.zsh_history  # ensure history file visibility
 export HH_CONFIG=hicolor        # get more colors
-export MANPAGER="sh -c 'col -bx | bat -l man -p --theme OneHalfLight'"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob '"'"'!.git/*'"'"' --glob '"'"'!**/.terraform/*'"'"' --glob '"'"'!node_modules/*'"'"' --glob '"'"'!vendor/*'"'"''
 export PAGER="less --RAW-CONTROL-CHARS"
 export BAT_PAGER="$PAGER"
@@ -54,6 +54,7 @@ export DOCKER_BUILDKIT=1
 export COMPOSE_DOCKER_CLI_BUILD=1
 export CHAMBER_SECRET_BACKEND=ssm
 export CHAMBER_KMS_KEY_ALIAS=aws/ssm
+export BAT_THEME=OneHalfLight
 export PS1='[$(kubectl config current-context) %1~ %# '
 #export GPG_TTY=$(tty)
 
@@ -109,7 +110,6 @@ fi
 
 ################################################################################################
 # ALIASES
-alias bat="bat --theme OneHalfLight"
 alias reg=hub-tool
 alias git=/usr/local/bin/hub
 alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
