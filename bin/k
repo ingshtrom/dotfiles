@@ -50,7 +50,7 @@ case $CPU_ARCHITECTURE in
   i386) CPU_ARCHITECTURE="386";;
 esac
 
-eval $(aws-okta env dockerinc.admin | sed "s/^/export /")
+#eval $(aws-okta env dockerinc.main | sed "s/^/export /")
 
 # Ensure we have at least 1 kubectl version
 #
