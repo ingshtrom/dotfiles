@@ -77,7 +77,7 @@ tmux_conf_theme_window_bg='default'
 # highlight focused pane (tmux >= 2.1), possible values are:
 #   - true
 #   - false (default)
-tmux_conf_theme_highlight_focused_pane=false
+tmux_conf_theme_highlight_focused_pane=true
 
 # focused pane colours:
 tmux_conf_theme_focused_pane_fg='default'
@@ -86,11 +86,11 @@ tmux_conf_theme_focused_pane_bg='default'
 # pane border style, possible values are:
 #   - thin (default)
 #   - fat
-tmux_conf_theme_pane_border_style=thin
+tmux_conf_theme_pane_border_style=fat
 
 # pane borders colours:
-tmux_conf_theme_pane_border=$custom_visual_grey
-tmux_conf_theme_pane_active_border=$custom_blue
+tmux_conf_theme_pane_border=$custom_black
+tmux_conf_theme_pane_active_border=$custom_orange
 
 # pane indicator colours
 tmux_conf_theme_pane_indicator=$custom_orange
