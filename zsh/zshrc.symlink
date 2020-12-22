@@ -22,7 +22,7 @@ setopt INC_APPEND_HISTORY SHARE_HISTORY  # adds history incrementally and share 
 setopt HIST_IGNORE_ALL_DUPS  # don't record dupes in history
 setopt HIST_REDUCE_BLANKS
 
-setopt complete_aliases
+unsetopt complete_aliases
 
 export PROJECTS="$HOME/src"
 export ZSH_AUTOSUGGEST_USE_ASYNC=true
@@ -120,7 +120,7 @@ alias gl="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(y
 alias gd='git diff'
 alias gc='git checkout'
 alias gb='git branch --sort=-committerdate'
-alias gcom='git commit -s -m'
+alias gcom='git commit -s'
 # alias gps='docker run --rm --name=gitleaks -v $(git rev-parse --show-toplevel):/tmp zricethezav/gitleaks -v --repo-path=/tmp && git push'
 alias gs='git status'
 alias ga='git add --all'
