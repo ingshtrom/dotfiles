@@ -102,7 +102,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " global search and replace
-Plug 'yegappan/greplace'
+"Plug 'yegappan/greplace'
 " go stuff for go dev, I guess
 "Plug 'fatih/vim-go'
 " better commenting
@@ -122,7 +122,7 @@ Plug 'sheerun/vim-polyglot'
 " Jinja
 Plug 'lepture/vim-jinja'
 " Cool icons (once I patch my font) for file types in the NERDTree
-Plug 'ryanoasis/vim-devicons'
+"Plug 'ryanoasis/vim-devicons'
 " better yaml parsing for large files
 Plug 'stephpy/vim-yaml'
 " SaltStack syntax
@@ -136,7 +136,7 @@ Plug 'editorconfig/editorconfig-vim'
 " OPA integration
 Plug 'tsandall/vim-rego'
 " Dash documentation integration
-Plug 'rizzatti/dash.vim'
+"Plug 'rizzatti/dash.vim'
 " awesome autocompletion
 "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -151,12 +151,12 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 
 " Snippets!
-Plug 'SirVer/ultisnips'
+"Plug 'SirVer/ultisnips'
 
 " ColorSchemes
-Plug 'NLKNguyen/papercolor-theme'
+"Plug 'NLKNguyen/papercolor-theme'
 "Plug 'connorholyday/vim-snazzy'
-Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+"Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 Plug 'noahfrederick/vim-hemisu'
 call plug#end()
 
@@ -280,11 +280,11 @@ colorscheme hemisu
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-n>"
+"inoremap <silent><expr> <TAB>
+"      \ pumvisible() ? "\<C-n>" :
+"      \ <SID>check_back_space() ? "\<TAB>" :
+"      \ coc#refresh()
+"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-n>"
 inoremap <C-j> <C-n>
 inoremap <C-k> <C-p>
 

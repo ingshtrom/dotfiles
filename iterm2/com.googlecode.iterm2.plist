@@ -18,6 +18,14 @@
 	<true/>
 	<key>CheckTestRelease</key>
 	<true/>
+	<key>CloseBookmarksWindowAfterOpening</key>
+	<true/>
+	<key>Coprocess MRU</key>
+	<array>
+		<string>/usr/local/bin/hstr</string>
+		<string>hstr</string>
+		<string>hh</string>
+	</array>
 	<key>CopyLastNewline</key>
 	<false/>
 	<key>CopySelection</key>
@@ -2629,7 +2637,7 @@
 	<key>DisableMetalWhenIdle</key>
 	<true/>
 	<key>DoubleReportScrollWheel</key>
-	<false/>
+	<true/>
 	<key>EnableAPIServer</key>
 	<false/>
 	<key>EnableDivisionView</key>
@@ -2639,7 +2647,7 @@
 	<key>FlashTabBarInFullscreen</key>
 	<false/>
 	<key>FocusFollowsMouse</key>
-	<false/>
+	<true/>
 	<key>HapticFeedbackForEsc</key>
 	<false/>
 	<key>HideMenuBarInFullscreen</key>
@@ -3807,6 +3815,8 @@
 			<string>screen-256color</string>
 			<key>Thin Strokes</key>
 			<integer>3</integer>
+			<key>Title Components</key>
+			<integer>7</integer>
 			<key>Transparency</key>
 			<real>0.0</real>
 			<key>Triggers</key>
@@ -3869,13 +3879,13 @@
 	<key>OpenArrangementAtStartup</key>
 	<false/>
 	<key>OpenBookmark</key>
-	<false/>
+	<true/>
 	<key>OpenNoWindowsAtStartup</key>
 	<true/>
 	<key>OpenTmuxWindowsIn</key>
-	<integer>2</integer>
+	<integer>0</integer>
 	<key>OptionClickMovesCursor</key>
-	<false/>
+	<true/>
 	<key>PMPrintingExpandedStateForPrint2</key>
 	<true/>
 	<key>PassOnControlClick</key>
@@ -3915,8 +3925,6 @@
 			<string>kNextWindowPointerAction</string>
 		</dict>
 	</dict>
-	<key>PreventEscapeSequenceFromClearingHistory</key>
-	<false/>
 	<key>Print In Black And White</key>
 	<true/>
 	<key>PromptOnQuit</key>
@@ -3975,6 +3983,8 @@
 	<key>TmuxUnpauseAutomatically</key>
 	<true/>
 	<key>TmuxUsesDedicatedProfile</key>
+	<false/>
+	<key>TmuxWarnBeforePausing</key>
 	<true/>
 	<key>ToolbeltTools</key>
 	<array>
@@ -3994,7 +4004,7 @@
 	<key>UseMetal</key>
 	<true/>
 	<key>UseTmuxStatusBar</key>
-	<true/>
+	<false/>
 	<key>VisualIndicatorForEsc</key>
 	<false/>
 	<key>WindowNumber</key>
