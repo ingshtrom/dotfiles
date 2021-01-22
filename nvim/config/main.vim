@@ -103,8 +103,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " global search and replace
 "Plug 'yegappan/greplace'
-" go stuff for go dev, I guess
-"Plug 'fatih/vim-go'
 " better commenting
 Plug 'scrooloose/nerdcommenter'
 " Tree viewer
@@ -127,8 +125,6 @@ Plug 'lepture/vim-jinja'
 Plug 'stephpy/vim-yaml'
 " SaltStack syntax
 Plug 'saltstack/salt-vim'
-" HashiCorp Configuration Language (HCL)
-Plug 'fatih/vim-hclfmt'
 " graphviz help :)
 Plug 'wannesm/wmgraphviz.vim'
 " EditorConfig formatting
@@ -143,7 +139,8 @@ Plug 'tsandall/vim-rego'
 " Use release branch (recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-Plug 'hashivim/vim-terraform'
+" was causing saves to feel laggy
+"Plug 'hashivim/vim-terraform'
 
 " Git in your gutter!
 Plug 'airblade/vim-gitgutter'
@@ -202,8 +199,8 @@ endfunction
 
 set showtabline=2
 
-let g:terraform_align=1
-let g:terraform_fmt_on_save=1
+"let g:terraform_align=1
+"let g:terraform_fmt_on_save=1
 
 " Formatting settings
 " -- use ALEFix for everything, except Terraform,

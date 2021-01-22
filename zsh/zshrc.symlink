@@ -2,7 +2,7 @@
 #exec 3>&2 2>/tmp/bashstart.$$.log
 #set -x
 
-zmodload zsh/zprof
+#zmodload zsh/zprof
 
 setopt NO_BG_NICE # don't nice background tasks
 setopt NO_HUP
@@ -83,21 +83,21 @@ source "$PROJECTS/tools/user/ahokanson/aliases.sh";
 #bindkey '^L' forward-word
 
 #{ untested
-bindkey '^[[5D' beginning-of-line
-bindkey '^[[5C' end-of-line
-bindkey '^[[3~' delete-char
-bindkey '^?' backward-delete-char
-#}
+#bindkey '^[[5D' beginning-of-line
+#bindkey '^[[5C' end-of-line
+#bindkey '^[[3~' delete-char
+#bindkey '^?' backward-delete-char
+##}
 
-run_hh() { hh; }
-zle -N run_hh
+#run_hh() { hh; }
+#zle -N run_hh
 
-bindkey "\\C-f" forward-char
-bindkey "\\C-k" up-line-or-search
-bindkey "\\C-p" up-line-or-search
-bindkey "\\C-j" down-line-or-search
-bindkey "\\C-n" down-line-or-search
-bindkey -s "^R" hh
+#bindkey "\\C-f" forward-char
+#bindkey "\\C-k" up-line-or-search
+#bindkey "\\C-p" up-line-or-search
+#bindkey "\\C-j" down-line-or-search
+#bindkey "\\C-n" down-line-or-search
+#bindkey -s "^R" hh
 #}
 
 # Stash your environment variables in ~/.localrc. This means they'll stay out
@@ -114,6 +114,7 @@ alias reg=hub-tool
 alias git=/usr/local/bin/hub
 alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
 alias h='hstr'
+alias ls='exa'
 
 # The rest of my fun git aliases
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
@@ -178,6 +179,8 @@ alias lpass_search='lpass ls | grep -i "$@"'
 alias ecr_login='aws ecr get-login --no-include-email --region us-east-1 | sh'
 
 alias gpg_list_encrypted_with='gpg --batch --list-packets $1 2>&1'
+
+alias infracli='aws-okta exec dockerinc.main -- docker run --rm -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e AWS_SESSION_TOKEN -e AWS_SECURITY_TOKEN --name infracli dckr/infracli:latest'
 
 autoload -U $DOTFILES/functions/*(:t)
 #autoload -Uz compinit

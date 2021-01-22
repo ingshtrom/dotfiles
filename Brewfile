@@ -8,7 +8,7 @@ tap 'hashicorp/tap'
 tap 'github/gh'
 
 brew 'ack'
-brew 'aws-okta'  # hopeful not much longer...
+brew 'aws-okta'  # hopefully not much longer...
 brew 'bash'
 brew 'binutils'
 brew 'cmake'
@@ -18,6 +18,7 @@ brew 'coreutils'
 brew 'dep'
 brew 'direnv' # load .envrc from a directory just by entering and existing the directory
 brew 'ed'
+brew 'exa' # a better ls as-per https://medium.com/@timonbimon/yet-another-step-by-step-guide-for-a-better-terminal-setup-6c5e879d4c8c
 brew 'findutils'
 brew 'fzf'  # awesome fuzzy finder
 brew 'gawk'
@@ -66,7 +67,7 @@ brew 'spark'
 brew 'starship' # https://starship.rs => terminal prompt
 brew 'task'  # taskwarrior
 brew 'terminal-notifier' # allow sending notifications from cli
-brew 'hashicorp/tap/terraform'
+# brew 'hashicorp/tap/terraform' # remove and use tfenv instead
 brew 'hashicorp/tap/terraform-ls'
 brew 'the_silver_searcher' # ripgrep alternative prior to rg being written. Not as fast, but some tools still use it
 brew 'tmux'
