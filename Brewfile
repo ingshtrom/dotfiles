@@ -69,6 +69,7 @@ brew 'task'  # taskwarrior
 brew 'terminal-notifier' # allow sending notifications from cli
 # brew 'hashicorp/tap/terraform' # remove and use tfenv instead
 brew 'hashicorp/tap/terraform-ls'
+# brew "terragrunt", args: ["ignore-dependencies"] # this will cause conflicts with tfenv, get Terragrunt from Github releases page
 brew 'the_silver_searcher' # ripgrep alternative prior to rg being written. Not as fast, but some tools still use it
 brew 'tmux'
 # brew 'unrar'

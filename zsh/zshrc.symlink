@@ -45,7 +45,6 @@ export CLICOLOR=true
 export HISTSIZE=100000
 export SAVEHIST=100000
 export HISTFILE=~/.zsh_history  # ensure history file visibility
-export HH_CONFIG=hicolor        # get more colors
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob '"'"'!.git/*'"'"' --glob '"'"'!**/.terraform/*'"'"' --glob '"'"'!node_modules/*'"'"' --glob '"'"'!vendor/*'"'"''
 export PAGER="less --RAW-CONTROL-CHARS"
@@ -89,15 +88,11 @@ source "$PROJECTS/tools/user/ahokanson/aliases.sh";
 #bindkey '^?' backward-delete-char
 ##}
 
-#run_hh() { hh; }
-#zle -N run_hh
-
 #bindkey "\\C-f" forward-char
 #bindkey "\\C-k" up-line-or-search
 #bindkey "\\C-p" up-line-or-search
 #bindkey "\\C-j" down-line-or-search
 #bindkey "\\C-n" down-line-or-search
-#bindkey -s "^R" hh
 #}
 
 # Stash your environment variables in ~/.localrc. This means they'll stay out
@@ -177,10 +172,15 @@ alias aa='eval $(assume_okta_admin_source)'
 alias lpass_search='lpass ls | grep -i "$@"'
 
 alias ecr_login='aws ecr get-login --no-include-email --region us-east-1 | sh'
+alias regctl_ecr_login='regctl registry login 710015040892.dkr.ecr.us-east-1.amazonaws.com -u AWS -p $(aws ecr get-authorization-token | jq -r '"'"'.authorizationData[0].authorizationToken'"'"' | base64 --decode | cut -d: -f2)'
+alias regctl_get_tags='function(){regctl tag ls 710015040892.dkr.ecr.us-east-1.amazonaws.com/infra/$1 | grep release | sort}'
 
 alias gpg_list_encrypted_with='gpg --batch --list-packets $1 2>&1'
 
 alias infracli='aws-okta exec dockerinc.main -- docker run --rm -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e AWS_SESSION_TOKEN -e AWS_SECURITY_TOKEN --name infracli dckr/infracli:latest'
+
+alias whats-my-ip='dig TXT +short o-o.myaddr.l.google.com @ns1.google.com -4 | awk -F'"'"'"'"'"' '"'"'{ print $2}'"'"' && dig TXT +short o-o.myaddr.l.google.com @ns1.google.com -6 | awk -F'"'"'"'"'"' '"'"'{ print $2}'"'"''
+alias ip='whats-my-ip'
 
 autoload -U $DOTFILES/functions/*(:t)
 #autoload -Uz compinit
@@ -205,3 +205,9 @@ eval "$(starship init zsh)"
 
 # slows things down 200ms each start up!
 #source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# HSTR configuration - add this to ~/.zshrc
+setopt histignorespace           # skip cmds w/ leading space from history
+export HSTR_CONFIG=hicolor,regexp-matching
+bindkey -s "\C-r" "\C-a hstr -- \C-j"     # bind hstr to Ctrl-r (for Vi mode check doc)
+

@@ -92,14 +92,15 @@ else
 endif
 
 
-let g:WMGraphviz_output = "svg"
+"let g:WMGraphviz_output = "svg"
 
 """""""""""""""""""""""""""""""""""""""""""""
 "" Plugins
 """""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 " fzf for fuzzy finding
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " global search and replace
 "Plug 'yegappan/greplace'
@@ -219,6 +220,7 @@ set showtabline=2
 "noremap <Leader>f :ALEFix<CR>
 
 let g:fzf_layout = { 'window': { 'width': 0.95, 'height': 0.90 } }
+"let g:fzf_preview_window = ['down:50%']
 
 "command! FZFMru call fzf#run({
 "\  'source':  v:oldfiles,
