@@ -177,8 +177,6 @@ alias regctl_get_tags='function(){regctl tag ls 710015040892.dkr.ecr.us-east-1.a
 
 alias gpg_list_encrypted_with='gpg --batch --list-packets $1 2>&1'
 
-alias infracli='aws-okta exec dockerinc.main -- docker run --rm -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e AWS_SESSION_TOKEN -e AWS_SECURITY_TOKEN --name infracli dckr/infracli:latest'
-
 alias whats-my-ip='dig TXT +short o-o.myaddr.l.google.com @ns1.google.com -4 | awk -F'"'"'"'"'"' '"'"'{ print $2}'"'"' && dig TXT +short o-o.myaddr.l.google.com @ns1.google.com -6 | awk -F'"'"'"'"'"' '"'"'{ print $2}'"'"''
 alias ip='whats-my-ip'
 
