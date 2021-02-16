@@ -33,33 +33,29 @@ perform_task 'brew upgrade'
 
 perform_task 'brew cleanup --prune-prefix'
 
+
+
+echo "››› files to run during installation: \n$(find $DOTFILES -iname "install.sh")"
+for file in $(find $DOTFILES -iname "install.sh"); do
+  if [[ "$file" == "$DOTFILES/homebrew/install" ]]; then
+    continue
+  fi
+  if echo "$file" | grep -E -i 'python/pyenv' > /dev/null
+  then
+    continue
+  fi
+
+  echo "Executing file: $file {" | cowsay | lolcat
+
+  sh -c $file
+
+  echo "} Done"
+done
+
 if [[ "$(uname)" == "Darwin" ]];
 then
   perform_task '$DOTFILES/macos/set-defaults.sh'
 fi
-
-#echo "››› files to run during installation: \n$(find $DOTFILES -iname "install.sh")"
-#for file in $(find $DOTFILES -iname "install.sh"); do
-#  if [[ "$file" == "$DOTFILES/homebrew/install" ]]; then
-#    continue
-#  fi
-#  if echo "$file" | grep -E -i 'python/pyenv' > /dev/null
-#  then
-#    continue
-#  fi
-
-#  echo ""
-#  echo "#############################################"
-#  echo "Executing file: $file ---->"
-#  echo "#############################################"
-#  echo ""
-
-#  sh -c $file
-
-#  echo ""
-#  echo "<---- Done executing file: $file"
-#  echo "---------------------------------------------"
-#done
 
 if [[ "$(uname)" == "Linux" ]]; then
   perform_task 'sudo apt update -y'

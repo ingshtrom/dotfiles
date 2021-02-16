@@ -43,7 +43,7 @@
 [user]
 	name = Alex Hokanson
 	email = 571756+ingshtrom@users.noreply.github.com
-	signingkey = FBBCEDEC1FB752A1573AC782E9083B5DF5AB9391
+	signingkey = E38CDD262C72725F93FAF21D7D86607F8A74AAF8
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 [commit]

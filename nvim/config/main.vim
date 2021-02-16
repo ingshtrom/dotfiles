@@ -109,7 +109,7 @@ Plug 'scrooloose/nerdcommenter'
 " Tree viewer
 Plug 'scrooloose/nerdtree'
 " git status in your Tree viewer
-Plug 'Xuyuanp/nerdtree-git-plugin'
+"Plug 'Xuyuanp/nerdtree-git-plugin'
 " status line at the bottom
 Plug 'itchyny/lightline.vim'
 " show buffers like tabs
@@ -128,12 +128,8 @@ Plug 'stephpy/vim-yaml'
 Plug 'saltstack/salt-vim'
 " graphviz help :)
 Plug 'wannesm/wmgraphviz.vim'
-" EditorConfig formatting
-Plug 'editorconfig/editorconfig-vim'
 " OPA integration
 Plug 'tsandall/vim-rego'
-" Dash documentation integration
-"Plug 'rizzatti/dash.vim'
 " awesome autocompletion
 "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -200,36 +196,7 @@ endfunction
 
 set showtabline=2
 
-"let g:terraform_align=1
-"let g:terraform_fmt_on_save=1
-
-" Formatting settings
-" -- use ALEFix for everything, except Terraform,
-"   which we will use TerraformFmt for
-"let g:ale_fix_on_save = 1
-"let g:ale_fixers = {
-"      \ '*': ['trim_whitespace'],
-"      \ 'sh': ['shfmt', 'trim_whitespace'],
-"      \ 'yaml': ['prettier', 'trim_whitespace'],
-"      \ 'terraform': ['terraform', 'trim_whitespace'],
-"      \ 'html': ['prettier', 'html-beautify', 'tidy'],
-"      \ 'hcl': ['terraform', 'trim_whitespace'],
-"      \ 'python': ['reorder-python-imports', 'autopep8'],
-"      \ 'go': ['gofmt', 'goimports']
-"      \ }
-"noremap <Leader>f :ALEFix<CR>
-
 let g:fzf_layout = { 'window': { 'width': 0.95, 'height': 0.90 } }
-"let g:fzf_preview_window = ['down:50%']
-
-"command! FZFMru call fzf#run({
-"\  'source':  v:oldfiles,
-"\  'sink':    'e',
-"\  'options': '--no-sort --exact'})
-
-""nnoremap <c-p> :FZFMru<CR>
-"nnoremap <leader>o :FZF --no-sort --exact<CR>
-"nnoremap <leader>m :FZFMru<CR>
 
 " NOTE: refence => https://medium.com/@crashybang/supercharge-vim-with-fzf-and-ripgrep-d4661fc853d2
 " --column: Show column number
@@ -270,20 +237,7 @@ nnoremap <Leader>t :let _save_pos=getpos(".") <Bar>
 
 set background=light
 colorscheme hemisu
-"colorscheme papercolor
-"colorscheme challenger_deep
-"let g:lightline.colorscheme='challenger_deep'
 
-" CoC Configuration
-"
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-"inoremap <silent><expr> <TAB>
-"      \ pumvisible() ? "\<C-n>" :
-"      \ <SID>check_back_space() ? "\<TAB>" :
-"      \ coc#refresh()
-"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-n>"
 inoremap <C-j> <C-n>
 inoremap <C-k> <C-p>
 

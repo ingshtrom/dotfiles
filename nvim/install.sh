@@ -17,7 +17,10 @@ if [[ "$os" == "Darwin" ]]; then
   # bunch of library installations to make sure everything is working smoothly
   # honestly, I'm not sure what all of them do anymore
   pip install neovim
-  gem install neovim
+
+  # NOTE: this is optional in :checkhealth
+  # gem install neovim
+
   n lts
   npm i -g neovim
   npm i -g typescript
