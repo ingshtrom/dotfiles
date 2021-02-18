@@ -8,17 +8,8 @@
 # Inspired by Kyle Neath's `git up' alias:
 # http://gist.github.com/249223
 
-# get the latest changes from upstream
-#if ! ( git remote | grep 'upstream' 2>&1 > /dev/null )
-#then
-#    echo "No upstream to sync with"
-#    exit 1
-#fi
-git fetch upstream
-
 # make sure there are no changes to the current branch before attempting to switch
-#if test "$(git status --porcelain | wc -l | tr -d '[:space:]')" = 0
-if ! ( git diff --exit-code && git diff --cached --exit-code )
+if ! ( git diff --exit-code > /dev/null 2>&1 && git diff --cached --exit-code > /dev/null 2>&1 )
 then
     echo "Cannot sync the main/master branch when there are changes in the current branch"
     exit 1
@@ -29,23 +20,24 @@ MAIN_BRANCH='unknown'
 # if we are not on main/master, then switch to it
 # we already know we do not have changes in our current branch
 if git branch | grep 'main' 2>&1 > /dev/null; then
-    MAIN_BRANCH='main'
+  MAIN_BRANCH='main'
 elif git branch | grep 'master' 2>&1 > /dev/null; then
-    MAIN_BRANCH='master'
+  MAIN_BRANCH='master'
 fi
 
 if [[ "$MAIN_BRANCH" == "unknown" ]]; then
-    echo "main or master not found in branch listing"
-    exit 1
+  echo "main or master not found in branch listing"
+  exit 1
 fi
 
-git checkout "$MAIN_BRANCH" -q
-echo "EASY CHANGELOG:"
-git log --color --pretty=tformat:'%C(yellow)%h %C(red)%an %C(reset)%s' --abbrev-commit "HEAD..upstream/${MAIN_BRANCH}" | sed 's/^/  /'
-echo
-echo "RAW CHANGELOG:"
-git merge "upstream/${MAIN_BRANCH}" --no-log
+COMMIT=$(git log -1 --oneline | sed 's/\n//g' | cut -d' ' -f1)
+
+git fetch upstream --tags --quiet
+
+git checkout "$MAIN_BRANCH" --quiet
+git reset --hard "upstream/${MAIN_BRANCH}" --quiet
 
 # make sure our forked main/master is up to date with the latest changes too
-git push
+git push --force origin "$MAIN_BRANCH" --quiet
 
+git --no-pager log --color --oneline "${COMMIT}..upstream/${MAIN_BRANCH}" --oneline

@@ -9,8 +9,8 @@ set -o errexit
 # command line interface to it that we can use to just install everything, so
 # yeah, let's do that.
 
-os=$(uname)
-if [[ "$os" == "Darwin" ]]; then
-  echo "› sudo softwareupdate -i -a"
-  sudo -S softwareupdate -i -a # --restart
-fi
+#os=$(uname)
+#if [[ "$os" == "Darwin" ]]; then
+#  echo "› sudo softwareupdate -i -a"
+#  sudo -S softwareupdate -i -a # --restart
+#fi

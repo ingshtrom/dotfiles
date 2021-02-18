@@ -42,7 +42,7 @@ brew 'kube-ps1'  # prompt for zsh
 brew 'kubectl'
 brew 'kubeprompt' # isolate kube context per environment
 brew 'kubetail' # easier logging for kube
-brew 'krew' # krew for kubernetes cli plugins
+# brew 'krew' # krew for kubernetes cli plugins
 brew 'less' # updated version of less tool
 brew 'make'
 brew 'mosh' # better ssh
@@ -52,7 +52,7 @@ brew 'nextdns' # better, private, DOH provide (DNS)
 brew 'openssl'
 brew 'packer'  # most of my jobs will likely use Packer, I presume
 brew 'pinentry-mac' # better popup and mgmt of auth prompts in gpg2 in osx
-brew 'polaris'  # tool for validating kubernetes manifests
+# brew 'polaris'  # tool for validating kubernetes manifests
 #brew 'powerlevel10k' # ZSH prompt/theme
 brew 'pssh' # ssh in parallel
 brew 'rbenv'
@@ -78,7 +78,7 @@ brew 'vegeta'  # load testing
 brew 'watch'
 brew 'wget' # curl alternative
 brew 'xz'
-brew 'yarn'  # , args: [ "without-node" ] # node package manager. Node is installed via 'n'
+# brew 'yarn', args: [ "ignore-dependencies" ] # node package manager. Node is installed via 'n'
 brew 'ykman'  # CLI for YubiKey Authenticator mgmt
 brew 'zsh'
 brew 'zsh-autosuggestions'

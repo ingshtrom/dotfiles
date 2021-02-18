@@ -33,7 +33,9 @@ else
 
   # bunch of library installations to make sure everything is working smoothly
   # honestly, I'm not sure what all of them do anymore
-  source "$DOTFILES/python/script_source.sh"
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+  eval "$(direnv hook $SHELL)"
   pyenv activate neovim2
   pip install neovim pynvim
 

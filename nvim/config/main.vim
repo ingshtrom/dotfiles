@@ -140,7 +140,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'hashivim/vim-terraform'
 
 " Git in your gutter!
-Plug 'airblade/vim-gitgutter'
+"Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 

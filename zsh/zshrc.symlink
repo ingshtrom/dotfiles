@@ -4,6 +4,7 @@
 
 #zmodload zsh/zprof
 
+
 setopt NO_BG_NICE # don't nice background tasks
 setopt NO_HUP
 setopt NO_LIST_BEEP
@@ -55,6 +56,7 @@ export CHAMBER_SECRET_BACKEND=ssm
 export CHAMBER_KMS_KEY_ALIAS=aws/ssm
 export BAT_THEME=OneHalfLight
 export PS1='[$(kubectl config current-context) %1~ %# '
+#export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -210,5 +212,13 @@ bindkey -s "\C-r" "\C-a hstr -- \C-j"     # bind hstr to Ctrl-r (for Vi mode che
 
 # GPG agent
 export GPG_TTY=$(tty)
-gpg-agent --daemon 2&>1 > /dev/null
+if ! (ps x | grep 'gpg-agent --daemon' 2>&1 > /dev/null)
+then
+  gpg-agent --daemon
+fi
+
+# pyenv and direnv
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+eval "$(direnv hook $SHELL)"
 
