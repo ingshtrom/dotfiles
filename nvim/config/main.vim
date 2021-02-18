@@ -30,6 +30,10 @@ autocmd User CocStatusChange,CocDiagnosticChange call lightline#update() " force
 autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 au VimLeave,VimSuspend * set guicursor=a:ver25
 
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+
 set viminfo='100,<50,s10,h,f1 " do not lose information when restarting vim
 set number
 set modeline
@@ -222,6 +226,7 @@ noremap <Leader>r :Greplace<CR>
 " toggle NERDTree
 noremap <C-h> :NERDTreeToggle<CR>
 noremap <Leader>nr :NERDTreeRefreshRoot<CR>
+noremap <Leader>f :NERDTreeFind<CR>
 noremap :bw :bd<CR>
 " remove trailing whitespace
 " while keeping cursor position
