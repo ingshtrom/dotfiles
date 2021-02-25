@@ -8,6 +8,12 @@
 # Inspired by Kyle Neath's `git up' alias:
 # http://gist.github.com/249223
 
+#set -x
+
+source "$DOTFILES/script/spinner.sh"
+
+start_spinner "Gathering changes since last git-ups"
+
 # make sure there are no changes to the current branch before attempting to switch
 if ! ( git diff --exit-code > /dev/null 2>&1 && git diff --cached --exit-code > /dev/null 2>&1 )
 then
@@ -40,4 +46,7 @@ git reset --hard "upstream/${MAIN_BRANCH}" --quiet
 # make sure our forked main/master is up to date with the latest changes too
 git push --force origin "$MAIN_BRANCH" --quiet
 
+stop_spinner "DONE"
+
 git --no-pager log --color --oneline "${COMMIT}..upstream/${MAIN_BRANCH}" --oneline
+
