@@ -150,7 +150,7 @@ alias aa='eval $(assume_okta_admin_source)'
 
 alias lpass_search='lpass ls | grep -i "$@"'
 
-alias ecr_login='aws ecr get-login --no-include-email --region us-east-1 | sh'
+alias ecr_login='aws ecr get-login-password --region us-east-1 | docker login 710015040892.dkr.ecr.us-east-1.amazonaws.com --username AWS --password-stdin'
 alias regctl_ecr_login='regctl registry login 710015040892.dkr.ecr.us-east-1.amazonaws.com -u AWS -p $(aws ecr get-authorization-token | jq -r '"'"'.authorizationData[0].authorizationToken'"'"' | base64 --decode | cut -d: -f2)'
 alias regctl_get_tags='function(){regctl tag ls 710015040892.dkr.ecr.us-east-1.amazonaws.com/infra/$1 | grep release | sort}'
 

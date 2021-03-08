@@ -53,7 +53,7 @@
 [delta]
   features = decorations
   whitespace-error-style = 22 reverse
-  side-by-side = true
+  side-by-side = false
 [delta "decorations"]
   commit-decoration-style = bold yellow box ul
   file-style = bold yellow ul
