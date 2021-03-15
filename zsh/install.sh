@@ -48,3 +48,5 @@ sudo ln -s -f "$DOTFILES/zsh/bat-config.$(uname)" "$HOME/.config/bat/config"
 
 ZSH=$HOME/.oh-my-zsh sh $ZSH/tools/upgrade.sh
 
+
+omz update
