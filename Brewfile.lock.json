@@ -11,7 +11,7 @@
         "revision": "07f332c45a47c8e6d81e0d4d3f7bfe6f2b914139"
       },
       "fairwindsops/tap": {
-        "revision": "ad9101731ac45d1474cb08edfdcddb1b6e05ab34"
+        "revision": "95d71ab68c67f56e64d48866d889416c1067ce1a"
       },
       "jlesquembre/kubeprompt": {
         "revision": "49135ba1e5362eab8a30d53b2a51e46c6713386b",
@@ -2185,9 +2185,9 @@
         "macOS": "10.15.7"
       },
       "big_sur": {
-        "HOMEBREW_VERSION": "3.0.6",
+        "HOMEBREW_VERSION": "3.0.7",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "14d6342249aa104b4d2ed16db84fda3917497040",
+        "Homebrew/homebrew-core": "3ad9891001294e7583e61fa6cfb7db68435abdca",
         "CLT": "",
         "Xcode": "12.4",
         "macOS": "11.2.3"

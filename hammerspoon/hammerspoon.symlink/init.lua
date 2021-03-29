@@ -13,6 +13,7 @@ function toggleZoomMute()
   local zoom = hs.appfinder.appFromName("zoom.us")
 
   if (zoom == nil) then
+    hs.alert.show("Zoom NOT RUNNING")
     return
   end
 
