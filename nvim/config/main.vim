@@ -20,12 +20,13 @@ if has("clipboard")
   endif
 endif
 
-au BufRead,BufNewFile *.markdown,*.md set textwidth=80 fo+=t fo-=l
+"au BufRead,BufNewFile *.markdown,*.md set textwidth=80 fo+=t fo-=l
 au BufRead,BufNewFile *.applescript setfiletype javascript
 au BufRead,BufNewFile Brewfile setfiletype python
 autocmd FileType python set shiftwidth=4 tabstop=4
 autocmd FileType lua set shiftwidth=4 tabstop=4
 autocmd FileType sh set shiftwidth=2 tabstop=2
+autocmd FileType markdown,md set wrap
 autocmd User CocStatusChange,CocDiagnosticChange call lightline#update() " force lightline update on CoC changes
 autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 au VimLeave,VimSuspend * set guicursor=a:ver25
