@@ -160,6 +160,7 @@ alias gpg_list_encrypted_with='gpg --batch --list-packets $1 2>&1'
 
 alias whats-my-ip='dig TXT +short o-o.myaddr.l.google.com @ns1.google.com -4 | awk -F'"'"'"'"'"' '"'"'{ print $2}'"'"' && dig TXT +short o-o.myaddr.l.google.com @ns1.google.com -6 | awk -F'"'"'"'"'"' '"'"'{ print $2}'"'"''
 alias ip='whats-my-ip'
+alias ipinfo='function(){curl "http://api.ipstack.com/${1}?access_key=${IPSTACK_API_ACCESS_CODE}" | jq .}'
 
 autoload -U $DOTFILES/functions/*(:t)
 #autoload -Uz compinit
