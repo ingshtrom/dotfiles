@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+sha256_verify()
+{
+  shasum -a 256 $@
+}

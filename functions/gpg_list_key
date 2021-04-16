@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+gpg_list_key()
+{
+  gpg --list-keys "$@"
+}

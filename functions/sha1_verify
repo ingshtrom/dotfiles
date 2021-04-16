@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+sha1_verify()
+{
+  shasum -a 1 $@
+}

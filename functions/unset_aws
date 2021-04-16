@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+
+unset_aws()
+{
+  for e in $(printenv | grep AWS | cut -d"=" -f1);
+  do
+    echo "Unsetting $e"
+    unset $e
+  done
+  echo "All AWS environment variables unset"
+}

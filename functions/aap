@@ -1,0 +1,31 @@
+#!/usr/bin/env zsh
+
+aap() {
+
+  stack_name="$1"
+  role="$2"
+  secondary_role="$3"
+
+  cmd="aws ec2 describe-instances --filters"
+
+  if [ "$stack_name" = "prod" ] || [ "$stack_name" = "live" ]; then
+      cmd="$cmd 'Name=private-ip-address,Values=10.1.*'"
+  else
+    if [ ! -z "$stack_name" ] && [ "$stack_name" != "-" ]; then
+      cmd="$cmd 'Name=tag:main-stack-name,Values=${stack_name}*'"
+    fi
+  fi
+
+  if [ ! -z "$role" ] && [ "$role" != "-" ]; then
+    cmd="$cmd Name=tag:role,Values=${role}"
+  fi
+
+  if [ ! -z "$secondary_role" ] && [ "$secondary_role" != "-" ]; then
+    cmd="$cmd Name=tag:secondary-role,Values=${secondary_role}"
+  fi
+
+  cmd="$cmd Name=instance-state-name,Values=running --output=json"
+
+  eval "$cmd | aws_ip"
+}
+

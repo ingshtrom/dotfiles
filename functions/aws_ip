@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+aws_ip() {
+  jq -r '.Reservations[].Instances[].PrivateIpAddress' $@
+}
+

@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+
+csr_verify()
+{
+  openssl req -text -noout -verify -in $1
+}
+

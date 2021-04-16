@@ -1,0 +1,13 @@
+#!/usr/bin/env zsh
+
+pass_gpg_get_users()
+{
+  file=$1
+  if [[ "$file" == "" ]] then
+    echo "no .gpg-id file path provided"
+    echo "Usage: $0 ~/.password-store/some/path/.gpg-id"
+    echo "Usage: $0 .gpg-id"
+  else
+    for id in $(cat $file); do gpg --list-keys $id; done
+  fi
+}

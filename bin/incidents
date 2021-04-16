@@ -1,0 +1,115 @@
+#!/bin/bash
+#
+# Start a fresh environemnt of repos so we don't modify anything in-progress
+#
+# args:
+#   ${1}  (optional) incident number or common-name. No spaces please!
+
+if [[ "$DEBUG" != "" ]];
+then
+  set -x
+fi
+
+incidents_root="${HOME}/incidents"
+
+if [[ ! -d "$incident_root" ]];
+then
+  mkdir -p "$incidents_root"
+fi
+
+create_incident() {
+  repo_name_list=( "infra-universe" "consul-kv-data" "infra-terraform" "infra-terraform-modules" "infra-allowlist" "infra-haproxy-configs" "infra-manifests" "infra-argocd" "dev-manifests" )
+  incident_name="$(date +%Y.%m.%d:%H.%M)-${1:-incident}"
+  current_incident_root="${incidents_root}/${incident_name}"
+
+  echo
+  echo "🔥 Incident! 🔥"
+  echo
+  echo "This will create the following directories:"
+  echo "|-- ~/incidents/${incident_name}"
+  for repo_name in "${repo_name_list[@]}"
+  do
+    echo "    |-- ${repo_name}"
+  done
+
+  echo
+  echo -n "Is this ok? (Y/n) "
+  read verification
+
+  if [[ "${verification:-y}" == "y" ]];
+  then
+    echo
+
+    mkdir -p "${current_incident_root}"
+    echo "Incident area created: ${current_incident_root} ✅"
+    cd "${current_incident_root}"
+
+    for repo_name in "${repo_name_list[@]}";
+    do
+      echo "Creating ${repo_name} 🕒"
+      if [[ "$repo_name" == "cloud-formation" ]];
+      then
+        gh repo clone "docker/${repo_name}" 2>&1 | sed 's/^/  /g'
+      else
+        gh repo clone "ingshtrom/${repo_name}" 2>&1 | sed 's/^/  /g'
+      fi
+      echo "Created ${repo_name} ✅"
+    done
+
+    cd "${current_incident_root}"
+  fi
+}
+
+find_incident() {
+  incidents_count=$(ls $incidents_root | wc -l | tr -d '[:space:]')
+  if [[ "$incidents_count" == "0" ]];
+  then
+    echo "No incidents found"
+    exit 1
+  fi
+
+  chosen_incident=$(ls "$incidents_root" | fzf | tr -d '[:space:]')
+  cd "${incidents_root}/${chosen_incident}"
+}
+
+delete_incident() {
+  chosen_incident=$(ls "$incidents_root" | fzf)
+  rm -rf "${incidents_root}/${chosen_incident}"
+}
+
+help() {
+	echo "incidents -- incident area management"
+	echo ""
+	echo "Usage: incidents [options]"
+	echo ""
+	echo "Options:"
+  echo "  create  Create a new incident area"
+	echo "  find    Go to an incident area"
+	echo "  delete  Delete an incident"
+	echo "  help    Show this help message and exit"
+}
+
+if [[ "$#" == "0" ]];
+then
+  help
+fi
+
+cmd=$1
+if [[ $# > 0 ]];
+then
+  shift
+fi
+
+if [[ "$cmd" == "create" ]];
+then
+  create_incident
+elif [[ "$cmd" == "delete" ]];
+then
+  delete_incident
+elif [[ "$cmd" == "find" ]];
+then
+  find_incident
+else
+  help
+fi
+

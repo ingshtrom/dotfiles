@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+cert_verify()
+{
+  openssl x509 -in $1 -text -noout
+}

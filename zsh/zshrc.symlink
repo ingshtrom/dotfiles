@@ -72,11 +72,6 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 source "$ZSH/oh-my-zsh.sh"
 
-# only for Docker work
-source "$PROJECTS/tools/user/ahokanson/bash-functions.sh";
-source "$PROJECTS/tools/user/ahokanson/bash-functions-personal.sh"
-source "$PROJECTS/tools/user/ahokanson/aliases.sh";
-
 # Stash your environment variables in ~/.localrc. This means they'll stay out
 # of your main dotfiles repository (which may be public, like this one), but
 # you'll have access to them in your scripts.

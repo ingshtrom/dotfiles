@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+md5_verify()
+{
+  md5 $@
+}

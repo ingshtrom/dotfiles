@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+gpg_search_item()
+{
+  gpg --list-keys | grep -B1 -e "^uid.*$1.*" | grep -ve "--"
+}

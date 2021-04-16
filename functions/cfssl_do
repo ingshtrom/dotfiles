@@ -1,0 +1,10 @@
+#!/usr/bin/env zsh
+
+cfssl_do()
+{
+  docker run -v "$(pwd):/tmp/cfssl" \
+    -w "/tmp/cfssl" --rm \
+    --entrypoint /bin/bash "cfssl/cfssl:1.3.2" \
+    -o pipefail \
+    -c "$1"
+}

@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+cert_remote_verify()
+{
+  openssl s_client -showcerts -connect $@
+}
