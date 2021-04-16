@@ -110,3 +110,17 @@ hs.hotkey.bind(
 		hs.grid.pushWindowNextScreen(win)
 	end
 )
+hs.hotkey.bind(
+	{"ctrl"},
+	"n",
+	function()
+		hs.eventtap.keyStroke({}, hs.keycodes.map["down"], 0)
+	end
+)
+hs.hotkey.bind(
+	{"ctrl"},
+	"p",
+	function()
+		hs.eventtap.keyStroke({}, hs.keycodes.map["up"], 0)
+	end
+)

@@ -141,21 +141,9 @@ Plug 'tsandall/vim-rego'
 " Use release branch (recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" was causing saves to feel laggy
-"Plug 'hashivim/vim-terraform'
+Plug 'tonchis/vim-to-github'
 
-" Git in your gutter!
-"Plug 'airblade/vim-gitgutter'
-"Plug 'tpope/vim-fugitive'
-"Plug 'tpope/vim-rhubarb'
-
-" Snippets!
-"Plug 'SirVer/ultisnips'
-
-" ColorSchemes
-"Plug 'NLKNguyen/papercolor-theme'
-"Plug 'connorholyday/vim-snazzy'
-"Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+" colorscheme
 Plug 'noahfrederick/vim-hemisu'
 call plug#end()
 
@@ -163,11 +151,6 @@ let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' }, 'haproxy': 
 
 " enable deoplete
 let g:deoplete#enable_at_startup = 1
-" use ALE to provide suggestions as well!
-" TODO: couldn't get to work
-"call deoplete#custom#option('sources', {
-"\ '_': ['ale'],
-"\})
 
 """ Lightline Configuration
 let g:lightline = {
@@ -274,6 +257,7 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gh :ToGithub<CR>
 
 
 " Mappings for CoCList
@@ -321,3 +305,4 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 
 let NERDTreeShowHidden=1
 let g:NERDTreeWinSize=60
+
