@@ -19,11 +19,22 @@ fi
 
 create_incident() {
   repo_name_list=( "infra-universe" "consul-kv-data" "infra-terraform" "infra-terraform-modules" "infra-allowlist" "infra-haproxy-configs" "infra-manifests" "infra-argocd" "dev-manifests" )
-  incident_name="$(date +%Y.%m.%d:%H.%M)-${1:-incident}"
-  current_incident_root="${incidents_root}/${incident_name}"
 
   echo
   echo "🔥 Incident! 🔥"
+
+  echo
+  echo -n "Choose a name (incident): "
+  read incident_name
+
+  if [[ "$incident_name" == "" ]];
+  then
+    incident_name="incident"
+  fi
+
+  incident_name="$(date +%Y.%m.%d:%H.%M)-${incident_name}"
+  current_incident_root="${incidents_root}/${incident_name}"
+
   echo
   echo "This will create the following directories:"
   echo "|-- ~/incidents/${incident_name}"
@@ -60,21 +71,26 @@ create_incident() {
   fi
 }
 
-find_incident() {
+list_incident() {
   incidents_count=$(ls $incidents_root | wc -l | tr -d '[:space:]')
   if [[ "$incidents_count" == "0" ]];
   then
     echo "No incidents found"
-    exit 1
+  else
+    chosen_incident=$(ls "$incidents_root" | fzf | tr -d '[:space:]')
+    cd "${incidents_root}/${chosen_incident}"
   fi
-
-  chosen_incident=$(ls "$incidents_root" | fzf | tr -d '[:space:]')
-  cd "${incidents_root}/${chosen_incident}"
 }
 
 delete_incident() {
-  chosen_incident=$(ls "$incidents_root" | fzf)
-  rm -rf "${incidents_root}/${chosen_incident}"
+  incidents_count=$(ls $incidents_root | wc -l | tr -d '[:space:]')
+  if [[ "$incidents_count" == "0" ]];
+  then
+    echo "No incidents found"
+  else
+    chosen_incident=$(ls "$incidents_root" | fzf | tr -d '[:space:]')
+    rm -rf "${incidents_root}/${chosen_incident}"
+  fi
 }
 
 help() {
@@ -84,15 +100,10 @@ help() {
 	echo ""
 	echo "Options:"
   echo "  create  Create a new incident area"
-	echo "  find    Go to an incident area"
+	echo "  list    Go to an incident area"
 	echo "  delete  Delete an incident"
 	echo "  help    Show this help message and exit"
 }
-
-if [[ "$#" == "0" ]];
-then
-  help
-fi
 
 cmd=$1
 if [[ $# > 0 ]];
@@ -106,10 +117,11 @@ then
 elif [[ "$cmd" == "delete" ]];
 then
   delete_incident
-elif [[ "$cmd" == "find" ]];
+elif [[ "$cmd" == "list" ]];
 then
-  find_incident
+  list_incident
 else
   help
 fi
 
+set +x
