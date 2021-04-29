@@ -306,3 +306,5 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 let NERDTreeShowHidden=1
 let g:NERDTreeWinSize=60
 
+nnoremap <Backspace> <C-^>
+
