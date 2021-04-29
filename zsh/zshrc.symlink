@@ -116,8 +116,10 @@ alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pa
 alias saa="ssh-add $HOME/.ssh/dckr-default && ssh-add $HOME/.ssh/dckr-infra && ssh-add $HOME/.ssh/dckr-swarm && ssh-add $HOME/.ssh/dckr-nautilus"
 
 alias d="docker"
+alias k="kubectl-v1.16.15"
 alias kc="kubectx"
 alias kn="kubens"
+alias kt="kubetail"
 
 #alias sslyze="docker run --rm -it nablac0d3/sslyze"
 
