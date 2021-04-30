@@ -8,7 +8,6 @@ format = """\
   $git_state\
   $git_status\
   $docker_context\
-  $cmd_duration\
   $line_break\
   $character\
   """

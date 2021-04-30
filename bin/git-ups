@@ -10,15 +10,23 @@
 
 #set -x
 
-source "$DOTFILES/script/spinner.sh"
-
-start_spinner "Gathering changes since last git-ups"
+red=`tput setaf 1`
+green=`tput setaf 2`
+yellow=`tput setaf 3`
+reset=`tput sgr0`
 
 # make sure there are no changes to the current branch before attempting to switch
 if ! ( git diff --exit-code > /dev/null 2>&1 && git diff --cached --exit-code > /dev/null 2>&1 )
 then
-    echo "Cannot sync the main/master branch when there are changes in the current branch"
-    exit 1
+  git status
+  echo
+  echo -n $yellow
+  echo '-------------------------------------------------------------------------------------'
+  echo -n $red
+  echo "🔥 Cannot sync the main/master branch when there are changes in the current branch"
+  echo -n $green
+  echo '🤔 You could always create a new worktree if you need to work on something and leave this code as-is'
+  exit 1
 fi
 
 MAIN_BRANCH='unknown'
@@ -45,8 +53,6 @@ git reset --hard "upstream/${MAIN_BRANCH}" --quiet
 
 # make sure our forked main/master is up to date with the latest changes too
 git push --force origin "$MAIN_BRANCH" --quiet
-
-stop_spinner "DONE"
 
 git --no-pager log --color --oneline "${COMMIT}..upstream/${MAIN_BRANCH}" --oneline
 
