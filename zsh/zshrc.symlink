@@ -118,7 +118,8 @@ alias saa="ssh-add $HOME/.ssh/dckr-default && ssh-add $HOME/.ssh/dckr-infra && s
 alias d="docker"
 alias k="kubectl-v1.16.15"
 alias kc="kubectx"
-alias kn="kubens"
+#alias kn="kubens"
+alias kn='function(){kubectl config set-context --current --namespace="$1"}'
 alias kt="kubetail"
 
 #alias sslyze="docker run --rm -it nablac0d3/sslyze"
