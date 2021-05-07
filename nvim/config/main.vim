@@ -143,6 +143,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'tonchis/vim-to-github'
 
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+
 " colorscheme
 Plug 'noahfrederick/vim-hemisu'
 call plug#end()
@@ -257,7 +260,8 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gh :ToGithub<CR>
+nmap <silent> gh :ToGithub docker<CR>
+nmap <silent> gb :Git blame<CR>
 
 
 " Mappings for CoCList
