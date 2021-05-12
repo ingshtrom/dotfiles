@@ -311,4 +311,5 @@ let NERDTreeShowHidden=1
 let g:NERDTreeWinSize=60
 
 nnoremap <Backspace> <C-^>
+nnoremap <C-b> <C-u>
 
