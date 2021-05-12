@@ -1,8 +1,11 @@
 #!/usr/bin/env zsh
 
-set -o pipefail
-set -o nounset
-set -o errexit
+#set -o pipefail
+#set -o nounset
+#set -o errexit
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 os=$(uname)
 if [[ "$os" == "Darwin" ]]; then
@@ -21,7 +24,8 @@ if [[ "$os" == "Darwin" ]]; then
   # NOTE: this is optional in :checkhealth
   # gem install neovim
 
-  n lts
+  nvm install --lts
+  nvm use --lts
   npm i -g neovim
   npm i -g typescript
 else

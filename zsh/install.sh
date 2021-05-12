@@ -1,8 +1,8 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
-set -o pipefail
-set -o nounset
-set -o errexit
+#set -o pipefail
+#set -o nounset
+#set -o errexit
 
 ## Oh My Zsh automatically checks for upgrades itself :)
 
@@ -48,5 +48,6 @@ sudo ln -s -f "$DOTFILES/zsh/bat-config.$(uname)" "$HOME/.config/bat/config"
 
 ZSH=$HOME/.oh-my-zsh sh $ZSH/tools/upgrade.sh
 
+source ~/.dotfiles/zsh/zshrc.symlink
 
 omz update
