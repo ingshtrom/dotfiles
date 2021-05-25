@@ -61,7 +61,7 @@ export CHAMBER_SECRET_BACKEND=ssm
 export CHAMBER_KMS_KEY_ALIAS=aws/ssm
 export BAT_THEME=OneHalfLight
 export PS1='[$(kubectl config current-context) %1~ %# '
-#export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
