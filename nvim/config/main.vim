@@ -104,9 +104,8 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 " fzf for fuzzy finding
-"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': { -> fzf#install() } }
+"Plug 'junegunn/fzf.vim'
 " global search and replace
 "Plug 'yegappan/greplace'
 " better commenting
@@ -141,10 +140,18 @@ Plug 'tsandall/vim-rego'
 " Use release branch (recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+" open code on github easier
 Plug 'tonchis/vim-to-github'
 
+" git
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
+
+" dependencies
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+" telescope
+Plug 'nvim-telescope/telescope.nvim'
 
 " colorscheme
 Plug 'noahfrederick/vim-hemisu'
@@ -203,9 +210,11 @@ let g:fzf_layout = { 'window': { 'width': 0.95, 'height': 0.90 } }
 command! -bang -nargs=* Find call fzf#vim#grep("rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob '!.git/*' --glob '!**/.terraform/*' --glob '!node_modules/*' --glob '!vendor/*' --color 'always' ".shellescape(<q-args>), 1, <bang>0)
 
 " fuzzy find files
-noremap <Leader>o :Files<CR>
+"noremap <Leader>o :Files<CR>
+noremap <Leader>o <cmd>Telescope find_files<cr>
 " fuzzy find string in files
-noremap <Leader>p :Find<space>
+"noremap <Leader>p :Find<space>
+noremap <Leader>p <cmd>Telescope live_grep<cr>
 " search and mark all strings across all files
 noremap <Leader>s :Gsearch<space>
 " replace all marked strings across all files
@@ -231,7 +240,9 @@ set background=light
 colorscheme hemisu
 
 inoremap <C-j> <C-n>
+nnoremap <C-j> <C-n>
 inoremap <C-k> <C-p>
+nnoremap <C-k> <C-p>
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()

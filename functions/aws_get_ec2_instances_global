@@ -1,0 +1,13 @@
+#!/usr/bin/env zsh
+
+aws_get_ec2_instances_global() {
+  for region in $(aws ec2 describe-regions --region us-east-1 --output text | cut -f4)
+  do
+    echo -e "\nListing Instances in region:'$region'...";
+    for instance in $(aws ec2 describe-instances --filters Name=instance-state-name,Values=running --region $region | jq -c '.Reservations[].Instances[]')
+    do
+      echo $instance | jq -c '{ id: .InstanceId, tags: .Tags }'
+    done
+  done
+}
+
