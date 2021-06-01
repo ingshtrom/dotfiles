@@ -1,4 +1,4 @@
-let g:python2_host_prog="/usr/local/bin/python2"
+let g:python_host_prog="/usr/local/bin/python2"
 let g:python3_host_prog="/usr/local/bin/python3"
 
 " Wrap gitcommit file types at the appropriate length
@@ -122,10 +122,10 @@ Plug 'bling/vim-bufferline'
 "Plug 'dense-analysis/ale'
 " lots of languages
 Plug 'sheerun/vim-polyglot'
-" Jinja
+" Jinja support
 Plug 'lepture/vim-jinja'
 " Cool icons (once I patch my font) for file types in the NERDTree
-"Plug 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons'
 " better yaml parsing for large files
 Plug 'stephpy/vim-yaml'
 " SaltStack syntax
@@ -134,11 +134,20 @@ Plug 'saltstack/salt-vim'
 Plug 'wannesm/wmgraphviz.vim'
 " OPA integration
 Plug 'tsandall/vim-rego'
+
 " awesome autocompletion
 "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+"
+" coc.nvim for LSP client support
 " Use release branch (recommend)
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" autocomplete
+Plug 'hrsh7th/nvim-compe'
+
+" neovim 0.5.5-beta has LSP client built in now
+Plug 'neovim/nvim-lspconfig'
 
 " open code on github easier
 Plug 'tonchis/vim-to-github'
@@ -147,14 +156,14 @@ Plug 'tonchis/vim-to-github'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 
-" dependencies
+" telescope and dependencies
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
-" telescope
 Plug 'nvim-telescope/telescope.nvim'
 
 " colorscheme
-Plug 'noahfrederick/vim-hemisu'
+Plug 'mhartington/oceanic-next'
+
 call plug#end()
 
 let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' }, 'haproxy': { 'left': '#' } }
@@ -236,16 +245,16 @@ nnoremap <Leader>t :let _save_pos=getpos(".") <Bar>
     \ :call setpos('.', _save_pos)<Bar>
     \ :unlet _save_pos<CR><CR>
 
-set background=light
-colorscheme hemisu
+set background=dark
+colorscheme OceanicNext
 
-inoremap <C-j> <C-n>
-nnoremap <C-j> <C-n>
-inoremap <C-k> <C-p>
-nnoremap <C-k> <C-p>
+"inoremap <C-j> <C-n>
+"nnoremap <C-j> <C-n>
+"inoremap <C-k> <C-p>
+"nnoremap <C-k> <C-p>
 
 " Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+"inoremap <silent><expr> <c-space> coc#refresh()
 
 " format buffer contents
 "command! -nargs=0 Format :call CocAction('format')
@@ -323,4 +332,80 @@ let g:NERDTreeWinSize=60
 
 nnoremap <Backspace> <C-^>
 nnoremap <C-b> <C-u>
+
+" more nvim-compe config in vscript
+highlight link CompeDocumentation NormalFloat
+inoremap <silent><expr> <C-c> compe#complete()
+inoremap <silent><expr> <CR>  compe#confirm('<CR>')
+inoremap <silent><expr> <C-e> compe#close('<C-e>')
+inoremap <silent><expr> <C-f> compe#scroll({ 'delta': -4 })
+inoremap <silent><expr> <C-d> compe#scroll({ 'delta': +4 })
+
+
+lua << EOF
+
+-- telescope remappings
+local actions = require('telescope.actions')
+require('telescope').setup{
+  defaults = {
+    mappings = {
+      i = {
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-k>"] = actions.move_selection_previous,
+        ["<esc>"] = actions.close,
+      },
+      n = {
+        ["<esc>"] = actions.close,
+      },
+    },
+  }
+}
+
+-- nvim-compe setup
+vim.o.completeopt = "menuone,noselect"
+require'compe'.setup {
+  enabled = true;
+  autocomplete = true;
+  debug = false;
+  min_length = 1;
+  preselect = 'enable';
+  throttle_time = 80;
+  source_timeout = 200;
+  incomplete_delay = 400;
+  max_abbr_width = 100;
+  max_kind_width = 100;
+  max_menu_width = 100;
+  documentation = true;
+
+  source = {
+    path = true;
+    buffer = true;
+    calc = true;
+    nvim_lsp = true;
+    nvim_lua = true;
+    vsnip = false;
+    ultisnips = false;
+  };
+}
+
+
+-- LSP config
+require'lspconfig'.gopls.setup{}
+require'lspconfig'.jsonls.setup {
+    commands = {
+      Format = {
+        function()
+          vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
+        end
+      }
+    }
+}
+require'lspconfig'.terraformls.setup{}
+require'lspconfig'.tsserver.setup{}
+require'lspconfig'.vimls.setup{}
+require'lspconfig'.yamlls.setup{}
+
+vim.api.nvim_set_keymap("i", "<C-f>", "compe#scroll({ 'delta': +4 })", { silent = true, expr = true })
+vim.api.nvim_set_keymap("i", "<C-d>", "compe#scroll({ 'delta': -4 })", { silent = true, expr = true })
+EOF
 

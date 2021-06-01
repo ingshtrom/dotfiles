@@ -124,3 +124,17 @@ hs.hotkey.bind(
 		hs.eventtap.keyStroke({}, hs.keycodes.map["up"], 0)
 	end
 )
+hs.hotkey.bind(
+	{"ctrl"},
+	"j",
+	function()
+		hs.eventtap.keyStroke({}, hs.keycodes.map["down"], 0)
+	end
+)
+hs.hotkey.bind(
+	{"ctrl"},
+	"k",
+	function()
+		hs.eventtap.keyStroke({}, hs.keycodes.map["up"], 0)
+	end
+)

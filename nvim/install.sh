@@ -17,17 +17,13 @@ if [[ "$os" == "Darwin" ]]; then
     exit 1
   fi
 
-  # bunch of library installations to make sure everything is working smoothly
-  # honestly, I'm not sure what all of them do anymore
-  pip install neovim
+  python2 -m pip install neovim pynvim 'python-lsp-server[all]'
 
-  # NOTE: this is optional in :checkhealth
-  # gem install neovim
+  python3 -m pip install neovim pynvim 'python-lsp-server[all]'
 
   nvm install --lts
   nvm use --lts
-  npm i -g neovim
-  npm i -g typescript
+  npm i -g neovim typescript typescript-language-server vscode-json-languageserver vim-language-server yaml-language-server
 else
   # install neovim
   tar_file="/tmp/nvim-linux64.tar.gz"
@@ -35,18 +31,11 @@ else
   sudo tar zxvf "$tar_file" -C /tmp/
   sudo rm "$tar_file"
 
-  # bunch of library installations to make sure everything is working smoothly
-  # honestly, I'm not sure what all of them do anymore
-  eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
-  eval "$(direnv hook $SHELL)"
-  pyenv activate neovim2
-  pip install neovim pynvim
+  python2 -m pip install neovim pynvim 'python-lsp-server[all]'
 
-  pyenv activate neovim3
-  pip install neovim pynvim
+  python3 -m pip install neovim pynvim 'python-lsp-server[all]'
 
-  sudo npm i -g neovim typescript
+  sudo npm i -g neovim typescript typescript-language-server vscode-json-languageserver vim-language-server yaml-language-server
 fi
 
 mkdir -p ~/.config/nvim/config/
