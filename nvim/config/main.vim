@@ -27,8 +27,8 @@ autocmd FileType python set shiftwidth=4 tabstop=4
 autocmd FileType lua set shiftwidth=4 tabstop=4
 autocmd FileType sh set shiftwidth=2 tabstop=2
 autocmd FileType markdown,md set wrap
-autocmd User CocStatusChange,CocDiagnosticChange call lightline#update() " force lightline update on CoC changes
-autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+"autocmd User CocStatusChange,CocDiagnosticChange call lightline#update() " force lightline update on CoC changes
+"autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 au VimLeave,VimSuspend * set guicursor=a:ver25
 
 " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
@@ -88,15 +88,6 @@ set statusline+=%F
 set shortmess+=c
 set updatetime=300
 
-" coc.nvim recommended setting :shrug:
-if has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
-
-
 "let g:WMGraphviz_output = "svg"
 
 """""""""""""""""""""""""""""""""""""""""""""
@@ -131,7 +122,7 @@ Plug 'stephpy/vim-yaml'
 " SaltStack syntax
 Plug 'saltstack/salt-vim'
 " graphviz help :)
-Plug 'wannesm/wmgraphviz.vim'
+"Plug 'wannesm/wmgraphviz.vim'
 " OPA integration
 Plug 'tsandall/vim-rego'
 
@@ -175,7 +166,7 @@ let g:deoplete#enable_at_startup = 1
 let g:lightline = {
   \ 'active': {
   \   'left': [ [ 'mode' ],
-  \             [ 'cocstatus', 'readonly', 'expandedfilename', 'modified' ] ]
+  \             [ 'readonly', 'expandedfilename', 'modified' ] ]
   \ },
   \ 'tabline': {
   \   'left': [ ['bufferline'] ]
@@ -187,8 +178,7 @@ let g:lightline = {
   \   'bufferline': 'tabsel',
   \ },
   \ 'component_function': {
-  \   'expandedfilename': 'ExpandedFilename',
-	\   'cocstatus': 'coc#status'
+  \   'expandedfilename': 'ExpandedFilename'
   \ },
   \ }
 
@@ -225,9 +215,9 @@ noremap <Leader>o <cmd>Telescope find_files<cr>
 "noremap <Leader>p :Find<space>
 noremap <Leader>p <cmd>Telescope live_grep<cr>
 " search and mark all strings across all files
-noremap <Leader>s :Gsearch<space>
+"noremap <Leader>s :Gsearch<space>
 " replace all marked strings across all files
-noremap <Leader>r :Greplace<CR>
+"noremap <Leader>r :Greplace<CR>
 " toggle NERDTree
 noremap <C-h> :NERDTreeToggle<CR>
 noremap <Leader>nr :NERDTreeRefreshRoot<CR>
@@ -262,55 +252,55 @@ colorscheme OceanicNext
 "autocmd FileType terraform,tf noremap <Leader>f :!terraform fmt -write=true '%:p'<CR>
 
 " rename symbol under cursor
-nmap <leader>rn <Plug>(coc-rename)
+"nmap <leader>rn <Plug>(coc-rename)
 
 " Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+"nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
+"function! s:show_documentation()
+"  if (index(['vim','help'], &filetype) >= 0)
+"    execute 'h '.expand('<cword>')
+"  else
+"    call CocAction('doHover')
+"  endif
+"endfunction
 
 " GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+"nmap <silent> gd <Plug>(coc-definition)
+"nmap <silent> gy <Plug>(coc-type-definition)
+"nmap <silent> gi <Plug>(coc-implementation)
+"nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gh :ToGithub docker<CR>
 nmap <silent> gb :Git blame<CR>
 
 
 " Mappings for CoCList
 " Show all diagnostics.
-nnoremap <silent><nowait> <Leader>d  :<C-u>CocList diagnostics<cr>
-" Manage extensions.
-nnoremap <silent><nowait> <Leader>e  :<C-u>CocList extensions<cr>
-" Show commands.
-nnoremap <silent><nowait> <Leader>c  :<C-u>CocList commands<cr>
-" Find symbol of current document.
-nnoremap <silent><nowait> <Leader>i  :<C-u>CocList outline<cr>
-" Search workspace symbols.
-nnoremap <silent><nowait> <Leader>u  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent><nowait> <Leader>nn  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent><nowait> <Leader>np  :<C-u>CocPrev<CR>
-" Resume latest coc list.
-nnoremap <silent><nowait> <Leader>nc  :<C-u>CocListResume<CR>
+"nnoremap <silent><nowait> <Leader>d  :<C-u>CocList diagnostics<cr>
+"" Manage extensions.
+"nnoremap <silent><nowait> <Leader>e  :<C-u>CocList extensions<cr>
+"" Show commands.
+"nnoremap <silent><nowait> <Leader>c  :<C-u>CocList commands<cr>
+"" Find symbol of current document.
+"nnoremap <silent><nowait> <Leader>i  :<C-u>CocList outline<cr>
+"" Search workspace symbols.
+"nnoremap <silent><nowait> <Leader>u  :<C-u>CocList -I symbols<cr>
+"" Do default action for next item.
+"nnoremap <silent><nowait> <Leader>nn  :<C-u>CocNext<CR>
+"" Do default action for previous item.
+"nnoremap <silent><nowait> <Leader>np  :<C-u>CocPrev<CR>
+"" Resume latest coc list.
+"nnoremap <silent><nowait> <Leader>nc  :<C-u>CocListResume<CR>
 
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+"xmap <leader>a  <Plug>(coc-codeaction-selected)
+"nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " Remap keys for applying codeAction to the current buffer.
-nmap <leader>ac  <Plug>(coc-codeaction)
+"nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
+"nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Use <C-l> for trigger snippet expand.
 "imap <C-l> <Plug>(coc-snippets-expand)
@@ -390,22 +380,55 @@ require'compe'.setup {
 
 
 -- LSP config
-require'lspconfig'.gopls.setup{}
-require'lspconfig'.jsonls.setup {
-    commands = {
-      Format = {
-        function()
-          vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
-        end
-      }
-    }
-}
-require'lspconfig'.terraformls.setup{}
-require'lspconfig'.tsserver.setup{}
-require'lspconfig'.vimls.setup{}
-require'lspconfig'.yamlls.setup{}
+local nvim_lsp = require('lspconfig')
 
-vim.api.nvim_set_keymap("i", "<C-f>", "compe#scroll({ 'delta': +4 })", { silent = true, expr = true })
-vim.api.nvim_set_keymap("i", "<C-d>", "compe#scroll({ 'delta': -4 })", { silent = true, expr = true })
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+  --Enable completion triggered by <c-x><c-o>
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Mappings.
+  local opts = { noremap=true, silent=true }
+
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  buf_set_keymap("n", "<space>F", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+end
+
+-- Use a loop to conveniently call 'setup' on multiple servers and
+-- map buffer local keybindings when the language server attaches
+local servers = { "gopls", "jsonls", "terraformls", "tsserver", "vimls", "yamlls" }
+for _, lsp in ipairs(servers) do
+nvim_lsp[lsp].setup { on_attach = on_attach }
+end
+
+-- require'lspconfig'.jsonls.setup {
+--     commands = {
+--       Format = {
+--         function()
+--           vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
+--         end
+--       }
+--     }
+-- }
 EOF
 
