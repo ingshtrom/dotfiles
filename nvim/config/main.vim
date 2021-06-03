@@ -116,7 +116,7 @@ Plug 'sheerun/vim-polyglot'
 " Jinja support
 Plug 'lepture/vim-jinja'
 " Cool icons (once I patch my font) for file types in the NERDTree
-Plug 'ryanoasis/vim-devicons'
+Plug 'kyazdani42/nvim-web-devicons'
 " better yaml parsing for large files
 Plug 'stephpy/vim-yaml'
 " SaltStack syntax
@@ -210,7 +210,7 @@ command! -bang -nargs=* Find call fzf#vim#grep("rg --column --line-number --no-h
 
 " fuzzy find files
 "noremap <Leader>o :Files<CR>
-noremap <Leader>o <cmd>Telescope find_files<cr>
+noremap <Leader>o <cmd>Telescope find_files find_command=fd,-E,.git,-H prompt_prefix=🔍<cr>
 " fuzzy find string in files
 "noremap <Leader>p :Find<space>
 noremap <Leader>p <cmd>Telescope live_grep<cr>
@@ -334,10 +334,12 @@ inoremap <silent><expr> <C-d> compe#scroll({ 'delta': +4 })
 
 lua << EOF
 
+
 -- telescope remappings
 local actions = require('telescope.actions')
 require('telescope').setup{
   defaults = {
+    color_devicons = true,
     mappings = {
       i = {
         ["<C-j>"] = actions.move_selection_next,

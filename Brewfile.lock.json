@@ -23,7 +23,7 @@
         "revision": "24e3945a989753d681a944563cc6dc1d098adfea"
       },
       "hashicorp/tap": {
-        "revision": "c92a0921bb89fec8d93bbb14b9fafa16f8dba8ac"
+        "revision": "22f9870c7c00903ba9824f213c7372356005f5fd"
       },
       "github/gh": {
         "revision": "209f59cda890de69b74c224982591642c21323d3"
@@ -1904,7 +1904,7 @@
         }
       },
       "nextdns": {
-        "version": "1.32.2",
+        "version": "1.32.3",
         "bottle": false
       },
       "shellcheck": {
@@ -2393,7 +2393,7 @@
       "big_sur": {
         "HOMEBREW_VERSION": "3.1.9",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "0e173af74bf0a699a6c85c8d0482895bd8571269",
+        "Homebrew/homebrew-core": "2fde813ba7093fc5bb57da5c18bf62beb3bccbed",
         "CLT": "12.5.0.22.9",
         "Xcode": "12.5",
         "macOS": "11.4"
