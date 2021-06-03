@@ -126,13 +126,10 @@ Plug 'saltstack/salt-vim'
 " OPA integration
 Plug 'tsandall/vim-rego'
 
-" awesome autocompletion
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-"
 " coc.nvim for LSP client support
 " Use release branch (recommend)
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 
 " autocomplete
 Plug 'hrsh7th/nvim-compe'
