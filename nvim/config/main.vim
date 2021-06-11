@@ -35,6 +35,10 @@ au VimLeave,VimSuspend * set guicursor=a:ver25
 autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
     \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
+" Exit Vim if NERDTree is the only window left.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+    \ quit | endif
+
 set viminfo='100,<50,s10,h,f1 " do not lose information when restarting vim
 set number
 set modeline
@@ -116,7 +120,8 @@ Plug 'sheerun/vim-polyglot'
 " Jinja support
 Plug 'lepture/vim-jinja'
 " Cool icons (once I patch my font) for file types in the NERDTree
-Plug 'kyazdani42/nvim-web-devicons'
+"Plug 'kyazdani42/nvim-web-devicons'
+Plug 'ryanoasis/vim-devicons'
 " better yaml parsing for large files
 Plug 'stephpy/vim-yaml'
 " SaltStack syntax
@@ -328,6 +333,11 @@ inoremap <silent><expr> <C-e> compe#close('<C-e>')
 inoremap <silent><expr> <C-f> compe#scroll({ 'delta': -4 })
 inoremap <silent><expr> <C-d> compe#scroll({ 'delta': +4 })
 
+nnoremap <silent> <leader>i :Telescope lsp_document_symbols<CR>
+nnoremap <silent> <leader>d :Telescope lsp_document_diagnostics<CR>
+
+autocmd FileType go nnoremap <silent> <leader>i :Telescope lsp_workspace_symbols<CR>
+autocmd FileType go nnoremap <silent> <leader>d :Telescope lsp_workspace_diagnostics<CR>
 
 lua << EOF
 
@@ -419,15 +429,5 @@ local servers = { "gopls", "jsonls", "terraformls", "tsserver", "vimls", "yamlls
 for _, lsp in ipairs(servers) do
 nvim_lsp[lsp].setup { on_attach = on_attach }
 end
-
--- require'lspconfig'.jsonls.setup {
---     commands = {
---       Format = {
---         function()
---           vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
---         end
---       }
---     }
--- }
 EOF
 
