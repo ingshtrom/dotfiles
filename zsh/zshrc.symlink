@@ -77,7 +77,7 @@ source "$ZSH/oh-my-zsh.sh"
 # Stash your environment variables in ~/.localrc. This means they'll stay out
 # of your main dotfiles repository (which may be public, like this one), but
 # you'll have access to them in your scripts.
-if [[ -a ~/.localrc ]]
+if [[ -f ~/.localrc ]]
 then
  source ~/.localrc
 fi
@@ -104,6 +104,7 @@ alias gg='cd $(git rev-parse --show-toplevel || echo ".")'
 alias gup='git ups'
 alias gu='git up'
 alias gp='git push'
+alias gcpr='function(){gh pr create $@ && gh pr view -w}
 
 alias cls="clear && printf '\e[3J'" # clear screen AND history. BOOM!
 
@@ -118,7 +119,7 @@ alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pa
 alias saa="ssh-add $HOME/.ssh/dckr-default && ssh-add $HOME/.ssh/dckr-infra && ssh-add $HOME/.ssh/dckr-swarm && ssh-add $HOME/.ssh/dckr-nautilus"
 
 alias d="docker"
-alias k="kubectl-v1.16.15"
+alias k="kubectl.docker"
 alias kc="kubectx"
 #alias kn="kubens"
 alias kn='function(){kubectl config set-context --current --namespace="$1"}'
