@@ -1,5 +1,4 @@
 # vi: ft=toml
-#prompt_order=["kubernetes","directory","git_branch","git_commit","git_state", "git_status","python","docker_context","cmd_duration","line_break","character"]
 format = """\
   $kubernetes\
   $directory\
@@ -7,17 +6,23 @@ format = """\
   $git_commit\
   $git_state\
   $git_status\
-  $docker_context\
+  $aws\
   $line_break\
   $character\
   """
+
+# docker context, which we might want later
+#  $docker_context\
 
 [kubernetes]
 symbol = "⛵  "
 style = "dimmed green"
 disabled = false
-#[kubernetes.context_aliases]
-#"arn:aws:eks:us-east-1:710015040892:cluster/stage-320d9422df2c52a0f810" = "stage"
+[kubernetes.context_aliases]
+"eks/stage-320d9422df2c52a0f810" = "eks/stage"
+"eks/prod-c421d55861f633ac5346" = "eks/prod"
+"eks/cicd-43dca59320586d7d6fca" = "eks/cicd"
 
 [package]
 disabled = false
+

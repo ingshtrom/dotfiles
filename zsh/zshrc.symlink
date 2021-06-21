@@ -61,16 +61,13 @@ export CHAMBER_SECRET_BACKEND=ssm
 export CHAMBER_KMS_KEY_ALIAS=aws/ssm
 export BAT_THEME=OneHalfDark
 export PS1='[$(kubectl config current-context) %1~ %# '
-#export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+export AWS_PROFILE='default'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-#autoload -U +X bashcompinit && bashcompinit
 
 fpath=( $fpath /usr/local/share/zsh-completions $DOTFILES/functions )
 
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-#plugins=(zsh-autosuggestions zsh-syntax-highlighting)
 
 source "$ZSH/oh-my-zsh.sh"
 
@@ -104,7 +101,7 @@ alias gg='cd $(git rev-parse --show-toplevel || echo ".")'
 alias gup='git ups'
 alias gu='git up'
 alias gp='git push'
-alias gcpr='function(){gh pr create $@ && gh pr view -w}
+alias gcpr='function(){gh pr create $@ && gh pr view -w}'
 
 alias cls="clear && printf '\e[3J'" # clear screen AND history. BOOM!
 
@@ -147,8 +144,8 @@ alias aold='aws-okta login dockerinc.main'
 alias aoe='function(){aws-okta exec "$1" "${@:2}"}'
 alias ao='aws-okta'
 alias aod='aws-okta dockerinc.main'
-alias aox='function(){eval $(aws-okta env "$@" | sed "s/^/export /");}'
-alias aoxd='function(){eval $(aws-okta env dockerinc.main | sed "s/^/export /");}'
+alias aox='function(){eval $(aws-okta env "$@" | sed "s/^/export /"); starship_aox_compat_layer}'
+alias aoxd='function(){eval $(aws-okta env dockerinc.main | sed "s/^/export /"); starship_aox_compat_layer}'
 alias am='aoxd'
 alias aa='eval $(assume_okta_admin_source)'
 
