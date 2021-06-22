@@ -191,7 +191,7 @@ noremap <Leader>o <cmd>Telescope find_files find_command=fd,-E,.git,-H,-t,f prom
 "noremap <Leader>p :Find<space>
 noremap <Leader>p <cmd>Telescope live_grep<cr>
 " toggle NERDTree
-noremap <C-h> :NERDTreeToggle<CR>
+noremap <Leader>h :NERDTreeToggle<CR>
 noremap <Leader>nr :NERDTreeRefreshRoot<CR>
 noremap <Leader>f :NERDTreeFind<CR>
 noremap :bw :bd<CR>
