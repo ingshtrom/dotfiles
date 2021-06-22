@@ -138,3 +138,17 @@ hs.hotkey.bind(
 		hs.eventtap.keyStroke({}, hs.keycodes.map["up"], 0)
 	end
 )
+hs.hotkey.bind(
+	{"ctrl"},
+	"h",
+	function()
+		hs.eventtap.keyStroke({}, hs.keycodes.map["left"], 0)
+	end
+)
+hs.hotkey.bind(
+	{"ctrl"},
+	"l",
+	function()
+		hs.eventtap.keyStroke({}, hs.keycodes.map["right"], 0)
+	end
+)
