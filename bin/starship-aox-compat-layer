@@ -1,0 +1,37 @@
+#!/usr/bin/env zsh
+
+# requires AWS_OKTA_SESSION_EXPIRATION
+# requires AWS_OKTA_PROFILE
+
+
+if [[ ! -n "$AWS_OKTA_PROFILE" ]]
+then
+  echo 'empty'
+  exit 0
+fi
+
+seconds_until_expire=$(( $AWS_OKTA_SESSION_EXPIRATION - $( date +%s ) ))
+hours_until_expire=$(( $seconds_until_expire / 3600 ))
+leftover_hour_seconds=$(( $seconds_until_expire % 3600 ))
+minutes_until_expire=$(( $leftover_hour_seconds / 60 ))
+leftover_minute_seconds=$(( $leftover_hour_seconds % 60 ))
+
+if [[ "$hours_until_expire" < "0" ]]
+then
+  echo 'negative hour'
+  exit 0
+fi
+if [[ "$minutes_until_expire" < "0" ]]
+then
+  echo 'negative hour'
+  exit 0
+fi
+if [[ "$leftover_minute_seconds" < "0" ]]
+then
+  echo 'negative hour'
+  exit 0
+fi
+
+echo "$AWS_OKTA_PROFILE ${hours_until_expire}h${minutes_until_expire}m${leftover_minute_seconds}s"
+
+exit 0

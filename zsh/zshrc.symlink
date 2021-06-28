@@ -35,7 +35,6 @@ export ENABLE_CORRECTION="false" # do not autocomplete without me being prompted
 export COMPLETION_WAITING_DOTS="true"
 export ZSH=$HOME/.oh-my-zsh
 export DOTFILES=$HOME/.dotfiles
-export AWS_OKTA_PROFILE=dockerinc.main
 export TERM="screen-256color"
 export GOPATH=$PROJECTS/go
 export PATH="/usr/local/lib/ruby/gems/2.7.0/bin:/usr/local/opt/grep/libexec/gnubin:/usr/local/bin:/usr/local/sbin:$DOTFILES/bin:/usr/local/bin:/usr/local/buildkit/bin:/usr/local/opt/python/libexec/bin:/usr/local/opt/ruby/bin:/usr/local/opt/gnu-sed/libexec/gnubin:$HOME/.cargo/bin:$PATH"
@@ -61,7 +60,6 @@ export CHAMBER_SECRET_BACKEND=ssm
 export CHAMBER_KMS_KEY_ALIAS=aws/ssm
 export BAT_THEME=OneHalfDark
 export PS1='[$(kubectl config current-context) %1~ %# '
-export AWS_PROFILE='default'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -144,8 +142,8 @@ alias aold='aws-okta login dockerinc.main'
 alias aoe='function(){aws-okta exec "$1" "${@:2}"}'
 alias ao='aws-okta'
 alias aod='aws-okta dockerinc.main'
-alias aox='function(){eval $(aws-okta env "$@" | sed "s/^/export /"); starship_aox_compat_layer}'
-alias aoxd='function(){eval $(aws-okta env dockerinc.main | sed "s/^/export /"); starship_aox_compat_layer}'
+alias aox='function(){eval $(aws-okta env "$@" | sed "s/^/export /")}'
+alias aoxd='function(){eval $(aws-okta env dockerinc.main | sed "s/^/export /")}'
 alias am='aoxd'
 alias aa='eval $(assume_okta_admin_source)'
 

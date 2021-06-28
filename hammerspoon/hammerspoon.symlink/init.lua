@@ -2,12 +2,36 @@ local canvas = require("hs.canvas")
 
 hs.window.animationDuration = 0
 local units = {
-	right50 = {x = 0.50, y = 0.00, w = 0.50, h = 1.00},
-	left50 = {x = 0.00, y = 0.00, w = 0.50, h = 1.00},
-	top50 = {x = 0.00, y = 0.00, w = 1.00, h = 0.50},
-	bot50 = {x = 0.00, y = 0.50, w = 1.00, h = 0.50},
-	maximum = {x = 0.00, y = 0.00, w = 1.00, h = 1.00}
+	right50 = {x = 0.50, y = 0.00, w = 0.50, h = 0.958},
+	left50 = {x = 0.00, y = 0.00, w = 0.50, h = 0.958},
+	top50 = {x = 0.00, y = 0.00, w = 1.00, h = 0.4775},
+	bot50 = {x = 0.00, y = 0.4780, w = 1.00, h = 0.4773},
+	maximum = {x = 0.00, y = 0.00, w = 1.00, h = 0.958}
 }
+
+local function moveWindowLeft(win)
+	local winscreen = win:screen()
+	local screengrid = hs.grid.getGrid(winscreen)
+	local cell = hs.grid.get(win)
+	-- go to right screen
+	local frame=win:frame()
+	local newscreen=winscreen:toWest(frame)
+	-- if not newscreen then return grid end
+	frame.x = frame.x-frame.w
+	win:setFrameInScreenBounds(frame)
+end
+
+local function moveWindowRight(win)
+	local winscreen = win:screen()
+	local screengrid = hs.grid.getGrid(winscreen)
+	local cell = hs.grid.get(win)
+	-- go to right screen
+	local frame=win:frame()
+	local newscreen=winscreen:toEast(frame)
+	-- if not newscreen then return grid end
+	frame.x = frame.x+frame.w
+	win:setFrameInScreenBounds(frame)
+end
 
 function toggleZoomMute()
   local zoom = hs.appfinder.appFromName("zoom.us")
@@ -61,28 +85,28 @@ hs.hotkey.bind(
 	mash,
 	"k", -- put window on top half of current screen
 	function()
-		hs.window.focusedWindow():move(units.top50, nil, true)
+		hs.window.focusedWindow():move(units.top50, nil, false)
 	end
 )
 hs.hotkey.bind(
 	mash,
 	"j", -- put window on bottom half of current screen
 	function()
-		hs.window.focusedWindow():move(units.bot50, nil, true)
+		hs.window.focusedWindow():move(units.bot50, nil, false)
 	end
 )
 hs.hotkey.bind(
 	mash,
 	"u", -- put window on left half of current screen
 	function()
-		hs.window.focusedWindow():move(units.left50, nil, true)
+		hs.window.focusedWindow():move(units.left50, nil, false)
 	end
 )
 hs.hotkey.bind(
 	mash,
 	"p", -- put window on right half of current screen
 	function()
-		hs.window.focusedWindow():move(units.right50, nil, true)
+		hs.window.focusedWindow():move(units.right50, nil, false)
 	end
 )
 
@@ -90,7 +114,7 @@ hs.hotkey.bind(
 	mash,
 	"m", -- maximize (not full screen) window on current screen
 	function()
-		hs.window.focusedWindow():move(units.maximum, nil, true)
+		hs.window.focusedWindow():move(units.maximum, nil, false)
 	end
 )
 
@@ -99,7 +123,8 @@ hs.hotkey.bind(
 	"h", -- effectively move current window to the left screen 
 	function()
 		local win = hs.window.focusedWindow()
-		hs.grid.pushWindowPrevScreen(win)
+		moveWindowLeft(win)
+		hs.window.focusedWindow():move(units.maximum, nil, false)
 	end
 )
 hs.hotkey.bind(
@@ -107,7 +132,8 @@ hs.hotkey.bind(
 	"l", -- effectively move current window to the right screen
 	function()
 		local win = hs.window.focusedWindow()
-		hs.grid.pushWindowNextScreen(win)
+		moveWindowRight(win)
+		hs.window.focusedWindow():move(units.maximum, nil, false)
 	end
 )
 hs.hotkey.bind(

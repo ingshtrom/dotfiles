@@ -1,7 +1,0 @@
-#!/usr/bin/env zsh
-
-starship_aox_compat_layer() {
-  export AWS_SESSION_EXPIRATION=$(date -r $AWS_OKTA_SESSION_EXPIRATION -u +"%Y-%m-%dT%H:%M:%SZ")
-  export AWS_PROFILE=$AWS_OKTA_PROFILE
-}
-
