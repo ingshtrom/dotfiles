@@ -31,9 +31,18 @@ error_symbol = "🚀💥"
 [custom.awsokta]
 command = "/Users/alexhokanson/.dotfiles/bin/starship-aox-compat-layer"
 shell = ["bash", "--noprofile", "--norc"]
-when = "exit 0"
+when = """ /Users/alexhokanson/.dotfiles/bin/starship-aox-compat-layer | grep -v '[✘]' """
 symbol = "☁️ "
-style = "bold yellow"
+style = "yellow"
+format = " [$symbol($output )]($style)"
+description = "Get AWS Profile and TTL from AWS-OKTA"
+
+[custom.awsokta_invalid]
+command = "/Users/alexhokanson/.dotfiles/bin/starship-aox-compat-layer"
+shell = ["bash", "--noprofile", "--norc"]
+when = """ /Users/alexhokanson/.dotfiles/bin/starship-aox-compat-layer | grep '[✘]' """
+symbol = "☁️ "
+style = "bold red"
 format = " [$symbol($output )]($style)"
 description = "Get AWS Profile and TTL from AWS-OKTA"
 
@@ -43,23 +52,23 @@ command = "echo 🐳"
 files = ["Dockerfile", "docker-compose.yml", "docker-compose.yaml"]
 when = """ command -v docker &> /dev/null; exit (echo $?); """
 
-[custom.ssh_no_keys]
-description = "SSH missing keys"
-when = "ssh-add -l | grep -q 'no identities'"
-command = "echo 🚫"
-format = "$symbol[$output]($style) "
-shell = ["bash", "--noprofile", "--norc"]
-symbol = "🔑"
-style = "bold fg:red"
+#[custom.ssh_no_keys]
+#description = "SSH missing keys"
+#when = "ssh-add -l | grep -q 'no identities'"
+#command = "echo 🚫"
+#format = "$symbol[$output]($style) "
+#shell = ["bash", "--noprofile", "--norc"]
+#symbol = "🔑"
+#style = "bold fg:red"
 
-[custom.ssh_keys]
-description = "SSH key count"
-when = "ssh-add -l | grep -v -q 'no identities'"
-command = "ssh-add -l | grep -v 'no identities' | wc -l"
-format = "$symbol[$output]($style) "
-shell = ["bash", "--noprofile", "--norc"]
-symbol = "🔑"
-style = "bold fg:green"
+#[custom.ssh_keys]
+#description = "SSH key count"
+#when = "ssh-add -l | grep -v -q 'no identities'"
+#command = "ssh-add -l | grep -v 'no identities' | wc -l"
+#format = "$symbol[$output]($style) "
+#shell = ["bash", "--noprofile", "--norc"]
+#symbol = "🔑"
+#style = "bold fg:green"
 
 [package]
 disabled = false

@@ -18,17 +18,17 @@ leftover_minute_seconds=$(( $leftover_hour_seconds % 60 ))
 
 if [[ "$hours_until_expire" < "0" ]]
 then
-  echo 'negative hour'
+  echo '[✘]'
   exit 0
 fi
 if [[ "$minutes_until_expire" < "0" ]]
 then
-  echo 'negative hour'
+  echo '[✘]'
   exit 0
 fi
 if [[ "$leftover_minute_seconds" < "0" ]]
 then
-  echo 'negative hour'
+  echo '[✘]'
   exit 0
 fi
 
