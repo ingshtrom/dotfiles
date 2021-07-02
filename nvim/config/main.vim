@@ -100,10 +100,8 @@ set showtabline=2
 """""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 " fzf for fuzzy finding
-"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': { -> fzf#install() } }
-"Plug 'junegunn/fzf.vim'
-" global search and replace
-"Plug 'yegappan/greplace'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 " better commenting
 Plug 'scrooloose/nerdcommenter'
 " Tree viewer
@@ -114,8 +112,6 @@ Plug 'hoob3rt/lualine.nvim'
 
 " show buffers like tabs
 Plug 'akinsho/nvim-bufferline.lua'
-" linting and fixing stuff
-"Plug 'dense-analysis/ale'
 " lots of languages
 Plug 'sheerun/vim-polyglot'
 " Jinja support
@@ -124,7 +120,6 @@ Plug 'lepture/vim-jinja'
 " Cool icons for file types in the NERDTree
 Plug 'kyazdani42/nvim-web-devicons'
 
-"Plug 'ryanoasis/vim-devicons'
 " better yaml parsing for large files
 Plug 'stephpy/vim-yaml'
 " SaltStack syntax
@@ -133,11 +128,6 @@ Plug 'saltstack/salt-vim'
 "Plug 'wannesm/wmgraphviz.vim'
 " OPA integration
 Plug 'tsandall/vim-rego'
-
-" coc.nvim for LSP client support
-" Use release branch (recommend)
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 
 " autocomplete
 Plug 'hrsh7th/nvim-compe'
@@ -160,7 +150,6 @@ Plug 'nvim-telescope/telescope.nvim'
 " treesitter is awesome
 Plug 'nvim-treesitter/nvim-treesitter'
 
-
 " colorscheme
 Plug 'mhartington/oceanic-next'
 
@@ -168,10 +157,7 @@ call plug#end()
 
 let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' }, 'haproxy': { 'left': '#' } }
 
-" enable deoplete
-"let g:deoplete#enable_at_startup = 1
-
-"let g:fzf_layout = { 'window': { 'width': 0.95, 'height': 0.90 } }
+let g:fzf_layout = { 'window': { 'width': 0.95, 'height': 0.90 } }
 
 " NOTE: refence => https://medium.com/@crashybang/supercharge-vim-with-fzf-and-ripgrep-d4661fc853d2
 " --column: Show column number
@@ -187,11 +173,11 @@ let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' }, 'haproxy': 
 command! -bang -nargs=* Find call fzf#vim#grep("rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob '!.git/*' --glob '!**/.terraform/*' --glob '!node_modules/*' --glob '!vendor/*' --color 'always' ".shellescape(<q-args>), 1, <bang>0)
 
 " fuzzy find files
-"noremap <Leader>o :Files<CR>
-noremap <Leader>o <cmd>Telescope find_files find_command=fd,-E,.git,-H,-t,f prompt_prefix=🔍<cr>
+noremap <Leader>o :Files<CR>
+"noremap <Leader>o <cmd>Telescope find_files find_command=fd,-E,.git,-H,-t,f prompt_prefix=🔍<cr>
 " fuzzy find string in files
-"noremap <Leader>p :Find<space>
-noremap <Leader>p <cmd>Telescope live_grep prompt_prefix=🔍<cr>
+noremap <Leader>p :Find<space>
+"noremap <Leader>p <cmd>Telescope live_grep prompt_prefix=🔍<cr>
 " toggle NERDTree
 noremap <Leader>h <cmd>Telescope file_browser<CR>
 noremap <C-h> :NERDTreeToggle<CR>
