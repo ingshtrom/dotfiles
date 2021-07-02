@@ -1,6 +1,8 @@
 let g:python_host_prog="/usr/local/bin/python2"
 let g:python3_host_prog="/usr/local/bin/python3"
 
+let g:polyglot_disabled = ['csv']
+
 " Wrap gitcommit file types at the appropriate length
 filetype indent plugin on
 
@@ -189,9 +191,10 @@ command! -bang -nargs=* Find call fzf#vim#grep("rg --column --line-number --no-h
 noremap <Leader>o <cmd>Telescope find_files find_command=fd,-E,.git,-H,-t,f prompt_prefix=🔍<cr>
 " fuzzy find string in files
 "noremap <Leader>p :Find<space>
-noremap <Leader>p <cmd>Telescope live_grep<cr>
+noremap <Leader>p <cmd>Telescope live_grep prompt_prefix=🔍<cr>
 " toggle NERDTree
-noremap <Leader>h :NERDTreeToggle<CR>
+noremap <Leader>h <cmd>Telescope file_browser<CR>
+noremap <C-h> :NERDTreeToggle<CR>
 noremap <Leader>nr :NERDTreeRefreshRoot<CR>
 noremap <Leader>f :NERDTreeFind<CR>
 noremap :bw :bd<CR>
@@ -239,6 +242,7 @@ lua << EOF
 local actions = require('telescope.actions')
 require('telescope').setup{
   defaults = {
+    file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
     color_devicons = true,
     mappings = {
       i = {
@@ -318,10 +322,28 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "gopls", "jsonls", "terraformls", "tsserver", "vimls", "yamlls" }
+local servers = { "gopls", "terraformls", "tsserver", "vimls", "yamlls" }
 for _, lsp in ipairs(servers) do
-nvim_lsp[lsp].setup { on_attach = on_attach }
+  nvim_lsp[lsp].setup { on_attach = on_attach }
 end
+
+nvim_lsp.bashls.setup {
+  on_attach = on_attach,
+  filetypes = { "sh", "zsh" }
+}
+
+nvim_lsp.jsonls.setup {
+  on_attach = on_attach,
+  commands = {
+    Format = {
+      function()
+        vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
+      end
+    }
+  }
+}
+
+nvim_lsp.dockerls.setup{}
 
 require('nvim-treesitter.configs').setup({
   ensure_installed = "maintained",

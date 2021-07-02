@@ -48,7 +48,7 @@ brew 'make'
 brew 'mosh' # better ssh
 # brew 'n'  # node version manager
 brew 'nvm' # node version manager
-brew 'neovim', args: ["head"]  # better vim, don't install the one from Ubuntu PPAs
+brew 'neovim' # , args: ["head"]  # better vim, don't install the one from Ubuntu PPAs
 brew 'nextdns' # better, private, DOH provide (DNS)
 brew 'openssl'
 brew 'packer'  # most of my jobs will likely use Packer, I presume

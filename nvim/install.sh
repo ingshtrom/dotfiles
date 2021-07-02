@@ -23,7 +23,7 @@ if [[ "$os" == "Darwin" ]]; then
 
   nvm install --lts
   nvm use --lts
-  npm i -g neovim typescript typescript-language-server vscode-json-languageserver vim-language-server yaml-language-server
+  npm i -g neovim typescript typescript-language-server vscode-json-languageserver vim-language-server yaml-language-server bash-language-server dockerfile-language-server-nodejs vscode-langservers-extracted
 else
   # install neovim
   tar_file="/tmp/nvim-linux64.tar.gz"
@@ -35,7 +35,7 @@ else
 
   python3 -m pip install neovim pynvim 'python-lsp-server[all]'
 
-  sudo npm i -g neovim typescript typescript-language-server vscode-json-languageserver vim-language-server yaml-language-server
+  sudo npm i -g neovim typescript typescript-language-server vscode-json-languageserver vim-language-server yaml-language-server bash-language-server dockerfile-language-server-nodejs vscode-langservers-extracted
 fi
 
 mkdir -p ~/.config/nvim/config/
