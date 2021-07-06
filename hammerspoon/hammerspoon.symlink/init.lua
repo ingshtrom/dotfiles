@@ -113,6 +113,7 @@ hs.fnutils.each({
         { key='j', mod={"ctrl"}, dst="down" },
         { key='p', mod={"ctrl"}, dst="up" },
         { key='k', mod={"ctrl"}, dst="up" },
+        { key='l', mod={"ctrl"}, dst="right" },
     }, function(b)
         hs.hotkey.bind(
             b.mod,
@@ -142,5 +143,35 @@ hs.hotkey.bind(
 		moveWindowRight(win)
 		hs.window.focusedWindow():move(units.maximum, nil, false)
 	end
+)
+
+hs.hotkey.bind(
+    mash,
+    "y",
+    function()
+        --hs.fnutils.each(hs.audiodevice.allOutputDevices(), function(dev) hs.printf("%s", dev:name()) end)
+        device = hs.audiodevice.findDeviceByName("Built-in Output")
+        hs.printf("%s", device:setDefaultOutputDevice())
+    end
+)
+
+
+-- reload functions
+hs.hotkey.bind(
+    {"cmd", "shift"},
+    "r",
+    function()
+        hs.reload()
+    end
+)
+-- open console and then reload
+hs.hotkey.bind(
+    mash,
+    "r",
+    function()
+        --hs.rawprint(hs.window.allWindows())
+        hs.toggleConsole()
+        hs.reload()
+    end
 )
 
