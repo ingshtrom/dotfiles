@@ -1,20 +1,24 @@
 local canvas = require("hs.canvas")
 
+foreach = hs.fnutils.each
+
 hs.window.animationDuration = 0
+
 -- for when we have a Medium sized uBar at the bottom
--- local units = {
--- 	right50 = {x = 0.50, y = 0.00, w = 0.50, h = 0.958},
--- 	left50 = {x = 0.00, y = 0.00, w = 0.50, h = 0.958},
--- 	top50 = {x = 0.00, y = 0.00, w = 1.00, h = 0.4775},
--- 	bot50 = {x = 0.00, y = 0.4780, w = 1.00, h = 0.4773},
--- 	maximum = {x = 0.00, y = 0.00, w = 1.00, h = 0.958}
--- }
+ --local units = {
+ --    right50 = {x = 0.50, y = 0.00, w = 0.50, h = 0.958},
+ --    left50 = {x = 0.00, y = 0.00, w = 0.50, h = 0.958},
+ --    top50 = {x = 0.00, y = 0.00, w = 1.00, h = 0.4775},
+ --    bot50 = {x = 0.00, y = 0.4780, w = 1.00, h = 0.4773},
+ --    maximum = {x = 0.00, y = 0.00, w = 1.00, h = 0.948}
+ --}
+-- without ubar or any other bottom decorations (bars, etc)
 local units = {
     right50 = {x = 0.50, y = 0.00, w = 0.50, h = 1},
-	left50 = {x = 0.00, y = 0.00, w = 0.50, h = 1},
-	top50 = {x = 0.00, y = 0.00, w = 1.00, h = 0.5},
-	bot50 = {x = 0.00, y = 0.5, w = 1.00, h = 0.5},
-	maximum = {x = 0.00, y = 0.00, w = 1.00, h = 1}
+    left50 = {x = 0.00, y = 0.00, w = 0.50, h = 1},
+    top50 = {x = 0.00, y = 0.00, w = 1.00, h = 0.5},
+    bot50 = {x = 0.00, y = 0.5, w = 1.00, h = 0.5},
+    maximum = {x = 0.00, y = 0.00, w = 1.00, h = 1}
 }
 
 
@@ -92,7 +96,7 @@ end)
 local mash = {"alt", "ctrl", "cmd"}
 
 -- snapping of windows
-hs.fnutils.each({
+foreach({
         { key='k', mod=mash, units=units.top50 },
         { key='j', mod=mash, units=units.bot50 },
         { key='u', mod=mash, units=units.left50 },
@@ -102,13 +106,15 @@ hs.fnutils.each({
         hs.hotkey.bind(
             b.mod,
             b.key,
-            function() hs.window.focusedWindow():move(b.units, nil, false) end
+            function()
+                hs.window.focusedWindow():move(b.units, nil, false)
+            end
         )
     end
 )
 
 -- hotkeys to be like vim
-hs.fnutils.each({
+foreach({
         { key='n', mod={"ctrl"}, dst="down" },
         { key='j', mod={"ctrl"}, dst="down" },
         { key='p', mod={"ctrl"}, dst="up" },
@@ -145,13 +151,84 @@ hs.hotkey.bind(
 	end
 )
 
+-- done with zoom meeting
 hs.hotkey.bind(
     mash,
     "y",
     function()
-        --hs.fnutils.each(hs.audiodevice.allOutputDevices(), function(dev) hs.printf("%s", dev:name()) end)
+        hs.printf("Getting ready to listen to some music after being on a meeting!")
+        -- kill zoom
+        foreach(
+            hs.application.runningApplications(),
+            function(app)
+                name = app:name()
+                if name == "zoom.us" or name == "krisp"
+                then
+                    hs.printf("killing zoom.us")
+                    app:kill()
+                end
+            end
+        )
+        -- make sure default output (headphone jack) is being used
         device = hs.audiodevice.findDeviceByName("Built-in Output")
-        hs.printf("%s", device:setDefaultOutputDevice())
+        hs.printf("Did enable headphone audio output?: %s", device:setDefaultOutputDevice())
+
+        -- start boom3d
+        local didStartBoom3D = hs.application.launchOrFocus("Boom 3D")
+        hs.printf("Did start Boom 3D?: %s", didStartBoom3D)
+        if hs.window.focusedWindow():application():name() == "Boom 3D" then
+            hs.window.focusedWindow():close()
+        end
+
+        -- start spotify
+        local didStartSpotify = hs.application.launchOrFocus("spotify")
+        hs.printf("Did start Spotify?: %s", didStartSpotify)
+
+        foreach(
+            hs.screen.allScreens(),
+            function(s)
+                hs.alert.show("Enjoy your music 😄", s)
+            end
+        )
+    end
+)
+-- get ready for meeting by killing boom
+hs.hotkey.bind(
+    mash,
+    "z",
+    function()
+        hs.printf("Getting for a meeting!")
+        -- kill boom 3d
+        foreach(
+            hs.application.runningApplications(),
+            function(app)
+                name = app:name()
+                if name == "Boom 3D" or name == "Spotify"
+                then
+                    hs.printf("killing Boom 3D")
+                    app:kill()
+                end
+            end
+        )
+
+        -- start krisp if it isn't started
+        local didStartKrisp = hs.application.launchOrFocus("krisp.app")
+        hs.printf("Did start Krisp?: %s", didStartKrisp)
+
+        -- start zoom
+        local didStart = hs.application.launchOrFocus("zoom.us")
+        hs.printf("Did start zoom?: %s", didStart)
+
+        -- turn on bluetooth if it is off
+        -- NOTE: it seems we cannot control
+        --       bluetooth directly from hammerspoon
+
+        foreach(
+            hs.screen.allScreens(),
+            function(s)
+                hs.alert.show("Meeting time! 😄", s)
+            end
+        )
     end
 )
 
@@ -169,7 +246,6 @@ hs.hotkey.bind(
     mash,
     "r",
     function()
-        --hs.rawprint(hs.window.allWindows())
         hs.toggleConsole()
         hs.reload()
     end
