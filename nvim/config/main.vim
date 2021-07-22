@@ -22,7 +22,7 @@ if has("clipboard")
   endif
 endif
 
-"au BufRead,BufNewFile *.markdown,*.md set textwidth=80 fo+=t fo-=l
+au BufRead,BufNewFile *.markdown,*.md set textwidth=100 fo+=t fo-=l
 au BufRead,BufNewFile *.applescript setfiletype javascript
 au BufRead,BufNewFile Brewfile setfiletype python
 autocmd FileType python set shiftwidth=4 tabstop=4
@@ -150,8 +150,10 @@ Plug 'nvim-telescope/telescope.nvim'
 " treesitter is awesome
 Plug 'nvim-treesitter/nvim-treesitter'
 
-" colorscheme
-Plug 'mhartington/oceanic-next'
+" DARK colorscheme
+"Plug 'mhartington/oceanic-next'
+" LIGHT colorscheme
+Plug 'ayu-theme/ayu-vim'
 
 call plug#end()
 
@@ -184,6 +186,7 @@ noremap <C-h> :NERDTreeToggle<CR>
 noremap <Leader>nr :NERDTreeRefreshRoot<CR>
 noremap <Leader>f :NERDTreeFind<CR>
 noremap :bw :bd<CR>
+
 " remove trailing whitespace
 " while keeping cursor position
 nnoremap <Leader>t :let _save_pos=getpos(".") <Bar>
@@ -195,8 +198,15 @@ nnoremap <Leader>t :let _save_pos=getpos(".") <Bar>
     \ :call setpos('.', _save_pos)<Bar>
     \ :unlet _save_pos<CR><CR>
 
-set background=dark
-colorscheme OceanicNext
+" Good dark background
+"set background=light
+"colorscheme OceanicNextLight
+
+" Good light background
+set termguicolors
+let ayucolor="light"
+set background=light
+colorscheme ayu
 
 nmap <silent> gh :ToGithub docker<CR>
 nmap <silent> gb :Git blame<CR>
@@ -221,9 +231,9 @@ nnoremap <silent> <leader>d :Telescope lsp_document_diagnostics<CR>
 
 autocmd FileType go nnoremap <silent> <leader>d :Telescope lsp_workspace_diagnostics<CR>
 
+
+
 lua << EOF
-
-
 -- telescope remappings
 local actions = require('telescope.actions')
 require('telescope').setup{
@@ -308,7 +318,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "gopls", "terraformls", "tsserver", "vimls", "yamlls" }
+local servers = { "gopls", "terraformls", "tsserver", "vimls", "yamlls", "pylsp" }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach }
 end

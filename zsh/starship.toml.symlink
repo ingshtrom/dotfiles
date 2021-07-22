@@ -16,7 +16,7 @@ format = """\
 
 [kubernetes]
 symbol = "☸ "
-style = "bright-blue bold"
+style = "blue bold"
 disabled = false
 
 [kubernetes.context_aliases]
