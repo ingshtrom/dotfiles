@@ -251,3 +251,14 @@ hs.hotkey.bind(
     end
 )
 
+
+hs.hotkey.bind(
+    mash,
+    "o",
+    function()
+        local didStartObsidian = hs.application.launchOrFocus("Obsidian")
+        hs.printf("Did start/focus Obsidian?: %s", didStartObsidian)
+    end
+)
+
+

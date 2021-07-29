@@ -18,7 +18,7 @@ then
 fi
 
 create_incident() {
-  repo_name_list=( "infra-universe" "consul-kv-data" "infra-terraform" "infra-terraform-modules" "infra-allowlist" "infra-haproxy-configs" "infra-manifests" "infra-argocd" "dev-manifests" )
+  repo_name_list=( "infra-universe" "infra-consul-kv-data" "infra-terraform" "infra-terraform-modules" "infra-allowlist" "infra-haproxy-configs" "infra-manifests" "infra-argocd" "dev-manifests" )
 
   echo
   echo "🔥 Incident! 🔥"
