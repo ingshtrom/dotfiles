@@ -153,7 +153,7 @@ Plug 'nvim-treesitter/nvim-treesitter'
 " DARK colorscheme
 "Plug 'mhartington/oceanic-next'
 " LIGHT colorscheme
-Plug 'ayu-theme/ayu-vim'
+Plug 'sainnhe/edge'
 
 call plug#end()
 
@@ -198,15 +198,8 @@ nnoremap <Leader>t :let _save_pos=getpos(".") <Bar>
     \ :call setpos('.', _save_pos)<Bar>
     \ :unlet _save_pos<CR><CR>
 
-" Good dark background
-"set background=light
-"colorscheme OceanicNextLight
-
-" Good light background
-set termguicolors
-let ayucolor="light"
 set background=light
-colorscheme ayu
+colorscheme edge
 
 nmap <silent> gh :ToGithub docker<CR>
 nmap <silent> gb :Git blame<CR>
@@ -322,12 +315,10 @@ local servers = { "gopls", "terraformls", "tsserver", "vimls", "yamlls", "pylsp"
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach }
 end
-
 nvim_lsp.bashls.setup {
   on_attach = on_attach,
   filetypes = { "sh", "zsh" }
 }
-
 nvim_lsp.jsonls.setup {
   on_attach = on_attach,
   commands = {
@@ -337,6 +328,10 @@ nvim_lsp.jsonls.setup {
       end
     }
   }
+}
+nvim_lsp.clangd.setup{
+  on_attach = on_attach;
+  cmd = { '/usr/local/opt/llvm/bin/clangd', '--background-index' };
 }
 
 nvim_lsp.dockerls.setup{}
