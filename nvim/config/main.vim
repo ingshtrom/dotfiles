@@ -152,14 +152,17 @@ Plug 'nvim-treesitter/nvim-treesitter'
 
 " DARK theme
 Plug 'mhartington/oceanic-next'
-set background=dark
-colorscheme oceanicnext
 " LIGHT theme
 "Plug 'sainnhe/edge'
-"set background=light
-"colorscheme edge
 
 call plug#end()
+
+" DARK theme
+set background=dark
+colorscheme OceanicNext
+" LIGHT theme
+"set background=light
+"colorscheme edge
 
 let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' }, 'haproxy': { 'left': '#' } }
 
