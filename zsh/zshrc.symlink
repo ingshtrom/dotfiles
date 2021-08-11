@@ -55,7 +55,10 @@ export DOCKER_BUILDKIT=1
 export COMPOSE_DOCKER_CLI_BUILD=1
 export CHAMBER_SECRET_BACKEND=ssm
 export CHAMBER_KMS_KEY_ALIAS=aws/ssm
-export BAT_THEME=OneHalfLight
+# DARK theme
+export BAT_THEME=OneHalfDark
+# LIGHT theme
+#export BAT_THEME=OneHalfLight
 export PS1='[$(kubectl config current-context) %1~ %# '
 # these are needed for the Clangd LSP server, I think 🤷
 export LDFLAGS="-L/usr/local/opt/llvm/lib"
@@ -107,6 +110,8 @@ alias cls="clear && printf '\e[3J'" # clear screen AND history. BOOM!
 alias cur='aws iam list-account-aliases | jq ".AccountAliases[0]"'
 #alias ad='aws-okta exec dockerinc.main -- docker run --env AWS_ACCESS_KEY_ID --env AWS_SECRET_ACCESS_KEY --env AWS_SESSION_TOKEN --env AWS_SECURITY_TOKEN --rm -it amazon/aws-cli' # aws in docker
 #alias a='awsd'
+
+alias tf=terraform
 
 alias python='python3'
 

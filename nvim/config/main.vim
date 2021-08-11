@@ -150,10 +150,14 @@ Plug 'nvim-telescope/telescope.nvim'
 " treesitter is awesome
 Plug 'nvim-treesitter/nvim-treesitter'
 
-" DARK colorscheme
-"Plug 'mhartington/oceanic-next'
-" LIGHT colorscheme
-Plug 'sainnhe/edge'
+" DARK theme
+Plug 'mhartington/oceanic-next'
+set background=dark
+colorscheme oceanicnext
+" LIGHT theme
+"Plug 'sainnhe/edge'
+"set background=light
+"colorscheme edge
 
 call plug#end()
 
@@ -175,8 +179,8 @@ let g:fzf_layout = { 'window': { 'width': 0.95, 'height': 0.90 } }
 command! -bang -nargs=* Find call fzf#vim#grep("rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob '!.git/*' --glob '!**/.terraform/*' --glob '!node_modules/*' --glob '!vendor/*' --color 'always' ".shellescape(<q-args>), 1, <bang>0)
 
 " fuzzy find files
-noremap <Leader>o :Files<CR>
-"noremap <Leader>o <cmd>Telescope find_files find_command=fd,-E,.git,-H,-t,f prompt_prefix=🔍<cr>
+"noremap <Leader>o :Files<CR>
+noremap <Leader>o <cmd>Telescope find_files find_command=fd,-E,.git,-E,.terraform,-I,-H,-t,f prompt_prefix=🔍<cr>
 " fuzzy find string in files
 noremap <Leader>p :Find<space>
 "noremap <Leader>p <cmd>Telescope live_grep prompt_prefix=🔍<cr>
@@ -197,9 +201,6 @@ nnoremap <Leader>t :let _save_pos=getpos(".") <Bar>
     \ :unlet _s<Bar>
     \ :call setpos('.', _save_pos)<Bar>
     \ :unlet _save_pos<CR><CR>
-
-set background=light
-colorscheme edge
 
 nmap <silent> gh :ToGithub docker<CR>
 nmap <silent> gb :Git blame<CR>

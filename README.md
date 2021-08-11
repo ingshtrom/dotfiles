@@ -32,9 +32,6 @@ There's a few special files in the hierarchy.
 Create a `~/.localrc` file with the following in it:
 ```
 # NOTE: Permissions => public_repo
-export JEKYLL_GITHUB_TOKEN=<token>
-
-# NOTE: Permissions => public_repo
 export DOTFILES_GITHUB_TOKEN=<token>
 ```
 
@@ -43,9 +40,9 @@ export DOTFILES_GITHUB_TOKEN=<token>
 Run this:
 
 ```sh
-git clone https://github.com/holman/dotfiles.git ~/.dotfiles
+git clone https://github.com/ingshtrom/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
-script/bootstrap
+./bin/dotfiles
 ```
 
 This will symlink the appropriate files in `.dotfiles` to your home directory.
@@ -54,22 +51,31 @@ Everything is configured and tweaked within `~/.dotfiles`.
 The main file you'll want to change right off the bat is `zsh/zshrc.symlink`,
 which sets up a few paths that'll be different on your particular machine.
 
-`dotfiles` does all of the heavy lifting and should be run periodically to ensure the system is up to date!
+`dotfiles` does all of the heavy lifting and should be run periodically to ensure the system is up to date! I like to run it daily to pick up a lot of various updates to tools I use at work.
 
 Manual installs for OSX:
 * [Hammerspoon](https://github.com/Hammerspoon/hammerspoon/releases)
-* [Tunnelblick](https://tunnelblick.net/downloads.html)
-* [Mono](https://www.mono-project.com/download/stable/)
-* ExpressVPN
-
-Manual installs for Linux:
-* ExpressVPN
 * Zoom, if used by work
 
-# TODO
-[] make expressvpn start on boot for Ubuntu
-[] install https://gitlab.com/limitland/flatbedcursors.git in an automated fashion
-[] install [delta](https://github.com/dandavison/delta/releases) and [bat](https://github.com/sharkdp/bat/releases) in automated fashion
+Manual installs for Linux:
+* Zoom, if used by work
 
+## Change themes
+Do a grep to search for places to change it based on the theme you want to switch to, dark or light
+```
+☸ docker-desktop in .dotfiles on  main [$!⇡]  ☁️ empty 🐳
+🚀💥 grep 'DARK theme' . -r
+./nvim/config/main.vim:" DARK theme
+./kitty/kitty.conf:## DARK theme
+./zsh/zshrc.symlink:# DARK theme
+./git/gitconfig.symlink:  # DARK theme
 
+☸ docker-desktop in .dotfiles on  main [$!⇡]  ☁️ empty 🐳
+🚀 grep 'LIGHT theme' . -r
+./nvim/config/main.vim:" LIGHT theme
+./kitty/kitty.conf:## LIGHT theme
+./zsh/zshrc.symlink:# LIGHT theme
+./git/gitconfig.symlink:  # LIGHT theme
+
+```
 
