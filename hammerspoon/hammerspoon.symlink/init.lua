@@ -262,3 +262,11 @@ hs.hotkey.bind(
 )
 
 
+-- cannot modify keybindings for 1Password 8 Mac app, so setting it here
+-- hs.hotkey.bind(
+--     {"cmd","shift"},
+--     "l",
+--     function()
+--         hs.eventtap.keyStroke({"cmd","shift"}, hs.keycodes.map["space"], 0)
+--     end
+-- )

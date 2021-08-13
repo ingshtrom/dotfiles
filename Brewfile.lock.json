@@ -2,10 +2,10 @@
   "entries": {
     "tap": {
       "homebrew/bundle": {
-        "revision": "0fe476075fd5e05a3712d7a4f31db68dc5417cdd"
+        "revision": "699eea181e1550b5d0245b9293dcedb78683626d"
       },
       "homebrew/cask-fonts": {
-        "revision": "76611dab2298c30b245b7e80db6c32b786e69fc8"
+        "revision": "2103f5cd4011426dcca46b00c5aed2feaeb19815"
       },
       "johanhaleby/kubetail": {
         "revision": "76674415e2eabb0588ba3052c74ae29aa637bcd9"
@@ -23,7 +23,7 @@
         "revision": "24e3945a989753d681a944563cc6dc1d098adfea"
       },
       "hashicorp/tap": {
-        "revision": "7d557ec0a72ab11be570179f2b6f75d981375a0d"
+        "revision": "8fd6b41a3db7406e8b0c293d41ae1e44bcf6a073"
       },
       "github/gh": {
         "revision": "209f59cda890de69b74c224982591642c21323d3"
@@ -2697,7 +2697,7 @@
       "big_sur": {
         "HOMEBREW_VERSION": "3.2.6",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "adb542a96f01cfcf49e5b301983ab716f570f471",
+        "Homebrew/homebrew-core": "e44553816fedc8b9fcf654f0f4d4c97f56eae1c8",
         "CLT": "12.5.0.22.9",
         "Xcode": "12.5.1",
         "macOS": "11.5"
