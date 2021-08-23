@@ -3,6 +3,7 @@ let g:python3_host_prog="/usr/local/bin/python3"
 
 let g:polyglot_disabled = ['csv']
 
+
 " Wrap gitcommit file types at the appropriate length
 filetype indent plugin on
 
@@ -134,6 +135,7 @@ Plug 'hrsh7th/nvim-compe'
 
 " neovim 0.5.5-beta has LSP client built in now
 Plug 'neovim/nvim-lspconfig'
+Plug 'folke/trouble.nvim'
 
 " open code on github easier
 Plug 'tonchis/vim-to-github'
@@ -151,15 +153,15 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter'
 
 " DARK theme
-Plug 'mhartington/oceanic-next'
+Plug 'EdenEast/nightfox.nvim'
 " LIGHT theme
 "Plug 'sainnhe/edge'
 
 call plug#end()
 
 " DARK theme
-set background=dark
-colorscheme OceanicNext
+"set background=dark
+colorscheme nightfox
 " LIGHT theme
 "set background=light
 "colorscheme edge
@@ -387,5 +389,8 @@ require'lualine'.setup{
 }
 
 require("bufferline").setup{}
+
+
+vim.g.nightfox_style = "nightfox"
 EOF
 
