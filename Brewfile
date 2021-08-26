@@ -32,6 +32,7 @@ brew 'git-standup'  # get standup info from git repositories
 brew 'git-lfs'  # large file storage
 brew 'graphviz'
 brew 'grep'  # gnu version -- find text in file or stdout/stderr
+brew 'gnupg' # gpg v2
 brew 'hh'  # hstr (better command history in zsh. ctrl-r)
 brew 'hub'  # git wrapper by GitHub
 brew 'hugo'  # static site generator in go
