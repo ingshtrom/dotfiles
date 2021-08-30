@@ -17,8 +17,6 @@ if [[ "$os" == "Darwin" ]]; then
     exit 1
   fi
 
-  python2 -m pip install neovim pynvim 'python-lsp-server[all]'
-
   python3 -m pip install neovim pynvim 'python-lsp-server[all]'
 
   nvm install --lts
@@ -30,8 +28,6 @@ else
   curl -sSL -H "$GITHUB_AUTHORIZATION_HEADER" $(curl -s -H "$GITHUB_AUTHORIZATION_HEADER" https://api.github.com/repos/neovim/neovim/releases | jq -r '.[0].assets | map(select(.name | contains("nvim-linux64.tar.gz"))) | .[0].browser_download_url') -o "$tar_file"
   sudo tar zxvf "$tar_file" -C /tmp/
   sudo rm "$tar_file"
-
-  python2 -m pip install neovim pynvim 'python-lsp-server[all]'
 
   python3 -m pip install neovim pynvim 'python-lsp-server[all]'
 

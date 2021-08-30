@@ -25,9 +25,9 @@
   excludesfile = ~/.gitignore
   editor = nvim
   # DARK theme
-  pager = delta --theme='Solarized (dark)'
+  #pager = delta --theme='Solarized (dark)'
   # LIGHT theme
-  #pager = delta --theme='Solarized (light)'
+  pager = delta --theme='Solarized (light)'
 [apply]
   whitespace = nowarn
 [mergetool]

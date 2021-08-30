@@ -155,16 +155,16 @@ Plug 'nvim-treesitter/nvim-treesitter'
 " DARK theme
 Plug 'EdenEast/nightfox.nvim'
 " LIGHT theme
-"Plug 'sainnhe/edge'
+Plug 'sainnhe/edge'
 
 call plug#end()
 
 " DARK theme
 "set background=dark
-colorscheme nightfox
+"colorscheme nightfox
 " LIGHT theme
-"set background=light
-"colorscheme edge
+set background=light
+colorscheme edge
 
 let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' }, 'haproxy': { 'left': '#' } }
 
@@ -184,8 +184,8 @@ let g:fzf_layout = { 'window': { 'width': 0.95, 'height': 0.90 } }
 command! -bang -nargs=* Find call fzf#vim#grep("rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob '!.git/*' --glob '!**/.terraform/*' --glob '!node_modules/*' --glob '!vendor/*' --color 'always' ".shellescape(<q-args>), 1, <bang>0)
 
 " fuzzy find files
-noremap <Leader>O :Files<CR>
-noremap <Leader>o <cmd>Telescope find_files find_command=fd,-E,.git,-E,.terraform,-I,-H,-t,f prompt_prefix=🔍<cr>
+noremap <Leader>o :Files<CR>
+noremap <Leader>O <cmd>Telescope find_files find_command=fd,-E,.git,-E,.terraform,-I,-H,-t,f prompt_prefix=🔍<cr>
 " fuzzy find string in files
 noremap <Leader>P :Find<space>
 noremap <Leader>p <cmd>Telescope live_grep prompt_prefix=🔍<cr>

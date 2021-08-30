@@ -49,3 +49,4 @@
 
 #ln -f -s `pyenv which flake8` ~/.bin/flake8
 
+python3 -m pip install --upgrade pip

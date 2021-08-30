@@ -34,7 +34,7 @@ KUBECTL_TARGET_VERSION="v1.15.0"
 os=$(uname)
 if [[ "$os" == "Darwin" ]]; then
   curl -fSL -o "/usr/local/bin/tk" "https://github.com/grafana/tanka/releases/download/v0.6.1/tk-darwin-amd64"
-  go get -u github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb
+  go install github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb@latest
 
   KUBECTL_VERSION=$( get_latest_patch_version darwin $KUBECTL_TARGET_VERSION )
   curl -sSL "https://storage.googleapis.com/kubernetes-release/release/$KUBECTL_VERSION/bin/darwin/amd64/kubectl" --output /tmp/kubectl
