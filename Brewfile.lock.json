@@ -23,7 +23,7 @@
         "revision": "24e3945a989753d681a944563cc6dc1d098adfea"
       },
       "hashicorp/tap": {
-        "revision": "c82b55ee0d7694174fdc486fcb248fd47a445676"
+        "revision": "d4e9e7d2123ea74579e1c3c38313f9d5d880b520"
       },
       "github/gh": {
         "revision": "209f59cda890de69b74c224982591642c21323d3"
@@ -2360,7 +2360,7 @@
         }
       },
       "hashicorp/tap/consul": {
-        "version": "1.10.1",
+        "version": "1.10.2",
         "bottle": false
       },
       "hashicorp/tap/terraform": null,
@@ -2719,9 +2719,9 @@
         "macOS": "10.15.7"
       },
       "big_sur": {
-        "HOMEBREW_VERSION": "3.2.9",
+        "HOMEBREW_VERSION": "3.2.10",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "708205316656eb3351b3f679c61433c273ed96d4",
+        "Homebrew/homebrew-core": "0c6c46d627f6d4feda598b80d378e7762e6019bd",
         "CLT": "12.5.0.22.9",
         "Xcode": "12.5.1",
         "macOS": "11.5.2"
