@@ -211,9 +211,11 @@ hs.hotkey.bind(
             end
         )
 
+		-- NOTE: we don't use Krisp.ai anymore. Zoom noise cancelling is good enough
+		-- 		and I don't work in the same room as a 3d printer anymore
         -- start krisp if it isn't started
-        local didStartKrisp = hs.application.launchOrFocus("krisp.app")
-        hs.printf("Did start Krisp?: %s", didStartKrisp)
+        -- local didStartKrisp = hs.application.launchOrFocus("krisp.app")
+        -- hs.printf("Did start Krisp?: %s", didStartKrisp)
 
         -- start zoom
         local didStart = hs.application.launchOrFocus("zoom.us")
@@ -261,12 +263,9 @@ hs.hotkey.bind(
     end
 )
 
-
--- cannot modify keybindings for 1Password 8 Mac app, so setting it here
--- hs.hotkey.bind(
---     {"cmd","shift"},
---     "l",
---     function()
---         hs.eventtap.keyStroke({"cmd","shift"}, hs.keycodes.map["space"], 0)
---     end
--- )
+-- hs.window.switcher.ui.showThumbnails = false
+-- hs.window.switcher.ui.showSelectedThumbnail = false
+-- switcher = hs.window.switcher.new() -- default windowfilter: only visible windows, all Spaces
+-- switcher_space = hs.window.switcher.new(hs.window.filter.new():setCurrentSpace(true):setDefaultFilter{}) -- include minimized/hidden windows, current Space only
+-- hs.hotkey.bind('alt','tab',function()switcher_space:next()end)
+-- hs.hotkey.bind('alt-shift','tab',function()switcher_space:previous()end)

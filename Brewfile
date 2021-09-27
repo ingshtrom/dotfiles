@@ -6,6 +6,7 @@ tap 'jlesquembre/kubeprompt', 'https://github.com/jlesquembre/kubeprompt'
 # tap 'romkatv/powerlevel10k'
 tap 'hashicorp/tap'
 tap 'github/gh'
+tap 'cantino/mcfly'
 
 brew 'ack'
 brew 'aws-okta'  # hopefully not much longer...
@@ -47,6 +48,7 @@ brew 'kubetail'  # easier logging for kube
 brew 'less'  # updated version of less tool
 brew 'llvm'  # clangd for c LSP
 brew 'make'
+brew 'mcfly' # better ctrl-r with ML
 brew 'mosh'  # better ssh
 # brew 'n'  # node version manager
 brew 'nvm'  # node version manager
@@ -83,6 +85,7 @@ brew 'wget'  # curl alternative
 brew 'xz'
 # brew 'yarn', args: [ "ignore-dependencies" ] # node package manager. Node is installed via 'n'
 brew 'ykman'  # CLI for YubiKey Authenticator mgmt
+brew 'zoxide' # better changing directories https://github.com/ajeetdsouza/zoxide
 brew 'zsh'
 brew 'zsh-autosuggestions'
 brew 'zsh-syntax-highlighting'

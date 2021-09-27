@@ -27,3 +27,6 @@ then
 else
   echo 'n/a'
 fi
+
+gh extension list | grep gh-branch || gh extension install mislav/gh-branch
+gh extension upgrade --all

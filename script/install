@@ -35,13 +35,15 @@ perform_task 'brew cleanup --prune-prefix'
 
 echo "››› files to run during installation: \n$(find $DOTFILES -iname "install.sh")"
 for file in $(find $DOTFILES -iname "install.sh"); do
-  if [[ "$file" == "$DOTFILES/homebrew/install" ]]; then
-    continue
-  fi
+  #if [[ "$file" == "$DOTFILES/homebrew/install" ]]; then
+  #  continue
+  #fi
 
   echo "Executing file: $file {" | cowsay
 
   sh -c $file
+
+  echo "} $file"
 done
 
 if [[ "$(uname)" == "Darwin" ]];

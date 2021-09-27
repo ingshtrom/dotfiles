@@ -118,6 +118,7 @@ alias python='python3'
 # Pipe my public key to my clipboard.
 alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
 alias saa="ssh-add $HOME/.ssh/dckr-default && ssh-add $HOME/.ssh/dckr-infra && ssh-add $HOME/.ssh/dckr-swarm && ssh-add $HOME/.ssh/dckr-nautilus"
+alias ssh-add-pub-key='function(){ set -e; chmod 400 $1; ssh-add $1; }'
 
 alias d="docker"
 alias k="kubectl.docker"
