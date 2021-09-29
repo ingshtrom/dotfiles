@@ -34,7 +34,7 @@ brew 'git-lfs'  # large file storage
 brew 'graphviz'
 brew 'grep'  # gnu version -- find text in file or stdout/stderr
 brew 'gnupg' # gpg v2
-brew 'hh'  # hstr (better command history in zsh. ctrl-r)
+# brew 'hh'  # hstr (better command history in zsh. ctrl-r), testing out mcfly for now
 brew 'hub'  # git wrapper by GitHub
 brew 'hugo'  # static site generator in go
 brew 'imagemagick'  # do cool stuff with images
@@ -57,6 +57,7 @@ brew 'nextdns'  # better, private, DOH provide (DNS)
 brew 'openssl'
 brew 'packer'  # most of my jobs will likely use Packer, I presume
 brew 'pinentry-mac'  # better popup and mgmt of auth prompts in gpg2 in osx
+brew 'pipx'
 # brew 'polaris'  # tool for validating kubernetes manifests
 # brew 'powerlevel10k'  # ZSH prompt/theme
 brew 'pssh'  # ssh in parallel

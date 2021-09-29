@@ -210,5 +210,23 @@ fi
 #eval "$(direnv hook $SHELL)"
 
 
+# nvm startup
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+
+# Zoxide startup
+alias cd=z # try out using z without changing my muscle memory
+eval "$(zoxide init zsh)"
+
+# McFly startup
+export MCFLY_LIGHT=TRUE
+export MCFLY_FUZZY=true
+export MCFLY_KEY_SCHEME=vim
+export MCFLY_RESULTS=20
+export MCFLY_INTERFACE_VIEW=BOTTOM
+export MCFLY_RESULTS_SORT=RANK
+eval "$(mcfly init zsh)"
+
+# Created by `pipx` on 2021-09-29 13:15:02
+export PATH="$PATH:/Users/alexhokanson/.local/bin"
