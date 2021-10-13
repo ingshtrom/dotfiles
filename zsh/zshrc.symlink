@@ -63,6 +63,8 @@ export PS1='[$(kubectl config current-context) %1~ %# '
 # these are needed for the Clangd LSP server, I think 🤷
 export LDFLAGS="-L/usr/local/opt/llvm/lib"
 export CPPFLAGS="-I/usr/local/opt/llvm/include"
+export DISABLE_AUTO_TITLE="true" # don't have the cmd output twice in zsh
+export HOMEBREW_NO_INSTALL_CLEANUP=1
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -168,6 +170,8 @@ alias ip='whats-my-ip'
 alias ipinfo='function(){curl "http://api.ipstack.com/${1}?access_key=${IPSTACK_API_ACCESS_CODE}" | jq .}'
 alias i=". incidents"
 
+alias p='function(){infra-cli params $@}'
+
 autoload -U $DOTFILES/functions/*(:t)
 #autoload -Uz compinit
 #if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
@@ -216,7 +220,7 @@ export NVM_DIR="$HOME/.nvm"
 
 
 # Zoxide startup
-alias cd=z # try out using z without changing my muscle memory
+#alias cd=z # try out using z without changing my muscle memory
 eval "$(zoxide init zsh)"
 
 # McFly startup

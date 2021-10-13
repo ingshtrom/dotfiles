@@ -30,12 +30,14 @@ then
 fi
 
 MAIN_BRANCH='unknown'
+MAIN_REMOTE='unknown'
 
 # if we are not on main/master, then switch to it
 # we already know we do not have changes in our current branch
-if git branch | grep 'main' 2>&1 > /dev/null; then
+branches=$(git branch)
+if echo $branches | grep 'main' 2>&1 > /dev/null; then
   MAIN_BRANCH='main'
-elif git branch | grep 'master' 2>&1 > /dev/null; then
+elif echo $branches | grep 'master' 2>&1 > /dev/null; then
   MAIN_BRANCH='master'
 fi
 
@@ -44,15 +46,29 @@ if [[ "$MAIN_BRANCH" == "unknown" ]]; then
   exit 1
 fi
 
+remotes=$(git remote -v)
+if echo $remotes | grep 'upstream' 2>&1 > /dev/null;
+then
+  MAIN_REMOTE='upstream'
+elif echo $remotes | grep 'origin' 2>&1 > /dev/null;
+then
+  MAIN_REMOTE='origin'
+fi
+
+if [[ "$MAIN_REMOTE" == "unknown" ]]; then
+  echo "upstream or origin not found in remote listing"
+  exit 1
+fi
+
 COMMIT=$(git log -1 --oneline | sed 's/\n//g' | cut -d' ' -f1)
 
-git fetch upstream --tags --quiet
+git fetch $MAIN_REMOTE --tags --quiet
 
 git checkout "$MAIN_BRANCH" --quiet
-git reset --hard "upstream/${MAIN_BRANCH}" --quiet
+git reset --hard "${MAIN_REMOTE}/${MAIN_BRANCH}" --quiet
 
 # make sure our forked main/master is up to date with the latest changes too
 git push --force origin "$MAIN_BRANCH" --quiet
 
-git --no-pager log --color --oneline "${COMMIT}..upstream/${MAIN_BRANCH}" --oneline
+git --no-pager log --color --oneline "${COMMIT}..${MAIN_REMOTE}/${MAIN_BRANCH}" --oneline
 
