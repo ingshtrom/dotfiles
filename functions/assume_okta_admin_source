@@ -1,8 +1,0 @@
-#!/bin/bash
-function assume_okta_admin_source() {
-  ASSUME_ROLE_OUTPUT=$(aws sts assume-role --role-arn arn:aws:iam::710015040892:role/okta.admin --role-session-name admin-modify-session)
-  echo $ASSUME_ROLE_OUTPUT | jq -r '.Credentials | .["AWS_ACCESS_KEY_ID"] = .AccessKeyId | .["AWS_SECRET_ACCESS_KEY"] = .SecretAccessKey | .["AWS_SECURITY_TOKEN"] = .SessionToken | del(.AccessKeyId, .SecretAccessKey, .SessionToken, .Expiration) | to_entries[] | "export \(.key)=\(.value)"'
-  echo 'export AWS_OKTA_SESSION_EXPIRATION=$(date -v+1H +%s)'
-  echo 'export AWS_OKTA_PROFILE=dockerinc.ADMIN'
-}
-

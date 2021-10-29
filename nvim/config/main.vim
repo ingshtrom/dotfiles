@@ -157,6 +157,8 @@ Plug 'EdenEast/nightfox.nvim'
 " LIGHT theme
 Plug 'sainnhe/edge'
 
+Plug 'github/copilot.vim'
+
 call plug#end()
 
 " DARK theme

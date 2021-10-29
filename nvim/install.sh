@@ -40,8 +40,14 @@ ln -s -f ~/.dotfiles/nvim/config/* ~/.config/nvim/config/
 
 if test -f ~/.config/nvim/.did-run-install-cmds
 then
-  nvim +PlugInstall +PlugUpdate +GoUpdateBinaries +qall --headless
+  nvim +PlugInstall +PlugUpdate +TSUpdateSync +qall --headless
 else
-  nvim +PlugInstall +PlugUpdate +GoInstallBinaries +qall --headless
+  nvim +PlugInstall +PlugUpdate +TSUpdateSync +qall --headless
   touch ~/.config/nvim/.did-run-install-cmds
+fi
+
+# keep the LSP log file cleaned up
+if ls /Users/alexhokanson/.cache/nvim/lsp.log 2>&1 > /dev/null;
+then
+  rm /Users/alexhokanson/.cache/nvim/lsp.log
 fi

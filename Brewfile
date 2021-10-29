@@ -48,11 +48,11 @@ brew 'kubetail'  # easier logging for kube
 brew 'less'  # updated version of less tool
 brew 'llvm'  # clangd for c LSP
 brew 'make'
-brew 'mcfly' # better ctrl-r with ML
+brew 'mcfly'  # better ctrl-r with ML
 brew 'mosh'  # better ssh
 # brew 'n'  # node version manager
 brew 'nvm'  # node version manager
-brew 'neovim'  # , args: ["head"]  # better vim, don't install the one from Ubuntu PPAs
+brew 'neovim', args: ["HEAD"]  # better vim, don't install the one from Ubuntu PPAs
 brew 'nextdns'  # better, private, DOH provide (DNS)
 brew 'openssl'
 brew 'packer'  # most of my jobs will likely use Packer, I presume
