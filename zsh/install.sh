@@ -52,5 +52,8 @@ source ~/.dotfiles/zsh/zshrc.symlink
 
 omz update
 
-zplug install
+zplug install --verbose
+zplug update --verbose
+zplug clean --verbose
+zplug status
 

@@ -224,6 +224,8 @@ export NVM_DIR="$HOME/.nvm"
 # Zoxide startup
 eval "$(zoxide init zsh)"
 alias cd=z # try out using z without changing my muscle memory
+alias ci=zi # try out using z without changing my muscle memory
+alias c=z # try out using z without changing my muscle memory
 
 # McFly startup
 export MCFLY_LIGHT=TRUE
@@ -247,7 +249,7 @@ if ! zplug check --verbose; then
         echo; zplug install
     fi
 fi
-zplug load --verbose
+zplug load
 
 ############################################################
 ## STARSHIP PROMPT INIT
