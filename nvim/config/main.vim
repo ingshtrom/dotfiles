@@ -153,20 +153,13 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter'
 
 " DARK theme
-Plug 'EdenEast/nightfox.nvim'
-" LIGHT theme
-Plug 'sainnhe/edge'
+Plug 'dracula/vim',{'as':'dracula'}
 
 Plug 'github/copilot.vim'
 
 call plug#end()
 
-" DARK theme
-"set background=dark
-"colorscheme nightfox
-" LIGHT theme
-set background=light
-colorscheme edge
+colorscheme dracula
 
 let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' }, 'haproxy': { 'left': '#' } }
 
@@ -231,8 +224,6 @@ nnoremap <silent> <leader>i :Telescope treesitter<CR>
 nnoremap <silent> <leader>d :Telescope lsp_document_diagnostics<CR>
 
 autocmd FileType go nnoremap <silent> <leader>d :Telescope lsp_workspace_diagnostics<CR>
-
-
 
 lua << EOF
 -- telescope remappings

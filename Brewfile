@@ -90,6 +90,7 @@ brew 'zoxide' # better changing directories https://github.com/ajeetdsouza/zoxid
 brew 'zsh'
 brew 'zsh-autosuggestions'
 brew 'zsh-syntax-highlighting'
+brew 'zplug'
 
 cask 'alacritty'
 cask 'kitty'

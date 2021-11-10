@@ -51,3 +51,6 @@ ZSH=$HOME/.oh-my-zsh sh $ZSH/tools/upgrade.sh
 source ~/.dotfiles/zsh/zshrc.symlink
 
 omz update
+
+zplug install
+

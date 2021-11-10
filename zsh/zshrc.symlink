@@ -28,7 +28,6 @@ unsetopt complete_aliases
 export PROJECTS="$HOME/src"
 export ZSH_AUTOSUGGEST_USE_ASYNC=true
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=blue,bold'
-export ZSH_THEME="agnoster"
 export HYPHEN_INSENSITIVE="false"
 export UPDATE_ZSH_DAYS=1
 export ENABLE_CORRECTION="false" # do not autocomplete without me being prompted
@@ -58,7 +57,7 @@ export CHAMBER_KMS_KEY_ALIAS=aws/ssm
 # DARK theme
 #export BAT_THEME=OneHalfDark
 # LIGHT theme
-export BAT_THEME=OneHalfLight
+export BAT_THEME=Dracula
 export PS1='[$(kubectl config current-context) %1~ %# '
 # these are needed for the Clangd LSP server, I think 🤷
 export LDFLAGS="-L/usr/local/opt/llvm/lib"
@@ -85,8 +84,10 @@ fi
 
 ################################################################################################
 # ALIASES
+
+# I wonder if I actually use hub features
+#eval "$(hub alias -s)"
 alias reg=hub-tool
-alias git=/usr/local/bin/hub
 alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
 alias h='hstr'
 alias ls='exa'
@@ -221,8 +222,8 @@ export NVM_DIR="$HOME/.nvm"
 
 
 # Zoxide startup
-#alias cd=z # try out using z without changing my muscle memory
 eval "$(zoxide init zsh)"
+alias cd=z # try out using z without changing my muscle memory
 
 # McFly startup
 export MCFLY_LIGHT=TRUE
@@ -235,3 +236,23 @@ eval "$(mcfly init zsh)"
 
 # Created by `pipx` on 2021-09-29 13:15:02
 export PATH="$PATH:/Users/alexhokanson/.local/bin"
+
+# ZPLUG stuff
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
+zplug "dracula/zsh", as:theme
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+zplug load --verbose
+
+############################################################
+## STARSHIP PROMPT INIT
+############################################################
+export STARSHIP_CONFIG=$HOME/.starship.toml
+eval "$(starship init zsh)"
+
+

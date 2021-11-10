@@ -24,10 +24,13 @@
 [core]
   excludesfile = ~/.gitignore
   editor = nvim
-  # DARK theme
-  #pager = delta --theme='Solarized (dark)'
-  # LIGHT theme
-  pager = delta --theme='Solarized (light)'
+#pager = delta
+[pager]
+#blame = true
+  diff  = delta
+  show  = delta
+  log   = delta
+  stack = delta
 [apply]
   whitespace = nowarn
 [mergetool]
@@ -50,16 +53,18 @@
 [commit]
 	gpgsign = true
 [interactive]
-    diffFilter = delta --color-only
+  diffFilter = delta --color-only
 [pull]
   rebase = false
 [delta]
+  diff-so-fancy = true
+  line-numbers = true
   features = decorations
   whitespace-error-style = 22 reverse
   side-by-side = false
+  syntax-theme = Dracula
 [delta "decorations"]
-  commit-decoration-style = bold yellow box ul
-  file-style = bold yellow ul
+  file-style = green
   file-decoration-style = none
 
 [init]

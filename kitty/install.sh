@@ -4,11 +4,13 @@ set -o pipefail
 set -o nounset
 set -o errexit
 
-if test ! -d ~/.config/kitty
-then
-	sudo mkdir -p ~/.config/kitty
-fi
-if test ! -f ~/.config/kitty/kitty.conf
-then
-	ln -s $DOTFILES/kitty/kitty.conf ~/.config/kitty/kitty.conf
-fi
+cd "$(dirname "$0")/.."
+DOTFILES_ROOT=$(pwd -P)
+
+source $DOTFILES_ROOT/script/linker_source
+
+
+link_file $DOTFILES_ROOT/kitty/kitty.conf ~/.config/kitty/kitty.conf
+link_file $DOTFILES_ROOT/kitty/dracula.conf ~/.config/kitty/dracula.conf
+link_file $DOTFILES_ROOT/kitty/diff.conf ~/.config/kitty/diff.conf
+
