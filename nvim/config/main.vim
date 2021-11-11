@@ -3,7 +3,6 @@ let g:python3_host_prog="/usr/local/bin/python3"
 
 let g:polyglot_disabled = ['csv']
 
-
 " Wrap gitcommit file types at the appropriate length
 filetype indent plugin on
 

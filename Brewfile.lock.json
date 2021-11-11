@@ -5,7 +5,7 @@
         "revision": "e11704f58688da7e9d0192d08ff2b31c252a2f6b"
       },
       "homebrew/cask-fonts": {
-        "revision": "2f026de4483946fa161864bbcf9a98ae65bfa0da"
+        "revision": "1d8e00ac0e2df035b93e9e22d4aa04aa9fb3e413"
       },
       "johanhaleby/kubetail": {
         "revision": "76674415e2eabb0588ba3052c74ae29aa637bcd9"
@@ -23,7 +23,7 @@
         "revision": "24e3945a989753d681a944563cc6dc1d098adfea"
       },
       "hashicorp/tap": {
-        "revision": "10b066f81affa4ca02918e8035c3472df24c8900"
+        "revision": "74e8fdfea61fd0813d5d6313b1e2f820c89ea5af"
       },
       "github/gh": {
         "revision": "209f59cda890de69b74c224982591642c21323d3"
@@ -3273,7 +3273,7 @@
       "monterey": {
         "HOMEBREW_VERSION": "3.3.3",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "8e7b7b397eae75d16e94c5407f82b20157f209a6",
+        "Homebrew/homebrew-core": "9a469749273159707f63be5f60513919707c44a3",
         "CLT": "13.1.0.0.1.1633545042",
         "Xcode": "13.1",
         "macOS": "12.0.1"

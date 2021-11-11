@@ -1,6 +1,6 @@
 # vi: ft=tmux
 
-
+set -g -a terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'
 set -g default-terminal "screen-256color" # colors!
 setw -g xterm-keys on
 set -s escape-time 10                     # faster command sequences
@@ -113,7 +113,7 @@ bind ] paste-buffer
 # Open new panes/windows in the same directory
 bind '"' split-window -c "#{pane_current_path}"
 bind % split-window -h -c "#{pane_current_path}"
-bind c new-window -c "#{pane_current_path}"
+#bind c new-window -c "#{pane_current_path}"
 
 ## copy to macOS clipboard
 #if -b 'command -v pbcopy > /dev/null 2>&1' 'bind y run -b "tmux save-buffer - | pbcopy"'
