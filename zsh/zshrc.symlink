@@ -173,6 +173,7 @@ alias ipinfo='function(){curl "http://api.ipstack.com/${1}?access_key=${IPSTACK_
 alias i=". incidents"
 
 alias p='function(){infra-cli params $@}'
+alias pc='function(){infra-cli params $@ | grep val | cut -d'=' -f2 | tr -d '"'"'[:space:]'"'"' | pbcopy}'
 
 autoload -U $DOTFILES/functions/*(:t)
 #autoload -Uz compinit

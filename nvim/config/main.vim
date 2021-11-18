@@ -189,6 +189,7 @@ noremap <C-h> :NERDTreeToggle<CR>
 noremap <Leader>nr :NERDTreeRefreshRoot<CR>
 noremap <Leader>f :NERDTreeFind<CR>
 noremap :bw :bd<CR>
+noremap <Leader>b :Buffers
 
 " remove trailing whitespace
 " while keeping cursor position
