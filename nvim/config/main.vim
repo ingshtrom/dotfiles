@@ -33,11 +33,11 @@ au VimLeave,VimSuspend * set guicursor=a:ver25
 
 " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
 autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+      \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
 " Exit Vim if NERDTree is the only window left.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
-    \ quit | endif
+      \ quit | endif
 
 set viminfo='100,<50,s10,h,f1 " do not lose information when restarting vim
 set number
@@ -70,6 +70,7 @@ set nowritebackup
 set noswapfile
 set expandtab
 set smarttab
+set softtabstop=2
 set shiftwidth=2
 set tabstop=2
 set hidden
@@ -154,7 +155,9 @@ Plug 'nvim-treesitter/nvim-treesitter'
 " DARK theme
 Plug 'dracula/vim',{'as':'dracula'}
 
-Plug 'github/copilot.vim'
+" cool, but messing with my tabs and causing more headache since it cannot be
+" configured
+"Plug 'github/copilot.vim'
 
 call plug#end()
 
@@ -194,13 +197,13 @@ noremap <Leader>b :Buffers
 " remove trailing whitespace
 " while keeping cursor position
 nnoremap <Leader>t :let _save_pos=getpos(".") <Bar>
-    \ :let _s=@/ <Bar>
-    \ :%s/\s\+$//e <Bar>
-    \ :let @/=_s <Bar>
-    \ :nohl <Bar>
-    \ :unlet _s<Bar>
-    \ :call setpos('.', _save_pos)<Bar>
-    \ :unlet _save_pos<CR><CR>
+      \ :let _s=@/ <Bar>
+      \ :%s/\s\+$//e <Bar>
+      \ :let @/=_s <Bar>
+      \ :nohl <Bar>
+      \ :unlet _s<Bar>
+      \ :call setpos('.', _save_pos)<Bar>
+      \ :unlet _save_pos<CR><CR>
 
 nmap <silent> gh :ToGithub docker<CR>
 nmap <silent> gb :Git blame<CR>
@@ -229,17 +232,17 @@ lua << EOF
 -- telescope remappings
 local actions = require('telescope.actions')
 require('telescope').setup{
-  defaults = {
-    file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
-    color_devicons = true,
-    mappings = {
-      i = {
-        ["<C-j>"] = actions.move_selection_next,
-        ["<C-k>"] = actions.move_selection_previous,
-        ["<esc>"] = actions.close,
+defaults = {
+  file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
+  color_devicons = true,
+  mappings = {
+    i = {
+      ["<C-j>"] = actions.move_selection_next,
+      ["<C-k>"] = actions.move_selection_previous,
+      ["<esc>"] = actions.close,
       },
-      n = {
-        ["<esc>"] = actions.close,
+    n = {
+      ["<esc>"] = actions.close,
       },
     },
   }
@@ -248,27 +251,27 @@ require('telescope').setup{
 -- nvim-compe setup
 vim.o.completeopt = "menuone,noselect"
 require'compe'.setup {
-  enabled = true;
-  autocomplete = true;
-  debug = false;
-  min_length = 1;
-  preselect = 'enable';
-  throttle_time = 80;
-  source_timeout = 200;
-  incomplete_delay = 400;
-  max_abbr_width = 100;
-  max_kind_width = 100;
-  max_menu_width = 100;
-  documentation = true;
+enabled = true;
+autocomplete = true;
+debug = false;
+min_length = 1;
+preselect = 'enable';
+throttle_time = 80;
+source_timeout = 200;
+incomplete_delay = 400;
+max_abbr_width = 100;
+max_kind_width = 100;
+max_menu_width = 100;
+documentation = true;
 
-  source = {
-    path = true;
-    buffer = true;
-    calc = true;
-    nvim_lsp = true;
-    nvim_lua = true;
-    vsnip = false;
-    ultisnips = false;
+source = {
+  path = true;
+  buffer = true;
+  calc = true;
+  nvim_lsp = true;
+  nvim_lua = true;
+  vsnip = false;
+  ultisnips = false;
   };
 }
 
@@ -279,33 +282,33 @@ local nvim_lsp = require('lspconfig')
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
-  --Enable completion triggered by <c-x><c-o>
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+--Enable completion triggered by <c-x><c-o>
+buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  -- Mappings.
-  local opts = { noremap=true, silent=true }
+-- Mappings.
+local opts = { noremap=true, silent=true }
 
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-  buf_set_keymap("n", "<space>F", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+-- See `:help vim.lsp.*` for documentation on any of the below functions
+buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+buf_set_keymap("n", "<space>F", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
@@ -317,7 +320,7 @@ end
 nvim_lsp.bashls.setup {
   on_attach = on_attach,
   filetypes = { "sh", "zsh" }
-}
+  }
 nvim_lsp.jsonls.setup {
   on_attach = on_attach,
   commands = {
@@ -325,12 +328,12 @@ nvim_lsp.jsonls.setup {
       function()
         vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
       end
+      }
     }
   }
-}
 nvim_lsp.clangd.setup{
-  on_attach = on_attach;
-  cmd = { '/usr/local/opt/llvm/bin/clangd', '--background-index' };
+on_attach = on_attach;
+cmd = { '/usr/local/opt/llvm/bin/clangd', '--background-index' };
 }
 
 nvim_lsp.dockerls.setup{}
@@ -338,39 +341,39 @@ nvim_lsp.dockerls.setup{}
 require('nvim-treesitter.configs').setup({
   ensure_installed = "maintained",
   highlight = {
-    enable = true,
+  enable = true,
   },
-  incremental_selection = {
-    enable = true
-  },
+incremental_selection = {
+enable = true
+},
   indent = {
-    enable = true
+  enable = true
   },
 })
 
 require'lualine'.setup{
-  options = {
-    theme = 'oceanicnext',
-    extensions = {'fugitive','nerdtree'}
+options = {
+  theme = 'oceanicnext',
+  extensions = {'fugitive','nerdtree'}
   },
-  sections = {
-    lualine_a = {'mode'},
-    lualine_b = {
-      'branch',
-      {
+sections = {
+  lualine_a = {'mode'},
+  lualine_b = {
+    'branch',
+    {
         'diagnostics',
         sources = {'nvim_lsp'},
         sections = {'error', 'warn', 'info', 'hint'},
         symbols = {error = '', warn = '', info = '', hint = 'H '},
-      },
     },
-    lualine_c = {
-      {'filename', path=1},
-    },
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
   },
+lualine_c = {
+  {'filename', path=1},
+  },
+lualine_x = {'encoding', 'fileformat', 'filetype'},
+lualine_y = {'progress'},
+lualine_z = {'location'}
+},
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
@@ -378,8 +381,8 @@ require'lualine'.setup{
     lualine_x = {'location'},
     lualine_y = {},
     lualine_z = {}
-  },
-}
+    },
+  }
 
 require("bufferline").setup{}
 

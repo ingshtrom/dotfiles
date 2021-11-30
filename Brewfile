@@ -36,8 +36,10 @@ brew 'grep'  # gnu version -- find text in file or stdout/stderr
 brew 'gnupg' # gpg v2
 # brew 'hh'  # hstr (better command history in zsh. ctrl-r), testing out mcfly for now
 brew 'hub'  # git wrapper by GitHub
+brew 'hub-bt' # Docker internal cli
 brew 'hugo'  # static site generator in go
 brew 'imagemagick'  # do cool stuff with images
+brew 'infra-cli' # docker internal cli
 brew 'jsonnet'  # templating language for :all_the_things:
 brew 'jq'  # parse json on the cli
 brew 'kube-ps1'  # prompt for zsh
