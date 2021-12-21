@@ -70,6 +70,8 @@ git reset --hard "${MAIN_REMOTE}/${MAIN_BRANCH}" --quiet
 # make sure our forked main/master is up to date with the latest changes too
 if [[ "$MAIN_REMOTE" == "upstream" ]]; then
   git push --force origin "$MAIN_BRANCH" --quiet
+else
+  echo "not pushing because we are not on a fork"
 fi
 
 git --no-pager log --color --oneline "${COMMIT}..${MAIN_REMOTE}/${MAIN_BRANCH}" --oneline

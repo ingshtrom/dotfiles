@@ -50,3 +50,8 @@
 #ln -f -s `pyenv which flake8` ~/.bin/flake8
 
 python3 -m pip install --upgrade pip
+
+mkdir -p ~/.config/pycodestyle
+mkdir -p ~/.config/flake8
+ln -s -f ~/.dotfiles/python/pycodestyle.cfg ~/.config/pycodestyle/pycodestyle.cfg
+ln -s -f ~/.dotfiles/python/flake8.cfg ~/.config/flake8/flake8.cfg

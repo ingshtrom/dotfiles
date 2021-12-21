@@ -157,7 +157,7 @@ Plug 'dracula/vim',{'as':'dracula'}
 
 " cool, but messing with my tabs and causing more headache since it cannot be
 " configured
-"Plug 'github/copilot.vim'
+Plug 'github/copilot.vim'
 
 call plug#end()
 
@@ -224,9 +224,9 @@ inoremap <silent><expr> <C-d> compe#scroll({ 'delta': +4 })
 
 nnoremap <silent> <leader>u :Telescope lsp_workspace_symbols query=
 nnoremap <silent> <leader>i :Telescope treesitter<CR>
-nnoremap <silent> <leader>d :Telescope lsp_document_diagnostics<CR>
+nnoremap <silent> <leader>d :Telescope diagnostics bufnr=0<CR>
 
-autocmd FileType go nnoremap <silent> <leader>d :Telescope lsp_workspace_diagnostics<CR>
+autocmd FileType go nnoremap <silent> <leader>d :Telescope diagnostics<CR>
 
 lua << EOF
 -- telescope remappings
@@ -317,6 +317,7 @@ local servers = { "gopls", "terraformls", "tsserver", "vimls", "yamlls", "pylsp"
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach }
 end
+
 nvim_lsp.bashls.setup {
   on_attach = on_attach,
   filetypes = { "sh", "zsh" }
@@ -332,8 +333,8 @@ nvim_lsp.jsonls.setup {
     }
   }
 nvim_lsp.clangd.setup{
-on_attach = on_attach;
-cmd = { '/usr/local/opt/llvm/bin/clangd', '--background-index' };
+  on_attach = on_attach;
+  cmd = { '/usr/local/opt/llvm/bin/clangd', '--background-index' };
 }
 
 nvim_lsp.dockerls.setup{}
@@ -341,11 +342,11 @@ nvim_lsp.dockerls.setup{}
 require('nvim-treesitter.configs').setup({
   ensure_installed = "maintained",
   highlight = {
-  enable = true,
+    enable = true,
   },
-incremental_selection = {
-enable = true
-},
+  incremental_selection = {
+    enable = true
+  },
   indent = {
   enable = true
   },
@@ -356,24 +357,24 @@ options = {
   theme = 'oceanicnext',
   extensions = {'fugitive','nerdtree'}
   },
-sections = {
-  lualine_a = {'mode'},
-  lualine_b = {
-    'branch',
-    {
-        'diagnostics',
-        sources = {'nvim_lsp'},
-        sections = {'error', 'warn', 'info', 'hint'},
-        symbols = {error = '', warn = '', info = '', hint = 'H '},
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {
+      'branch',
+      {
+          'diagnostics',
+          sources = {'nvim_diagnostic'},
+          sections = {'error', 'warn', 'info', 'hint'},
+          symbols = {error = '', warn = '', info = '', hint = 'H '},
+      },
     },
+    lualine_c = {
+      {'filename', path=1},
+    },
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
   },
-lualine_c = {
-  {'filename', path=1},
-  },
-lualine_x = {'encoding', 'fileformat', 'filetype'},
-lualine_y = {'progress'},
-lualine_z = {'location'}
-},
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
@@ -385,8 +386,5 @@ lualine_z = {'location'}
   }
 
 require("bufferline").setup{}
-
-
-vim.g.nightfox_style = "nightfox"
 EOF
 
