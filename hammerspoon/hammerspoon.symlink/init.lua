@@ -21,6 +21,7 @@ local units = {
     maximum = {x = 0.00, y = 0.00, w = 1.00, h = 1}
 }
 
+hs.application.enableSpotlightForNameSearches(true)
 
 local function moveWindowLeft(win)
 	local winscreen = win:screen()
@@ -269,3 +270,10 @@ hs.hotkey.bind(
 -- switcher_space = hs.window.switcher.new(hs.window.filter.new():setCurrentSpace(true):setDefaultFilter{}) -- include minimized/hidden windows, current Space only
 -- hs.hotkey.bind('alt','tab',function()switcher_space:next()end)
 -- hs.hotkey.bind('alt-shift','tab',function()switcher_space:previous()end)
+--
+
+-- Next up:
+-- https://github.com/adamyonk/PushToTalk.spoon/blob/master/init.lua
+--hs.hotkey.bind('', 'f13', function()
+--  spoon.Zoom:toggleMute()
+--end)

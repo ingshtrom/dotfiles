@@ -85,6 +85,8 @@ fi
 ################################################################################################
 # ALIASES
 
+alias cat='bat'
+
 # I wonder if I actually use hub features
 #eval "$(hub alias -s)"
 alias reg=hub-tool

@@ -94,6 +94,8 @@ set shortmess+=c
 set updatetime=300
 set showtabline=2
 
+let $FZF_DEFAULT_OPTS = '--bind ctrl-q:select-all+accept'
+
 "let g:WMGraphviz_output = "svg"
 
 """""""""""""""""""""""""""""""""""""""""""""
@@ -145,9 +147,13 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 
 " telescope and dependencies
+Plug 'tami5/sqlite.lua'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-file-browser.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+"Plug 'nvim-telescope/telescope-frecency.nvim'
 
 " treesitter is awesome
 Plug 'nvim-treesitter/nvim-treesitter'
@@ -181,18 +187,21 @@ let g:fzf_layout = { 'window': { 'width': 0.95, 'height': 0.90 } }
 command! -bang -nargs=* Find call fzf#vim#grep("rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob '!.git/*' --glob '!**/.terraform/*' --glob '!node_modules/*' --glob '!vendor/*' --color 'always' ".shellescape(<q-args>), 1, <bang>0)
 
 " fuzzy find files
-noremap <Leader>o :Files<CR>
-noremap <Leader>O <cmd>Telescope find_files find_command=fd,-E,.git,-E,.terraform,-I,-H,-t,f prompt_prefix=🔍<cr>
+noremap <Leader>O :Files<CR>
+noremap <Leader>o <cmd>Telescope find_files find_command=fd,-E,.git,-E,.terraform,-I,-H,-t,f prompt_prefix=🔍<cr>
 " fuzzy find string in files
 noremap <Leader>P :Find<space>
 noremap <Leader>p <cmd>Telescope live_grep prompt_prefix=🔍<cr>
 " toggle NERDTree
-noremap <Leader>h <cmd>Telescope file_browser<CR>
+noremap <Leader>h <cmd>lua require 'telescope'.extensions.file_browser.file_browser()<CR>
+"noremap <Leader>o <cmd>lua require 'telescope'.extensions.frecency.frecency()<CR>
 noremap <C-h> :NERDTreeToggle<CR>
 noremap <Leader>nr :NERDTreeRefreshRoot<CR>
 noremap <Leader>f :NERDTreeFind<CR>
 noremap :bw :bd<CR>
-noremap <Leader>b :Buffers
+noremap <Leader>b :Buffers<CR>
+
+"noremap :cc :cexpr[]
 
 " remove trailing whitespace
 " while keeping cursor position
@@ -231,22 +240,33 @@ autocmd FileType go nnoremap <silent> <leader>d :Telescope diagnostics<CR>
 lua << EOF
 -- telescope remappings
 local actions = require('telescope.actions')
-require('telescope').setup{
-defaults = {
-  file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
-  color_devicons = true,
-  mappings = {
-    i = {
-      ["<C-j>"] = actions.move_selection_next,
-      ["<C-k>"] = actions.move_selection_previous,
-      ["<esc>"] = actions.close,
+local telescope = require('telescope')
+telescope.setup{
+  extensions = {
+    fzf = {
+      fuzzy = true,
+      override_generic_sorter = true,
+      override_file_sorter = true,
+      case_mode = "smart_case",
+    },
+  },
+  defaults = {
+    file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
+    color_devicons = true,
+    mappings = {
+      i = {
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-k>"] = actions.move_selection_previous,
+        ["<esc>"] = actions.close,
       },
-    n = {
-      ["<esc>"] = actions.close,
+      n = {
+        ["<esc>"] = actions.close,
       },
     },
   }
 }
+telescope.load_extension("file_browser")
+telescope.load_extension("fzf")
 
 -- nvim-compe setup
 vim.o.completeopt = "menuone,noselect"
