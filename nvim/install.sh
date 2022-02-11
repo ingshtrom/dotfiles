@@ -9,13 +9,13 @@ export NVM_DIR="$HOME/.nvm"
 
 os=$(uname)
 if [[ "$os" == "Darwin" ]]; then
-  if hash xbuild 2>/dev/null; then
-    echo 'cool, xbuild is installed'
-  else
-    echo 'You need to install xbuild to continue with the installation progress.'
-    echo 'http://www.mono-project.com/download/stable/'
-    exit 1
-  fi
+  #if hash xbuild 2>/dev/null; then
+  #  echo 'cool, xbuild is installed'
+  #else
+  #  echo 'You need to install xbuild to continue with the installation progress.'
+  #  echo 'http://www.mono-project.com/download/stable/'
+  #  exit 1
+  #fi
 
   python3 -m pip install neovim pynvim 'python-lsp-server[all]'
 

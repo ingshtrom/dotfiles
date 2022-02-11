@@ -36,7 +36,7 @@ export ZSH=$HOME/.oh-my-zsh
 export DOTFILES=$HOME/.dotfiles
 export TERM="screen-256color"
 export GOPATH=$PROJECTS/go
-export PATH="$DOTFILES/bin:/usr/local/go/bin:${GOPATH}/bin:${HOME}/.bin:$HOME/.arkade/bin:${KREW_ROOT:-$HOME/.krew}/bin:./bin:/usr/local/lib/ruby/gems/2.7.0/bin:/usr/local/opt/grep/libexec/gnubin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/local/buildkit/bin:/usr/local/opt/python/libexec/bin:/usr/local/opt/ruby/bin:/usr/local/opt/gnu-sed/libexec/gnubin:$HOME/.cargo/bin:/usr/local/opt/llvm/bin:$PATH"
+export PATH="$DOTFILES/bin:/opt/homebrew/bin:/opt/homebrew/opt/gnu-sed/libexec/gnubin:/usr/local/go/bin:${GOPATH}/bin:${HOME}/.bin:$HOME/.arkade/bin:./bin:/usr/local/bin:/usr/local/sbin:$HOME/.cargo/bin:$PATH"
 export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
 export EDITOR='nvim'
 export VISUAL='nvim'
@@ -54,9 +54,10 @@ export DOCKER_BUILDKIT=1
 export COMPOSE_DOCKER_CLI_BUILD=1
 export CHAMBER_SECRET_BACKEND=ssm
 export CHAMBER_KMS_KEY_ALIAS=aws/ssm
-# DARK theme
-#export BAT_THEME=OneHalfDark
+export TFENV_ARCH=arm64
 # LIGHT theme
+#export BAT_THEME=OneHalfDark
+# DARK theme
 export BAT_THEME=Dracula
 export PS1='[$(kubectl config current-context) %1~ %# '
 # these are needed for the Clangd LSP server, I think 🤷
@@ -84,8 +85,6 @@ fi
 
 ################################################################################################
 # ALIASES
-
-alias cat='bat'
 
 # I wonder if I actually use hub features
 #eval "$(hub alias -s)"
@@ -198,12 +197,9 @@ export KUBECONFIG=$new_kubeconfig
 export STARSHIP_CONFIG=$HOME/.starship.toml
 eval "$(starship init zsh)"
 
-# slows things down 200ms each start up!
-#source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 # HSTR configuration - add this to ~/.zshrc
 setopt histignorespace           # skip cmds w/ leading space from history
-export HSTR_CONFIG=hicolor,regexp-matching
+export HSTR_CONFIG=hicolor,raw-history-view
 bindkey -s "\C-r" "\C-a hstr -- \C-j"     # bind hstr to Ctrl-r (for Vi mode check doc)
 
 # GPG agent
@@ -213,16 +209,9 @@ then
   gpg-agent --daemon
 fi
 
-# pyenv and direnv
-#eval "$(pyenv init -)"
-#eval "$(pyenv virtualenv-init -)"
-#eval "$(direnv hook $SHELL)"
-
-
 # nvm startup
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
 
 # Zoxide startup
 eval "$(zoxide init zsh)"
@@ -243,11 +232,14 @@ alias c=z # try out using z without changing my muscle memory
 export PATH="$PATH:/Users/alexhokanson/.local/bin"
 
 # ZPLUG stuff
-export ZPLUG_HOME=/usr/local/opt/zplug
+export ZPLUG_HOME=/opt/homebrew/opt/zplug
 source $ZPLUG_HOME/init.zsh
+
 zplug "dracula/zsh", as:theme
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
+if ! which zplug 2>&1 > /dev/null; then
+    echo "zplug not found, please install it"
+elif ! zplug check --verbose; then
+    printf "Install plugins? [y/N]: "
     if read -q; then
         echo; zplug install
     fi

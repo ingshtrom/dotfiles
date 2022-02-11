@@ -69,5 +69,5 @@
 
 [init]
 	defaultBranch = main
-[gpg]
-	program = gpg
+#[gpg]
+#	program = gpg2

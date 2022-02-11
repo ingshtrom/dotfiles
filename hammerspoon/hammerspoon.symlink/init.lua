@@ -1,5 +1,3 @@
-local canvas = require("hs.canvas")
-
 foreach = hs.fnutils.each
 
 hs.window.animationDuration = 0
@@ -172,7 +170,17 @@ hs.hotkey.bind(
         )
         -- make sure default output (headphone jack) is being used
         device = hs.audiodevice.findDeviceByName("Built-in Output")
-        hs.printf("Did enable headphone audio output?: %s", device:setDefaultOutputDevice())
+        result = "nil"
+        if device ~= nil then
+            result = device:setDefaultOutputDevice()
+        end
+        if result == "nil" then
+            device = hs.audiodevice.findDeviceByName("External Headphones")
+            if device ~= nil then
+                result = device:setDefaultOutputDevice()
+            end
+        end
+        hs.printf("Did enable headphone audio output?: %s", result)
 
         -- start boom3d
         local didStartBoom3D = hs.application.launchOrFocus("Boom 3D")

@@ -128,13 +128,13 @@ if [[ "$(uname)" == "Linux" ]]; then
   # Brave Browser
   # NOTE: Brave kept feeling laggy when focusing the browser
   #
-  if ! test -f /etc/apt/sources.list.d/brave-browser-release.list
-  then
-    echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
-    sudo apt-get update -y
-  fi
-  curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add
-  sudo apt-get install -y brave-browser
+  #if ! test -f /etc/apt/sources.list.d/brave-browser-release.list
+  #then
+  #  echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+  #  sudo apt-get update -y
+  #fi
+  #curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add
+  #sudo apt-get install -y brave-browser
 
   #
   # Albert

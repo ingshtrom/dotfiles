@@ -3,7 +3,7 @@
 # bootstrap installs things.
 
 cd "$(dirname "$0")/.."
-DOTFILES_ROOT=$(pwd -P)
+export DOTFILES_ROOT=$(pwd -P)
 
 source $DOTFILES_ROOT/script/linker_source
 

@@ -1,5 +1,7 @@
 # vi: ft=tmux
 
+set-option -g default-shell /bin/zsh
+
 set -g -a terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'
 set -g default-terminal "screen-256color" # colors!
 setw -g xterm-keys on

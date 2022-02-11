@@ -10,15 +10,14 @@ function perform_task() {
     echo "››› $@" | cowsay | lolcat
     sh -c "$@"
   else
-    echo "››› brew update"
-    brew update
-    echo
-    echo
+    echo "››› $@"
+    sh -c "$@"
   fi
 }
 
 
 cd "$(dirname $0)"/..
+export DOTFILES_ROOT="$(pwd)"
 
 # Run Homebrew through the Brewfile
 perform_task 'brew update'
@@ -35,15 +34,7 @@ perform_task 'brew cleanup --prune-prefix'
 
 echo "››› files to run during installation: \n$(find $DOTFILES -iname "install.sh")"
 for file in $(find $DOTFILES -iname "install.sh"); do
-  #if [[ "$file" == "$DOTFILES/homebrew/install" ]]; then
-  #  continue
-  #fi
-
-  echo "Executing file: $file {" | cowsay
-
-  sh -c $file
-
-  echo "} $file"
+  perform_task $file
 done
 
 if [[ "$(uname)" == "Darwin" ]];
