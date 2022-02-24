@@ -7,7 +7,7 @@ set -o errexit
 version=2.7.1
 
 eval "$(rbenv init -)"
-rbenv install -s "$version"
+RUBY_CFLAGS="-Wno-error=implicit-function-declaration" rbenv install -s "$version"
 rbenv global "$version"
 gem install bundler
 gem install lolcat
