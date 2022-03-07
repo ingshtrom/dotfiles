@@ -160,8 +160,10 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 " treesitter is awesome
 Plug 'nvim-treesitter/nvim-treesitter'
 
-" DARK theme
-Plug 'dracula/vim',{'as':'dracula'}
+" DARK_THEME
+"Plug 'dracula/vim',{'as':'dracula'}
+" LIGHT_THEME
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
 
 " cool, but messing with my tabs and causing more headache since it cannot be
 " configured
@@ -169,7 +171,10 @@ Plug 'github/copilot.vim'
 
 call plug#end()
 
-colorscheme dracula
+" DARK_THEME
+"colorscheme dracula
+" LIGHT_THEME
+colorscheme onehalflight
 
 let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' }, 'haproxy': { 'left': '#' } }
 
@@ -378,7 +383,10 @@ require('nvim-treesitter.configs').setup({
 
 require'lualine'.setup{
 options = {
-  theme = 'oceanicnext',
+  -- DARK_THEME
+  -- theme = 'dracula',
+  -- LIGHT_THEME
+  theme = 'onelight',
   extensions = {'fugitive','nerdtree'}
   },
   sections = {

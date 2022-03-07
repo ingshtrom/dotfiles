@@ -55,10 +55,10 @@ export COMPOSE_DOCKER_CLI_BUILD=1
 export CHAMBER_SECRET_BACKEND=ssm
 export CHAMBER_KMS_KEY_ALIAS=aws/ssm
 export TFENV_ARCH=arm64
-# LIGHT theme
-#export BAT_THEME=OneHalfDark
-# DARK theme
-export BAT_THEME=Dracula
+# LIGHT_THEME
+export BAT_THEME=OneHalfDark
+# DARK_THEME
+#export BAT_THEME=Dracula
 export PS1='[$(kubectl config current-context) %1~ %# '
 # these are needed for the Clangd LSP server, I think 🤷
 export LDFLAGS="-L/usr/local/opt/llvm/lib"
@@ -229,7 +229,7 @@ export PATH="$PATH:/Users/alexhokanson/.local/bin"
 export ZPLUG_HOME=/opt/homebrew/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
-zplug "dracula/zsh", as:theme
+#zplug "dracula/zsh", as:theme
 if ! which zplug 2>&1 > /dev/null; then
     echo "zplug not found, please install it"
 elif ! zplug check --verbose; then

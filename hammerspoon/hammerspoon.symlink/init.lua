@@ -21,6 +21,22 @@ local units = {
 
 hs.application.enableSpotlightForNameSearches(true)
 
+-- wait for up to 5 seconds for a window to appear and be focused
+--local function waitForFocusedWindowByName(name)
+--    local timer = 0
+--    while (true and timer < 5) do
+--        local win = hs.window.focusedWindow()
+--        hs.printf("is nil: %s", win == nil)
+--        if win ~= nil and win:application():name() == name then
+--            hs.printf("returning focused window for app %", name)
+--            return win
+--        end
+--        hs.timer.usleep(100000)
+--        timer = timer + 1
+--    end
+--    return nil
+--end
+
 local function moveWindowLeft(win)
 	local winscreen = win:screen()
 	local screengrid = hs.grid.getGrid(winscreen)
@@ -155,43 +171,71 @@ hs.hotkey.bind(
     mash,
     "y",
     function()
-        hs.printf("Getting ready to listen to some music after being on a meeting!")
+        local isBoomRunning = false
+        local isSpotifyRunning = false
+        hs.printf("Getting ready to listen to some music.")
         -- kill zoom
         foreach(
             hs.application.runningApplications(),
             function(app)
                 name = app:name()
-                if name == "zoom.us" or name == "krisp"
+                if name == "zoom.us"
                 then
-                    hs.printf("killing zoom.us")
+                    hs.printf("killing applications %s", name)
                     app:kill()
+                end
+
+                if name == "Boom 3D"
+                then
+                    isBoomRunning = true
+                end
+
+                if name == "Spotify"
+                then
+                    isSpotifyRunning = true
                 end
             end
         )
         -- make sure default output (headphone jack) is being used
-        device = hs.audiodevice.findDeviceByName("Built-in Output")
-        result = "nil"
-        if device ~= nil then
-            result = device:setDefaultOutputDevice()
-        end
-        if result == "nil" then
-            device = hs.audiodevice.findDeviceByName("External Headphones")
-            if device ~= nil then
-                result = device:setDefaultOutputDevice()
-            end
-        end
-        hs.printf("Did enable headphone audio output?: %s", result)
+        --device = hs.audiodevice.findDeviceByName("Built-in Output")
+        --result = "nil"
+        --if device ~= nil then
+        --    result = device:setDefaultOutputDevice()
+        --end
+        --if result == "nil" then
+        --    device = hs.audiodevice.findDeviceByName("External Headphones")
+        --    if device ~= nil then
+        --        result = device:setDefaultOutputDevice()
+        --    end
+        --end
+        --hs.printf("Did enable headphone audio output?: %s", result)
 
         -- start boom3d
-        local didStartBoom3D = hs.application.launchOrFocus("Boom 3D")
-        hs.printf("Did start Boom 3D?: %s", didStartBoom3D)
-        if hs.window.focusedWindow():application():name() == "Boom 3D" then
-            hs.window.focusedWindow():close()
+        if isBoomRunning == false
+        then
+            local didStartBoom3D = hs.application.launchOrFocus("Boom 3D")
+            hs.printf("Boom 3D was not already running. Did start Boom 3D?: %s", didStartBoom3D)
+
+            -- NOTE: shouldn't need to wait for the focused window since we don't try to start
+            --       Boom 3D if it's already running.
+            --
+            --local win = waitForFocusedWindowByName("Boom 3D")
+            --if win ~= nil then
+            --    hs.printf("found window for boom 3d. closing it")
+            --    win:close()
+            --end
+        else
+            hs.printf("Boom 3D is already running.")
         end
 
         -- start spotify
-        local didStartSpotify = hs.application.launchOrFocus("spotify")
-        hs.printf("Did start Spotify?: %s", didStartSpotify)
+        if isSpotifyRunning == false
+        then
+            local didStartSpotify = hs.application.launchOrFocus("spotify")
+            hs.printf("Spotify not already running. Did start Spotify?: %s", didStartSpotify)
+        else
+            hs.printf("Spotify is already running.")
+        end
 
         foreach(
             hs.screen.allScreens(),
@@ -206,33 +250,33 @@ hs.hotkey.bind(
     mash,
     "z",
     function()
-        hs.printf("Getting for a meeting!")
+        local isZoomRunning = false
+        hs.printf("Getting ready for a meeting!")
         -- kill boom 3d
         foreach(
             hs.application.runningApplications(),
             function(app)
                 name = app:name()
-                if name == "Boom 3D" or name == "Spotify"
+                if name == "Spotify"
                 then
-                    hs.printf("killing Boom 3D")
+                    hs.printf("killing %s to avoid background music", name)
                     app:kill()
+                end
+                if name == "zoom.us"
+                then
+                    isZoomRunning = true
                 end
             end
         )
 
-		-- NOTE: we don't use Krisp.ai anymore. Zoom noise cancelling is good enough
-		-- 		and I don't work in the same room as a 3d printer anymore
-        -- start krisp if it isn't started
-        -- local didStartKrisp = hs.application.launchOrFocus("krisp.app")
-        -- hs.printf("Did start Krisp?: %s", didStartKrisp)
-
         -- start zoom
-        local didStart = hs.application.launchOrFocus("zoom.us")
-        hs.printf("Did start zoom?: %s", didStart)
-
-        -- turn on bluetooth if it is off
-        -- NOTE: it seems we cannot control
-        --       bluetooth directly from hammerspoon
+        if isZoomRunning == false
+        then
+            local didStart = hs.application.launchOrFocus("zoom.us")
+            hs.printf("Zoom was not already running. Did start zoom?: %s", didStart)
+        else
+            hs.printf("Zoom was already running")
+        end
 
         foreach(
             hs.screen.allScreens(),
