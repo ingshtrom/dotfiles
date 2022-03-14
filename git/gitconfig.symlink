@@ -62,7 +62,10 @@
   features = decorations
   whitespace-error-style = 22 reverse
   side-by-side = false
-  syntax-theme = Dracula
+  ## DARK_THEME
+  # syntax-theme = Dracula
+  ## LIGHT_THEME
+  syntax-theme = OneHalfLight
 [delta "decorations"]
   file-style = green
   file-decoration-style = none

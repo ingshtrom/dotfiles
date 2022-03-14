@@ -56,7 +56,7 @@ export CHAMBER_SECRET_BACKEND=ssm
 export CHAMBER_KMS_KEY_ALIAS=aws/ssm
 export TFENV_ARCH=arm64
 # LIGHT_THEME
-export BAT_THEME=OneHalfDark
+export BAT_THEME=OneHalfLight
 # DARK_THEME
 #export BAT_THEME=Dracula
 export PS1='[$(kubectl config current-context) %1~ %# '
