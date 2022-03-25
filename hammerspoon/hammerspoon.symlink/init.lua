@@ -229,13 +229,8 @@ hs.hotkey.bind(
         end
 
         -- start spotify
-        if isSpotifyRunning == false
-        then
-            local didStartSpotify = hs.application.launchOrFocus("spotify")
-            hs.printf("Spotify not already running. Did start Spotify?: %s", didStartSpotify)
-        else
-            hs.printf("Spotify is already running.")
-        end
+        local didStartSpotify = hs.application.launchOrFocus("spotify")
+        hs.printf("Did start/focus Spotify?: %s", didStartSpotify)
 
         foreach(
             hs.screen.allScreens(),
