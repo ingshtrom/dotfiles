@@ -68,7 +68,7 @@ brew 'shellcheck'
 brew 'spaceman-diff'
 brew 'spark'
 brew 'starship'  # https://starship.rs => terminal prompt
-brew 'task'  # taskwarrior
+# brew 'task'  # taskwarrior  # will overwrite the task binary from go-task
 brew 'go-task/tap/go-task'  # https://taskfile.dev
 brew 'terminal-notifier'  # allow sending notifications from cli
 brew 'hashicorp/tap/terraform-ls'
