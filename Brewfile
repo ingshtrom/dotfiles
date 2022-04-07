@@ -47,6 +47,7 @@ brew 'kube-ps1'  # prompt for zsh
 brew 'kubectl'
 brew 'kubetail'  # easier logging for kube
 brew 'less'  # updated version of less tool
+brew 'linkerd'  # linkerd cli for the service mesh tool
 brew 'llvm'  # clangd for c LSP
 brew 'make'
 brew 'mcfly'  # better ctrl-r with ML

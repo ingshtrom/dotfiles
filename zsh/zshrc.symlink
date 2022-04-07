@@ -36,7 +36,7 @@ export ZSH=$HOME/.oh-my-zsh
 export DOTFILES=$HOME/.dotfiles
 export TERM="screen-256color"
 export GOPATH=$PROJECTS/go
-export PATH="$DOTFILES/bin:/opt/homebrew/bin:/opt/homebrew/opt/gnu-sed/libexec/gnubin:/usr/local/go/bin:${GOPATH}/bin:${HOME}/.bin:$HOME/.arkade/bin:./bin:/usr/local/bin:/usr/local/sbin:$HOME/.cargo/bin:$PATH"
+export PATH="$DOTFILES/bin:/opt/homebrew/bin:/opt/homebrew/opt/gnu-sed/libexec/gnubin:/usr/local/go/bin:${GOPATH}/bin:${HOME}/.bin:$HOME/.arkade/bin:$HOME/.linkerd2/bin:./bin:/usr/local/bin:/usr/local/sbin:$HOME/.cargo/bin:$PATH"
 export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
 export EDITOR='nvim'
 export VISUAL='nvim'
@@ -86,9 +86,6 @@ fi
 ################################################################################################
 # ALIASES
 
-# I wonder if I actually use hub features
-#eval "$(hub alias -s)"
-alias reg=hub-tool
 alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
 alias h='hstr'
 alias ls='exa'
@@ -124,6 +121,8 @@ alias python='python3'
 alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
 alias saa="ssh-add $HOME/.ssh/dckr-default && ssh-add $HOME/.ssh/dckr-infra && ssh-add $HOME/.ssh/dckr-swarm && ssh-add $HOME/.ssh/dckr-nautilus"
 alias ssh-add-pub-key='function(){ set -e; chmod 400 $1; ssh-add $1; }'
+
+alias aws_admin_user="unset_aws && eval \"$(cat ~/.localrc | grep AWS | grep export | sed 's/^#//g')\""
 
 alias d="docker"
 alias k="kubectl.docker"
