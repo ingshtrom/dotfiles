@@ -22,7 +22,9 @@ if has("clipboard")
   endif
 endif
 
-au BufRead,BufNewFile *.markdown,*.md set textwidth=100 fo+=t fo-=l
+" this will force the cursor to a new line when it reaches the textwidth
+" parameter
+"au BufRead,BufNewFile *.markdown,*.md set textwidth=100 fo+=t fo-=l
 au BufRead,BufNewFile *.applescript setfiletype javascript
 au BufRead,BufNewFile Brewfile setfiletype python
 autocmd FileType python set shiftwidth=4 tabstop=4
