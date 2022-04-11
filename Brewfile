@@ -66,6 +66,7 @@ brew 'ripgrep'  # osx only, awesome fast searching
 brew 'ruby'
 brew 'ruby-build'
 brew 'shellcheck'
+brew 'slides'  # slideshow in the terminal
 brew 'spaceman-diff'
 brew 'spark'
 brew 'starship'  # https://starship.rs => terminal prompt

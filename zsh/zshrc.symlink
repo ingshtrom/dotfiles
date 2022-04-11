@@ -157,7 +157,7 @@ alias aod='aws-okta dockerinc.main'
 alias aox='function(){eval $(aws-okta env "$@" | sed "s/^/export /")}'
 alias aoxd='function(){eval $(aws-okta env dockerinc.main | sed "s/^/export /")}'
 alias am='aoxd'
-alias aa='infra-cli admin && source /tmp/adminAws && rm /tmp/adminAws && export AWS_OKTA_SESSION_EXPIRATION=$(date -v+1H +%s) && export AWS_OKTA_PROFILE=dockerinc.ADMIN'
+alias aa='infra-cli admin && source /tmp/adminAws && rm /tmp/adminAws && export AWS_OKTA_SESSION_EXPIRATION=$(date -v+15M +%s) && export AWS_OKTA_PROFILE=dockerinc.ADMIN'
 
 alias lpass_search='lpass ls | grep -i "$@"'
 
