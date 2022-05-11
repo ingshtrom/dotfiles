@@ -75,6 +75,7 @@ brew 'go-task/tap/go-task'  # https://taskfile.dev
 brew 'terminal-notifier'  # allow sending notifications from cli
 brew 'hashicorp/tap/terraform-ls'
 brew 'the_silver_searcher'  # ripgrep alternative prior to rg being written. Not as fast, but some tools still use it # noqa
+brew 'tfenv'  # Terraform version manager
 brew 'tmux'
 brew 'hashicorp/tap/vault'  # Hashicorp Vault
 brew 'vegeta'  # load testing
