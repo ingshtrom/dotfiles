@@ -168,6 +168,9 @@ Plug 'sonph/onehalf', {'rtp': 'vim/'}
 
 " cool, but messing with my tabs and causing more headache since it cannot be
 " configured
+" as of 5/23/22 it started error'ing b/c the API returned text/html instead of
+" application/json content-type 🤷 => turns out there was a rogue install of
+" copilot which didn't get updated ever
 Plug 'github/copilot.vim'
 
 call plug#end()

@@ -86,7 +86,6 @@ brew 'ykman'  # CLI for YubiKey Authenticator mgmt
 brew 'zoxide'  # better changing directories https://github.com/ajeetdsouza/zoxide # noqa
 brew 'zsh'
 brew 'zsh-autosuggestions'
-brew 'zsh-syntax-highlighting'
 brew 'zplug'
 
 # cask 'alacritty'
