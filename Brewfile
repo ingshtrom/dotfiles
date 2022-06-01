@@ -70,6 +70,7 @@ brew 'slides'  # slideshow in the terminal
 brew 'spaceman-diff'
 brew 'spark'
 brew 'starship'  # https://starship.rs => terminal prompt
+brew 'step'  # https://smallstep.com/cli/
 # brew 'task'  # taskwarrior  # will overwrite the task binary from go-task
 brew 'go-task/tap/go-task'  # https://taskfile.dev
 brew 'terminal-notifier'  # allow sending notifications from cli
