@@ -4,19 +4,19 @@ hs.window.animationDuration = 0
 
 -- for when we have a Medium sized uBar at the bottom
  --local units = {
- --    right50 = {x = 0.50, y = 0.00, w = 0.50, h = 0.958},
- --    left50 = {x = 0.00, y = 0.00, w = 0.50, h = 0.958},
- --    top50 = {x = 0.00, y = 0.00, w = 1.00, h = 0.4775},
- --    bot50 = {x = 0.00, y = 0.4780, w = 1.00, h = 0.4773},
- --    maximum = {x = 0.00, y = 0.00, w = 1.00, h = 0.948}
+ --    right50 = {x = 0.50, y = 0.00, w = 0.50, h = 1.0},
+ --    left50 = {x = 0.00, y = 0.00, w = 0.50, h = 1.0},
+ --    top50 = {x = 0.00, y = 0.00, w = 1.00, h = 0.5},
+ --    bot50 = {x = 0.00, y = 0.4780, w = 1.00, h = 0.5},
+ --    maximum = {x = 0.00, y = 0.00, w = 1.00, h = 1.0}
  --}
 -- without ubar or any other bottom decorations (bars, etc)
 local units = {
-    right50 = {x = 0.50, y = 0.00, w = 0.50, h = 1},
-    left50 = {x = 0.00, y = 0.00, w = 0.50, h = 1},
+    right50 = {x = 0.50, y = 0.00, w = 0.50, h = 1.0},
+    left50 = {x = 0.00, y = 0.00, w = 0.50, h = 1.0},
     top50 = {x = 0.00, y = 0.00, w = 1.00, h = 0.5},
     bot50 = {x = 0.00, y = 0.5, w = 1.00, h = 0.5},
-    maximum = {x = 0.00, y = 0.00, w = 1.00, h = 1}
+    maximum = {x = 0.00, y = 0.00, w = 1.00, h = 1.0}
 }
 
 hs.application.enableSpotlightForNameSearches(true)

@@ -72,5 +72,5 @@
 
 [init]
 	defaultBranch = main
-#[gpg]
-#	program = gpg2
+[gpg]
+	program = /opt/homebrew/bin/gpg

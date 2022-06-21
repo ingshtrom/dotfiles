@@ -35,22 +35,6 @@ os=$(uname)
 if [[ "$os" == "Darwin" ]]; then
   curl -fSL -o "/usr/local/bin/tk" "https://github.com/grafana/tanka/releases/download/v0.6.1/tk-darwin-amd64"
   go install github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb@latest
-
-  KUBECTL_VERSION=$( get_latest_patch_version darwin $KUBECTL_TARGET_VERSION )
-  curl -sSL "https://storage.googleapis.com/kubernetes-release/release/$KUBECTL_VERSION/bin/darwin/amd64/kubectl" --output /tmp/kubectl
-  sudo mv /tmp/kubectl /usr/local/bin/kubectl
-  sudo chmod +x /usr/local/bin/kubectl
-fi
-
-if [[ "$os" == "Linux" ]]; then
-  KUBECTL_VERSION=$( get_latest_patch_version linux $KUBECTL_TARGET_VERSION )
-  curl -sSL "https://storage.googleapis.com/kubernetes-release/release/$KUBECTL_VERSION/bin/linux/amd64/kubectl" --output /tmp/kubectl
-  sudo mv /tmp/kubectl /usr/local/bin/kubectl
-  sudo chmod +x /usr/local/bin/kubectl
-fi
-
-if [[ ! -f "/usr/local/bin/kubectl_latest" ]]; then
-  sudo ln -s $(brew --prefix)/bin/kubectl /usr/local/bin/kubectl_latest
 fi
 
 if ! which kubectx
