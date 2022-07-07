@@ -141,11 +141,11 @@ bind P choose-buffer # choose which buffer to paste from
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
 # DARK_THEME
-#set -g @plugin 'dracula/tmux'
-#set -g @themepack 'dracula'
-#set -g @dracula-show-powerline true
-#set -g @dracula-refresh-rate 30
-#set -g @dracula-plugins " "
+set -g @plugin 'dracula/tmux'
+set -g @themepack 'dracula'
+set -g @dracula-show-powerline true
+set -g @dracula-refresh-rate 30
+set -g @dracula-plugins " "
 # LIGHT_THEME
 #set -g @plugin 'andersondanilo/tmux-onehalf-theme'
 #set -g @themepack 'onehalf'

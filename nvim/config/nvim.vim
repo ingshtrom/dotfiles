@@ -162,23 +162,16 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-treesitter/nvim-treesitter'
 
 " DARK_THEME
-"Plug 'dracula/vim',{'as':'dracula'}
+Plug 'dracula/vim',{'as':'dracula'}
 " LIGHT_THEME
-Plug 'sonph/onehalf', {'rtp': 'vim/'}
-
-" cool, but messing with my tabs and causing more headache since it cannot be
-" configured
-" as of 5/23/22 it started error'ing b/c the API returned text/html instead of
-" application/json content-type 🤷 => turns out there was a rogue install of
-" copilot which didn't get updated ever
-Plug 'github/copilot.vim'
+"Plug 'sonph/onehalf', {'rtp': 'vim/'}
 
 call plug#end()
 
 " DARK_THEME
-"colorscheme dracula
+colorscheme dracula
 " LIGHT_THEME
-colorscheme onehalflight
+"colorscheme onehalflight
 
 let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' }, 'haproxy': { 'left': '#' } }
 
@@ -388,9 +381,9 @@ require('nvim-treesitter.configs').setup({
 require'lualine'.setup{
 options = {
   -- DARK_THEME
-  -- theme = 'dracula',
+  theme = 'dracula',
   -- LIGHT_THEME
-  theme = 'onelight',
+  -- theme = 'onelight',
   extensions = {'fugitive','nerdtree'}
   },
   sections = {

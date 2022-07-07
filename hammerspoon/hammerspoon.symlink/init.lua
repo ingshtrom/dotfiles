@@ -11,15 +11,15 @@ hs.window.animationDuration = 0
  --    maximum = {x = 0.00, y = 0.00, w = 1.00, h = 1.0}
  --}
 -- without ubar or any other bottom decorations (bars, etc)
-local units = {
-    right50 = {x = 0.50, y = 0.00, w = 0.50, h = 1.0},
-    left50 = {x = 0.00, y = 0.00, w = 0.50, h = 1.0},
-    top50 = {x = 0.00, y = 0.00, w = 1.00, h = 0.5},
-    bot50 = {x = 0.00, y = 0.5, w = 1.00, h = 0.5},
-    maximum = {x = 0.00, y = 0.00, w = 1.00, h = 1.0}
-}
+-- local units = {
+--     right50 = {x = 0.50, y = 0.00, w = 0.50, h = 1.0},
+--     left50 = {x = 0.00, y = 0.00, w = 0.50, h = 1.0},
+--     top50 = {x = 0.00, y = 0.00, w = 1.00, h = 0.5},
+--     bot50 = {x = 0.00, y = 0.5, w = 1.00, h = 0.5},
+--     maximum = {x = 0.00, y = 0.00, w = 1.00, h = 1.0}
+-- }
 
-hs.application.enableSpotlightForNameSearches(true)
+-- hs.application.enableSpotlightForNameSearches(true)
 
 -- wait for up to 5 seconds for a window to appear and be focused
 --local function waitForFocusedWindowByName(name)
@@ -37,29 +37,29 @@ hs.application.enableSpotlightForNameSearches(true)
 --    return nil
 --end
 
-local function moveWindowLeft(win)
-	local winscreen = win:screen()
-	local screengrid = hs.grid.getGrid(winscreen)
-	local cell = hs.grid.get(win)
-	-- go to right screen
-	local frame=win:frame()
-	local newscreen=winscreen:toWest(frame)
-	-- if not newscreen then return grid end
-	frame.x = frame.x-frame.w
-	win:setFrameInScreenBounds(frame)
-end
+-- local function moveWindowLeft(win)
+-- 	local winscreen = win:screen()
+-- 	local screengrid = hs.grid.getGrid(winscreen)
+-- 	local cell = hs.grid.get(win)
+-- 	-- go to right screen
+-- 	local frame=win:frame()
+-- 	local newscreen=winscreen:toWest(frame)
+-- 	-- if not newscreen then return grid end
+-- 	frame.x = frame.x-frame.w
+-- 	win:setFrameInScreenBounds(frame)
+-- end
 
-local function moveWindowRight(win)
-	local winscreen = win:screen()
-	local screengrid = hs.grid.getGrid(winscreen)
-	local cell = hs.grid.get(win)
-	-- go to right screen
-	local frame=win:frame()
-	local newscreen=winscreen:toEast(frame)
-	-- if not newscreen then return grid end
-	frame.x = frame.x+frame.w
-	win:setFrameInScreenBounds(frame)
-end
+-- local function moveWindowRight(win)
+-- 	local winscreen = win:screen()
+-- 	local screengrid = hs.grid.getGrid(winscreen)
+-- 	local cell = hs.grid.get(win)
+-- 	-- go to right screen
+-- 	local frame=win:frame()
+-- 	local newscreen=winscreen:toEast(frame)
+-- 	-- if not newscreen then return grid end
+-- 	frame.x = frame.x+frame.w
+-- 	win:setFrameInScreenBounds(frame)
+-- end
 
 function toggleZoomMute()
   local zoom = hs.appfinder.appFromName("zoom.us")
@@ -110,23 +110,25 @@ end)
 
 local mash = {"alt", "ctrl", "cmd"}
 
+-- NOTE: REPLACED by Raycast
+--
 -- snapping of windows
-foreach({
-        { key='k', mod=mash, units=units.top50 },
-        { key='j', mod=mash, units=units.bot50 },
-        { key='u', mod=mash, units=units.left50 },
-        { key='p', mod=mash, units=units.right50 },
-        { key='m', mod=mash, units=units.maximum },
-    }, function(b)
-        hs.hotkey.bind(
-            b.mod,
-            b.key,
-            function()
-                hs.window.focusedWindow():move(b.units, nil, false)
-            end
-        )
-    end
-)
+-- foreach({
+--         { key='k', mod=mash, units=units.top50 },
+--         { key='j', mod=mash, units=units.bot50 },
+--         { key='u', mod=mash, units=units.left50 },
+--         { key='p', mod=mash, units=units.right50 },
+--         { key='m', mod=mash, units=units.maximum },
+--     }, function(b)
+--         hs.hotkey.bind(
+--             b.mod,
+--             b.key,
+--             function()
+--                 hs.window.focusedWindow():move(b.units, nil, false)
+--             end
+--         )
+--     end
+-- )
 
 -- hotkeys to be like vim
 foreach({
@@ -146,25 +148,27 @@ foreach({
     end
 )
 
+-- NOTE: replaced with Raycast!
+--
 -- moving of windows from one screen to another
-hs.hotkey.bind(
-	mash,
-	"h", -- effectively move current window to the left screen
-	function()
-		local win = hs.window.focusedWindow()
-		moveWindowLeft(win)
-		hs.window.focusedWindow():move(units.maximum, nil, false)
-	end
-)
-hs.hotkey.bind(
-	mash,
-	"l", -- effectively move current window to the right screen
-	function()
-		local win = hs.window.focusedWindow()
-		moveWindowRight(win)
-		hs.window.focusedWindow():move(units.maximum, nil, false)
-	end
-)
+-- hs.hotkey.bind(
+-- 	mash,
+-- 	"h", -- effectively move current window to the left screen
+-- 	function()
+-- 		local win = hs.window.focusedWindow()
+-- 		moveWindowLeft(win)
+-- 		hs.window.focusedWindow():move(units.maximum, nil, false)
+-- 	end
+-- )
+-- hs.hotkey.bind(
+-- 	mash,
+-- 	"l", -- effectively move current window to the right screen
+-- 	function()
+-- 		local win = hs.window.focusedWindow()
+-- 		moveWindowRight(win)
+-- 		hs.window.focusedWindow():move(units.maximum, nil, false)
+-- 	end
+-- )
 
 -- done with zoom meeting
 hs.hotkey.bind(
