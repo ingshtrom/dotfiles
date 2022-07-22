@@ -143,7 +143,7 @@ alias dir_diff="diff -r -x .git -x .terraform -N"
 alias yk_code="ykman oath code $1"
 alias yk_code_search="ykman oath code | grep -i '$@'"
 
- alias veracrypt="/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt --text"
+alias veracrypt="/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt --text"
 
 
 # pulseaudio-equalizier
@@ -162,6 +162,7 @@ alias aox='function(){eval $(aws-okta env "$@" | sed "s/^/export /")}'
 alias aoxd='function(){eval $(aws-okta env dockerinc.main | sed "s/^/export /")}'
 alias am='aoxd'
 alias aa='infra-cli admin && source /tmp/adminAws && rm /tmp/adminAws && export AWS_OKTA_SESSION_EXPIRATION=$(date -v+15M +%s) && export AWS_OKTA_PROFILE=dockerinc.ADMIN'
+alias verify_am="$DOTFILES/raycast-scripts/aws-okta-login.sh"
 
 alias lpass_search='lpass ls | grep -i "$@"'
 

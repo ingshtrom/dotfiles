@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/opt/homebrew/bin/zsh
 
 #set -o pipefail
 #set -o nounset
