@@ -166,7 +166,7 @@ Plug 'dracula/vim',{'as':'dracula'}
 " LIGHT_THEME
 "Plug 'sonph/onehalf', {'rtp': 'vim/'}
 
-Plug 'github/copilot.vim'
+"Plug 'github/copilot.vim'
 
 call plug#end()
 

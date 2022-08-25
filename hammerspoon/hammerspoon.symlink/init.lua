@@ -136,6 +136,7 @@ foreach({
         { key='j', mod={"ctrl"}, dst="down" },
         { key='p', mod={"ctrl"}, dst="up" },
         { key='k', mod={"ctrl"}, dst="up" },
+        -- { key='h', mod={"ctrl"}, dst="left" }, -- breaks keybinding in neovim for opening NERDTree
         { key='l', mod={"ctrl"}, dst="right" },
     }, function(b)
         hs.hotkey.bind(
@@ -306,14 +307,14 @@ hs.hotkey.bind(
 )
 
 
-hs.hotkey.bind(
-    mash,
-    "o",
-    function()
-        local didStartObsidian = hs.application.launchOrFocus("Obsidian")
-        hs.printf("Did start/focus Obsidian?: %s", didStartObsidian)
-    end
-)
+-- hs.hotkey.bind(
+--     mash,
+--     "o",
+--     function()
+--         local didStartObsidian = hs.application.launchOrFocus("Obsidian")
+--         hs.printf("Did start/focus Obsidian?: %s", didStartObsidian)
+--     end
+-- )
 
 -- hs.window.switcher.ui.showThumbnails = false
 -- hs.window.switcher.ui.showSelectedThumbnail = false

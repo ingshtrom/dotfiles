@@ -42,6 +42,7 @@ brew 'hugo'  # static site generator in go
 brew 'imagemagick'  # do cool stuff with images
 brew 'infra-cli'  # docker internal cli
 brew 'jsonnet'  # templating language for :all_the_things:
+brew 'mike-engel/jwt-cli/jwt-cli' # jwt cli for easy local parsing of them
 brew 'jq'  # parse json on the cli
 brew 'kube-ps1'  # prompt for zsh
 brew 'kubectl'
