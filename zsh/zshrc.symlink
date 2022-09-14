@@ -126,7 +126,7 @@ alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pa
 alias saa="ssh-add $HOME/.ssh/dckr-default && ssh-add $HOME/.ssh/dckr-infra && ssh-add $HOME/.ssh/dckr-swarm && ssh-add $HOME/.ssh/dckr-nautilus"
 alias ssh-add-pub-key='function(){ set -e; chmod 400 $1; ssh-add $1; }'
 
-alias aws_admin_user="unset_aws && eval \"$(cat ~/.localrc | grep AWS | grep export | sed 's/^#//g')\""
+alias aws_admin_user='unset_aws && eval "$(cat ~/.localrc | grep AWS | grep export | sed '"'"'s/^#//g'"'"')"'
 
 alias d="docker"
 alias k="kubectl.docker"
@@ -134,7 +134,6 @@ alias kc="kubectx"
 #alias kn="kubens"
 alias kn='function(){kubectl config set-context --current --namespace="$1"}'
 alias kt="kubetail"
-alias k3s_context="export KUBECONFIG=/Users/alexhokanson/.k3d/kubeconfig-k3s-default.yaml"
 
 #alias sslyze="docker run --rm -it nablac0d3/sslyze"
 
