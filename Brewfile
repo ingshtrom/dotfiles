@@ -83,6 +83,7 @@ brew 'hashicorp/tap/vault'  # Hashicorp Vault
 brew 'vegeta'  # load testing
 brew 'watch'
 brew 'wget'  # curl alternative
+brew 'xsv'  # csv cli tool => https://github.com/BurntSushi/xsv
 brew 'xz'
 brew 'ykman'  # CLI for YubiKey Authenticator mgmt
 brew 'zoxide'  # better changing directories https://github.com/ajeetdsouza/zoxide # noqa

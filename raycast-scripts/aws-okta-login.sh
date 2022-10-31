@@ -20,7 +20,7 @@
 profile=${1:-dockerinc.main}
 open_console=${2:-true}
 
-echo "Profile: ${profile}"
+#echo "Profile: ${profile}"
 
 cmd="aws-okta login '${profile}' --mfa-factor-type='token:software:totp' --mfa-provider='GOOGLE'"
 if [[ "$open_console" = false ]]; then
