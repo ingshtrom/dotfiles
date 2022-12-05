@@ -43,17 +43,31 @@ else
   sudo npm i -g neovim typescript typescript-language-server vscode-json-languageserver vim-language-server yaml-language-server bash-language-server dockerfile-language-server-nodejs vscode-langservers-extracted
 fi
 
-mkdir -p ~/.config/nvim/config/
-ln -s -f ~/.dotfiles/nvim/init.vim ~/.config/nvim/init.vim
-ln -s -f ~/.dotfiles/nvim/config/* ~/.config/nvim/config/
+# NOTE: old stuff prior to AstroNvim {
+#mkdir -p ~/.config/nvim/config/
+#ln -s -f ~/.dotfiles/nvim/init.vim ~/.config/nvim/init.vim
+#ln -s -f ~/.dotfiles/nvim/config/* ~/.config/nvim/config/
+# }
 
-if test -f ~/.config/nvim/.did-run-install-cmds
+# NOTE: AstroNvim {
+if ! test -d ~/.config/nvim;
 then
-  nvim +PlugInstall +PlugUpdate +TSUpdateSync +qall --headless
-else
-  nvim +PlugInstall +PlugUpdate +TSUpdateSync +qall --headless
-  touch ~/.config/nvim/.did-run-install-cmds
+  git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
 fi
+# copy over the AstroNvim init.lua user modification script
+mkdir -p ~/.config/nvim/lua/user
+ln -s -f ~/.dotfiles/nvim/astro-nvim-user/init.lua ~/.config/nvim/lua/user/init.lua
+nvim +PackerSync
+# }
+
+
+#if test -f ~/.config/nvim/.did-run-install-cmds
+#then
+#  nvim +PlugInstall +PlugUpdate +TSUpdateSync +qall --headless
+#else
+#  nvim +PlugInstall +PlugUpdate +TSUpdateSync +qall --headless
+#  touch ~/.config/nvim/.did-run-install-cmds
+#fi
 
 # keep the LSP log file cleaned up
 if ls /Users/alexhokanson/.cache/nvim/lsp.log 2>&1 > /dev/null;

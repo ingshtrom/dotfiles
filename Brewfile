@@ -7,11 +7,13 @@ tap 'FairwindsOps/tap'
 tap 'hashicorp/tap'
 tap 'github/gh'
 tap 'cantino/mcfly'
+# tap 'jesseduffield/lazygit/lazygit'
 
 brew 'ack'
 brew 'aws-okta'  # hopefully not much longer...
 brew 'bash'
 brew 'binutils'
+brew 'bottom'  # process monitor
 brew 'cmake'
 brew 'colordiff'  # add color to your diffs ;)
 brew 'hashicorp/tap/consul'  # consul.io CLI
@@ -47,6 +49,7 @@ brew 'jq'  # parse json on the cli
 brew 'kube-ps1'  # prompt for zsh
 brew 'kubectl'
 brew 'kubetail'  # easier logging for kube
+brew 'jesseduffield/lazygit/lazygit'  # lazygit -- git with more power for the mortals
 brew 'less'  # updated version of less tool
 brew 'linkerd'  # linkerd cli for the service mesh tool
 brew 'llvm'  # clangd for c LSP
