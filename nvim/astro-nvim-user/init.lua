@@ -218,6 +218,7 @@ local config = {
   -- Configure plugins
   plugins = {
     init = {
+      { "Joorem/vim-haproxy" },
       -- You can disable default plugins as follows:
       -- ["goolord/alpha-nvim"] = { disable = true },
 
