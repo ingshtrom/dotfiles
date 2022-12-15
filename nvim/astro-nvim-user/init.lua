@@ -205,7 +205,7 @@ local config = {
       ["<leader>bc"] = { "<cmd>BufferLinePickClose<cr>", desc = "Pick to close" },
       ["<leader>bj"] = { "<cmd>BufferLinePick<cr>", desc = "Pick to jump" },
       ["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
-      -- [";"] = { ":", desc = "Exec mode" },
+      ["<leader>go"] = { ":OpenGithubFile<cr>", desc = "Open file in GitHub" },
       -- quick save
       -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
     },
@@ -219,6 +219,8 @@ local config = {
   plugins = {
     init = {
       { "Joorem/vim-haproxy" },
+      { "tyru/open-browser.vim" },
+      { "tyru/open-browser-github.vim" },
       -- You can disable default plugins as follows:
       -- ["goolord/alpha-nvim"] = { disable = true },
 
@@ -318,6 +320,8 @@ local config = {
   -- anything that doesn't fit in the normal config locations above can go here
   polish = function()
     vim.api.nvim_set_keymap("n", ";", ":", { noremap = true })
+    vim.api.nvim_set_keymap("n", ";", ":", { noremap = true })
+
 
     -- Set up custom filetypes
     -- vim.filetype.add {
