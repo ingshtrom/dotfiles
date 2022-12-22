@@ -29,6 +29,8 @@ fi
 
 exit_code=999
 
+# op item get okta --otp --account dockerteam | aws-okta login dockerinc.main --mfa-factor-type='token:software:totp' --mfa-provider='GOOGLE'
+
 echo 'foo' | eval "$cmd" 2>&1
 exit_code=$?
 
@@ -37,5 +39,5 @@ if [[ "$exit_code" != "0" ]]; then
   echo "----------------------"
   echo
   echo "try again with 1Password... output:"
-  op item get okta --otp | eval $cmd 2>&1
+  op item get okta --otp --account dockerteam | eval $cmd 2>&1
 fi
