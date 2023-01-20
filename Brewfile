@@ -8,6 +8,7 @@ tap 'hashicorp/tap'
 tap 'github/gh'
 tap 'cantino/mcfly'
 # tap 'jesseduffield/lazygit/lazygit'
+tap 'nvie/tap'
 
 brew 'ack'
 brew 'aws-okta'  # hopefully not much longer...
@@ -34,6 +35,7 @@ brew 'git'  # vcs of choice
 brew 'git-delta'  # better diffing
 brew 'git-standup'  # get standup info from git repositories
 brew 'git-lfs'  # large file storage
+brew 'nvie/tap/git-toolbelt'
 brew 'gmp'  # gmp is needed for ruby in rbenv 🤷
 brew 'gnupg'  # gpg v2
 brew 'graphviz'
