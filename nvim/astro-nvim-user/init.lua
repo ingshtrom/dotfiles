@@ -9,7 +9,7 @@ local config = {
   -- Configure AstroNvim updates
   updater = {
     remote = "origin", -- remote to use
-    channel = "nightly", -- "stable" or "nightly"
+    channel = "stable", -- "stable" or "nightly"
     version = "latest", -- "latest", tag name, or regex search like "v1.*" to only do updates before v2 (STABLE ONLY)
     branch = "main", -- branch name (NIGHTLY ONLY)
     commit = nil, -- commit hash (NIGHTLY ONLY)
@@ -205,7 +205,7 @@ local config = {
       ["<leader>bc"] = { "<cmd>BufferLinePickClose<cr>", desc = "Pick to close" },
       ["<leader>bj"] = { "<cmd>BufferLinePick<cr>", desc = "Pick to jump" },
       ["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
-      ["<leader>go"] = { ":OpenGithubFile<cr>", desc = "Open file in GitHub" },
+      ["<leader>gy"] = { "<cmd>lua require('gitlinker').get_buf_range_url('n')<cr>", desc = "Copy GitHub URL " },
       -- quick save
       -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
     },
@@ -219,8 +219,14 @@ local config = {
   plugins = {
     init = {
       { "Joorem/vim-haproxy" },
-      { "tyru/open-browser.vim" },
-      { "tyru/open-browser-github.vim" },
+      {
+        "ruifm/gitlinker.nvim",
+        config = function()
+          require("gitlinker").setup({
+            mappings = nil
+          })
+        end,
+      },
       -- You can disable default plugins as follows:
       -- ["goolord/alpha-nvim"] = { disable = true },
 
