@@ -63,7 +63,6 @@ export AWS_PROFILE=DockerIncInfraMain-710015040892
 #export BAT_THEME=OneHalfLight
 # DARK_THEME
 export BAT_THEME=Dracula
-export PS1='[$(kubectl config current-context) %1~ %# '
 # these are needed for the Clangd LSP server, I think 🤷
 export LDFLAGS="-L/usr/local/opt/llvm/lib"
 export CPPFLAGS="-I/usr/local/opt/llvm/include"
