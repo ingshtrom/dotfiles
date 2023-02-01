@@ -58,7 +58,7 @@ export COMPOSE_DOCKER_CLI_BUILD=1
 export CHAMBER_SECRET_BACKEND=ssm
 export CHAMBER_KMS_KEY_ALIAS=aws/ssm
 export TFENV_ARCH=arm64
-export AWS_PROFILE=DockerIncInfraMain-710015040892
+# export AWS_PROFILE=DockerIncInfraMain-710015040892-DockerMain
 # LIGHT_THEME
 #export BAT_THEME=OneHalfLight
 # DARK_THEME

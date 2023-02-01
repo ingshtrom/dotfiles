@@ -11,6 +11,7 @@ tap 'cantino/mcfly'
 tap 'nvie/tap'
 
 brew 'ack'
+brew 'awscli'  # official aws-cli but managed through Homebrew so it stays updated 😄
 brew 'aws-okta'  # hopefully not much longer...
 brew 'bash'
 brew 'binutils'
