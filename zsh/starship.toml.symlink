@@ -6,6 +6,7 @@ format = """\
   $git_commit\
   $git_state\
   $git_status\
+  $aws\
   $custom\
   $line_break\
   $character\
@@ -45,6 +46,15 @@ symbol = "☁️ "
 style = "bold red"
 format = " [$symbol($output )]($style)"
 description = "Get AWS Profile and TTL from AWS-OKTA"
+
+# [custom.aws_profile]
+# command = "echo $AWS_PROFILE"
+# shell = ["sh", "--noprofile", "--norc"]
+# when = """ echo $AWS_PROFILE | grep 'AWS_PROFILE=' """
+# symbol = "☁️ "
+# style = "bold red"
+# format = " [$symbol($output )]($style)"
+# description = "Get AWS Profile from environment variables"
 
 [custom.docker]
 description = "Shows the docker symbol if the current directory has Dockerfile or docker-compose.yml files"
