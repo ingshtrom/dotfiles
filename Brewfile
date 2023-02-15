@@ -9,9 +9,11 @@ tap 'github/gh'
 tap 'cantino/mcfly'
 # tap 'jesseduffield/lazygit/lazygit'
 tap 'nvie/tap'
+tap 'synfinatic/aws-sso-cli'
 
 brew 'ack'
 brew 'awscli'  # official aws-cli but managed through Homebrew so it stays updated 😄
+brew 'synfinatic/aws-sso-cli/aws-sso-cli'  # better AWS SSO CLI
 brew 'aws-okta'  # hopefully not much longer...
 brew 'bash'
 brew 'binutils'

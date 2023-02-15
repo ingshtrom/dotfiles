@@ -26,7 +26,7 @@ local config = {
   },
 
   -- Set colorscheme to use
-  colorscheme = "default_theme",
+  colorscheme = "catppuccin-frappe",
 
   -- Add highlight groups in any theme
   highlights = {
@@ -176,6 +176,11 @@ local config = {
 
     -- Add overrides for LSP server settings, the keys are the name of the server
     ["server-settings"] = {
+      terraform = {
+        codelens = {
+          referenceCount = false
+        },
+      },
       -- example for addings schemas to yamlls
       -- yamlls = { -- override table for require("lspconfig").yamlls.setup({...})
       --   settings = {
@@ -224,6 +229,15 @@ local config = {
         config = function()
           require("gitlinker").setup({
             mappings = nil
+          })
+        end,
+      },
+      {
+        "catppuccin/nvim",
+        as = "catppuccin",
+        config = function()
+          require("catppuccin").setup({
+            flavour = "frappe",
           })
         end,
       },
