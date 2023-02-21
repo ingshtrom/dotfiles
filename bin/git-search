@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# Search the git log for a string
+
+if [[ -z "$1" ]];
+then
+  echo 'Please, provide a search query!'
+fi
+
+git log -S "$1"

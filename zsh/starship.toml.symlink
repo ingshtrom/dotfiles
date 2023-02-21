@@ -29,23 +29,23 @@ disabled = false
 success_symbol = "🚀"
 error_symbol = "🚀💥"
 
-[custom.awsokta]
-command = "/Users/alexhokanson/.dotfiles/bin/starship-aox-compat-layer"
-shell = ["bash", "--noprofile", "--norc"]
-when = """ /Users/alexhokanson/.dotfiles/bin/starship-aox-compat-layer | grep -v '[✘]' """
-symbol = "☁️ "
-style = "yellow"
-format = " [$symbol($output )]($style)"
-description = "Get AWS Profile and TTL from AWS-OKTA"
-
-[custom.awsokta_invalid]
-command = "/Users/alexhokanson/.dotfiles/bin/starship-aox-compat-layer"
-shell = ["bash", "--noprofile", "--norc"]
-when = """ /Users/alexhokanson/.dotfiles/bin/starship-aox-compat-layer | grep '[✘]' """
-symbol = "☁️ "
-style = "bold red"
-format = " [$symbol($output )]($style)"
-description = "Get AWS Profile and TTL from AWS-OKTA"
+# [custom.awsokta]
+# command = "/Users/alexhokanson/.dotfiles/bin/starship-aox-compat-layer"
+# shell = ["bash", "--noprofile", "--norc"]
+# when = """ /Users/alexhokanson/.dotfiles/bin/starship-aox-compat-layer | grep -v '[✘]' """
+# symbol = "☁️ "
+# style = "yellow"
+# format = " [$symbol($output )]($style)"
+# description = "Get AWS Profile and TTL from AWS-OKTA"
+#
+# [custom.awsokta_invalid]
+# command = "/Users/alexhokanson/.dotfiles/bin/starship-aox-compat-layer"
+# shell = ["bash", "--noprofile", "--norc"]
+# when = """ /Users/alexhokanson/.dotfiles/bin/starship-aox-compat-layer | grep '[✘]' """
+# symbol = "☁️ "
+# style = "bold red"
+# format = " [$symbol($output )]($style)"
+# description = "Get AWS Profile and TTL from AWS-OKTA"
 
 # [custom.aws_profile]
 # command = "echo $AWS_PROFILE"
@@ -56,11 +56,11 @@ description = "Get AWS Profile and TTL from AWS-OKTA"
 # format = " [$symbol($output )]($style)"
 # description = "Get AWS Profile from environment variables"
 
-[custom.docker]
-description = "Shows the docker symbol if the current directory has Dockerfile or docker-compose.yml files"
-command = "echo 🐳"
-files = ["Dockerfile", "docker-compose.yml", "docker-compose.yaml"]
-when = """ command -v docker &> /dev/null; exit (echo $?); """
+# [custom.docker]
+# description = "Shows the docker symbol if the current directory has Dockerfile or docker-compose.yml files"
+# command = "echo 🐳"
+# files = ["Dockerfile", "docker-compose.yml", "docker-compose.yaml"]
+# when = """ command -v docker &> /dev/null; exit (echo $?); """
 
 #[custom.ssh_no_keys]
 #description = "SSH missing keys"
