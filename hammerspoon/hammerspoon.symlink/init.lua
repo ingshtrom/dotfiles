@@ -216,22 +216,22 @@ hs.hotkey.bind(
         --hs.printf("Did enable headphone audio output?: %s", result)
 
         -- start boom3d
-        if isBoomRunning == false
-        then
-            local didStartBoom3D = hs.application.launchOrFocus("Boom 3D")
-            hs.printf("Boom 3D was not already running. Did start Boom 3D?: %s", didStartBoom3D)
+        -- if isBoomRunning == false
+        -- then
+        --     local didStartBoom3D = hs.application.launchOrFocus("Boom 3D")
+        --     hs.printf("Boom 3D was not already running. Did start Boom 3D?: %s", didStartBoom3D)
 
-            -- NOTE: shouldn't need to wait for the focused window since we don't try to start
-            --       Boom 3D if it's already running.
-            --
-            --local win = waitForFocusedWindowByName("Boom 3D")
-            --if win ~= nil then
-            --    hs.printf("found window for boom 3d. closing it")
-            --    win:close()
-            --end
-        else
-            hs.printf("Boom 3D is already running.")
-        end
+        --     -- NOTE: shouldn't need to wait for the focused window since we don't try to start
+        --     --       Boom 3D if it's already running.
+        --     --
+        --     --local win = waitForFocusedWindowByName("Boom 3D")
+        --     --if win ~= nil then
+        --     --    hs.printf("found window for boom 3d. closing it")
+        --     --    win:close()
+        --     --end
+        -- else
+        --     hs.printf("Boom 3D is already running.")
+        -- end
 
         -- start spotify
         local didStartSpotify = hs.application.launchOrFocus("spotify")

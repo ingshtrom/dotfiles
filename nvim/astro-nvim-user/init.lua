@@ -138,14 +138,15 @@ local config = {
   lsp = {
     -- enable servers that you already have installed without mason
     servers = {
+      -- "terraform-ls",
       -- "pyright"
     },
     formatting = {
       -- control auto formatting on save
       format_on_save = {
-        enabled = true, -- enable or disable format on save globally
+        enabled = false, -- enable or disable format on save globally
         allow_filetypes = { -- enable format on save for specified filetypes only
-          -- "go",
+          "go",
         },
         ignore_filetypes = { -- disable format on save for specified filetypes
           -- "python",
@@ -176,9 +177,16 @@ local config = {
 
     -- Add overrides for LSP server settings, the keys are the name of the server
     ["server-settings"] = {
+      -- doesn't even matter b/c terraform-ls is timing out all the time
       terraform = {
-        codelens = {
-          referenceCount = false
+        settings = {
+          terraform = {
+            timeout = "5s",
+          },
+          ignoreSingleFileWarning = true,
+          experimentalFeatures = {
+            validateOnSave = false,
+          },
         },
       },
       -- example for addings schemas to yamlls
