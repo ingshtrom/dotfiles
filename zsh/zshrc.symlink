@@ -126,9 +126,12 @@ alias ae='aws-sso exec -p $(aws configure list-profiles | fzf)'
 alias d="docker"
 # alias kn="kubens"
 alias a='export AWS_PROFILE=$(aws configure list-profiles | fzf)'
-alias al='aws-sso-util login'
-alias aws-sso-configure='aws-sso-util configure populate --no-credential-process --region us-east-1 --sso-start-url https://docker.awsapps.com/start\#/ --sso-region us-east-1'
-alias aws-sso-check='aws-sso-util check'
+alias ar='infra-cli aws init -y'
+alias al='infra-cli aws login -y'
+alias ac='eval $(aws configure export-credentials --format env)'
+alias aws-sso-init='infra-cli aws init'
+alias aws-sso-login='infra-cli aws login'
+alias aws-sso-temp-creds='aws configure export-credentials --format env'
 alias eks='infra-cli aws configEks'
 # END 
 

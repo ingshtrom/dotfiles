@@ -138,15 +138,17 @@ local config = {
   lsp = {
     -- enable servers that you already have installed without mason
     servers = {
-      -- "terraform-ls",
-      -- "pyright"
+      "terraform-ls",
     },
     formatting = {
       -- control auto formatting on save
       format_on_save = {
-        enabled = false, -- enable or disable format on save globally
+        enabled = true, -- enable or disable format on save globally
         allow_filetypes = { -- enable format on save for specified filetypes only
-          "go",
+          -- "go",
+          -- "tf",
+          -- "terraform",
+          -- "python",
         },
         ignore_filetypes = { -- disable format on save for specified filetypes
           -- "python",
@@ -178,7 +180,10 @@ local config = {
     -- Add overrides for LSP server settings, the keys are the name of the server
     ["server-settings"] = {
       -- doesn't even matter b/c terraform-ls is timing out all the time
-      terraform = {
+      ["terraform-ls"] = {
+        cmd = {"terraform-ls","--serve"},
+        filetypes = {"tf","terraform"},
+        root_dir = require("lspconfig.util").root_pattern("pack.pl"),
         settings = {
           terraform = {
             timeout = "5s",
@@ -289,6 +294,8 @@ local config = {
       -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
       -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
       config.sources = {
+        -- null_ls.builtins.formatting.terraform_fmt,
+        -- null_ls.builtins.diagnostics.tfsec,
         -- Set a formatter
         -- null_ls.builtins.formatting.stylua,
         -- null_ls.builtins.formatting.prettier,
