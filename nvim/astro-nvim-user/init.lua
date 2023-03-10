@@ -223,7 +223,10 @@ local config = {
       ["<leader>bc"] = { "<cmd>BufferLinePickClose<cr>", desc = "Pick to close" },
       ["<leader>bj"] = { "<cmd>BufferLinePick<cr>", desc = "Pick to jump" },
       ["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
-      ["<leader>gy"] = { "<cmd>lua require('gitlinker').get_buf_range_url('n')<cr>", desc = "Copy GitHub URL " },
+      ["<leader>gy"] = { "<cmd>lua require('gitlinker').get_buf_range_url('n')<cr>", desc = "Copy GitHub URL" },
+      ["<leader>gY"] = { "<cmd>lua require'gitlinker'.get_repo_url()<cr>", desc = "Copy Repo Home" },
+      ["<leader>go"] = { '<cmd>lua require"gitlinker".get_buf_range_url("v", {action_callback = require"gitlinker.actions".open_in_browser})<cr>', desc = "Open GitHub URL" },
+      ["<leader>gO"] = { '<cmd>lua require"gitlinker".get_repo_url({action_callback = require"gitlinker.actions".open_in_browser})<cr>', desc = "Open Repo Home" },
       -- quick save
       -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
     },
@@ -288,14 +291,14 @@ local config = {
     -- All other entries override the require("<key>").setup({...}) call for default plugins
     ["null-ls"] = function(config) -- overrides `require("null-ls").setup(config)`
       -- config variable is the default configuration table for the setup function call
-      -- local null_ls = require "null-ls"
+      local null_ls = require "null-ls"
 
       -- Check supported formatters and linters
       -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
       -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
       config.sources = {
-        -- null_ls.builtins.formatting.terraform_fmt,
-        -- null_ls.builtins.diagnostics.tfsec,
+        null_ls.builtins.formatting.terraform_fmt,
+        null_ls.builtins.diagnostics.tfsec,
         -- Set a formatter
         -- null_ls.builtins.formatting.stylua,
         -- null_ls.builtins.formatting.prettier,
