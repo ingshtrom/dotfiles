@@ -74,10 +74,10 @@ function toggleZoomMute()
 
   if (zoom:findMenuItem(mute)) then
     zoom:selectMenuItem(mute)
-    hs.alert.show("Zoom Muted")
+    -- hs.alert.show("Zoom Muted")
   elseif (zoom:findMenuItem(unmute)) then
     zoom:selectMenuItem(unmute)
-    hs.alert.show("Zoom Unmuted")
+    -- hs.alert.show("Zoom Unmuted")
   end
 end
 

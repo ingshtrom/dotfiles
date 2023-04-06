@@ -11,6 +11,7 @@ tap 'cantino/mcfly'
 tap 'nvie/tap'
 tap 'synfinatic/aws-sso-cli'
 
+brew 'gofireflyio/aiac/aiac'  # AI for IaC -> https://github.com/gofireflyio/aiac
 brew 'ack'
 brew 'awscli'  # official aws-cli but managed through Homebrew so it stays updated 😄
 brew 'synfinatic/aws-sso-cli/aws-sso-cli'  # better AWS SSO CLI
@@ -48,6 +49,7 @@ brew 'hub'  # git wrapper by GitHub
 brew 'hugo'  # static site generator in go
 brew 'imagemagick'  # do cool stuff with images
 brew 'infra-cli'  # docker internal cli
+brew 'jless'  # JSON viewer with VIM keybindings
 brew 'jsonnet'  # templating language for :all_the_things:
 brew 'mike-engel/jwt-cli/jwt-cli' # jwt cli for easy local parsing of them
 brew 'jq'  # parse json on the cli
