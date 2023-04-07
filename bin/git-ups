@@ -53,22 +53,6 @@ git fetch $MAIN_REMOTE --tags --quiet
 
 # if we are not on main/master, then switch to the worktree
 cd $(git worktree list | grep '\[main\]' | cut -d' ' -f1) 
-# git checkout "${MAIN_WORKTREE}" --quiet
-#
-# make sure there are no changes to the current branch before attempting to switch
-if ! ( git diff --exit-code > /dev/null 2>&1 && git diff --cached --exit-code > /dev/null 2>&1 )
-then
-  git status
-  echo
-  echo -n $yellow
-  echo '-------------------------------------------------------------------------------------'
-  echo -n $red
-  echo "🔥 Cannot sync the main/master branch when there are changes in the current branch"
-  echo -n $green
-  echo '🤔 You could always create a new worktree if you need to work on something and leave this code as-is'
-  exit 1
-fi
-# git reset --hard "${MAIN_REMOTE}/${MAIN_WORKTREE}" --quiet
 
 # make sure our forked main/master is up to date with the latest changes too
 if [[ "$MAIN_REMOTE" == "upstream" ]]; then
