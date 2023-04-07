@@ -8,40 +8,39 @@
 # Inspired by Kyle Neath's `git up' alias:
 # http://gist.github.com/249223
 
-#set -x
+set -x
 
 red=`tput setaf 1`
 green=`tput setaf 2`
 yellow=`tput setaf 3`
 reset=`tput sgr0`
 
-# make sure there are no changes to the current branch before attempting to switch
-if ! ( git diff --exit-code > /dev/null 2>&1 && git diff --cached --exit-code > /dev/null 2>&1 )
-then
-  git status
-  echo
-  echo -n $yellow
-  echo '-------------------------------------------------------------------------------------'
-  echo -n $red
-  echo "🔥 Cannot sync the main/master branch when there are changes in the current branch"
-  echo -n $green
-  echo '🤔 You could always create a new worktree if you need to work on something and leave this code as-is'
-  exit 1
-fi
+# # make sure there are no changes to the current branch before attempting to switch
+# if ! ( git diff --exit-code > /dev/null 2>&1 && git diff --cached --exit-code > /dev/null 2>&1 )
+# then
+#   git status
+#   echo
+#   echo -n $yellow
+#   echo '-------------------------------------------------------------------------------------'
+#   echo -n $red
+#   echo "🔥 Cannot sync the main/master branch when there are changes in the current branch"
+#   echo -n $green
+#   echo '🤔 You could always create a new worktree if you need to work on something and leave this code as-is'
+#   exit 1
+# fi
 
-MAIN_BRANCH='unknown'
+MAIN_WORKTREE='unknown'
 MAIN_REMOTE='unknown'
 
-# if we are not on main/master, then switch to it
 # we already know we do not have changes in our current branch
-branches=$(git branch)
-if echo $branches | grep 'main' 2>&1 > /dev/null; then
-  MAIN_BRANCH='main'
-elif echo $branches | grep 'master' 2>&1 > /dev/null; then
-  MAIN_BRANCH='master'
+worktrees=$(git worktree list)
+if echo $worktrees | grep '\[main\]' 2>&1 > /dev/null; then
+  MAIN_WORKTREE='main'
+elif echo $worktrees | grep '\[master\]' 2>&1 > /dev/null; then
+  MAIN_WORKTREE='master'
 fi
 
-if [[ "$MAIN_BRANCH" == "unknown" ]]; then
+if [[ "$MAIN_WORKTREE" == "unknown" ]]; then
   echo "main or master not found in branch listing"
   exit 1
 fi
@@ -64,15 +63,17 @@ COMMIT=$(git log -1 --oneline | sed 's/\n//g' | cut -d' ' -f1)
 
 git fetch $MAIN_REMOTE --tags --quiet
 
-git checkout "${MAIN_BRANCH}" --quiet
-git reset --hard "${MAIN_REMOTE}/${MAIN_BRANCH}" --quiet
+# if we are not on main/master, then switch to the worktree
+cd $(git worktree list | grep '\[main\]' | cut -d' ' -f1) 
+# git checkout "${MAIN_WORKTREE}" --quiet
+# git reset --hard "${MAIN_REMOTE}/${MAIN_WORKTREE}" --quiet
 
 # make sure our forked main/master is up to date with the latest changes too
 if [[ "$MAIN_REMOTE" == "upstream" ]]; then
-  git push --force origin "$MAIN_BRANCH" --quiet
+  git push --force origin "$MAIN_WORKTREE" --quiet
 else
   echo "not pushing because we are not on a fork"
 fi
 
-git --no-pager log --color --oneline "${COMMIT}..${MAIN_REMOTE}/${MAIN_BRANCH}" --oneline
+git --no-pager log --color --oneline "${COMMIT}..${MAIN_REMOTE}/${MAIN_WORKTREE}" --oneline
 
