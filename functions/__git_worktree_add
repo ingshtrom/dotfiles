@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+__git_worktree_add() {
+  # debugging purposes
+  # set -x
+
+  green=`tput setaf 2`
+  yellow=`tput setaf 3`
+  reset=`tput sgr0`
+  
+  # go into the main worktree
+  cd $(git worktree list | grep '\[main\]' | cut -d' ' -f1)
+
+  # update everything
+  git-ups
+
+  echo "Here are the current worktrees:"
+  git worktree list
+  echo
+  echo
+  echo "${yellow}What ticket are you working on?${reset}"
+  read ticket_id
+  echo
+  echo "${yellow}What are you doing in here?${reset}"
+  read worktree_description
+  worktree_description=$(echo $worktree_description | sed --expression='s/ /-/g' | sed --expression='s/'"'"'//g')
+  echo
+
+  worktree_name="${ticket_id}_${worktree_description}"
+  echo "Creating new worktree ${green}'$(pwd)/../${worktree_name}'${reset}"
+  git worktree add ../${worktree_name}
+  git worktree add ../${worktree_name}
+}
+
