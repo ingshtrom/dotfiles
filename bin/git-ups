@@ -58,7 +58,7 @@ cd $(git worktree list | grep '\[main\]' | cut -d' ' -f1)
 if [[ "$MAIN_REMOTE" == "upstream" ]]; then
   git push --force origin "$MAIN_WORKTREE" --quiet
 else
-  echo "not pushing because we are not on a fork"
+  echo "${red}not pushing because we are not on a fork${reset}"
 fi
 
 git --no-pager log --color --oneline "${COMMIT}..${MAIN_REMOTE}/${MAIN_WORKTREE}" --oneline
