@@ -15,20 +15,20 @@ green=`tput setaf 2`
 yellow=`tput setaf 3`
 reset=`tput sgr0`
 
-repo_namespace=${1}
-repo_name=${2}
+# repo_namespace=${1}
+# repo_name=${2}
 
-if [[ -z "${repo_namespace}" ]];
-then
-  echo "you must supply a repository namespace"
-  exit 1
-fi
 
-if [[ -z "${repo_name}" ]];
-then
-  echo "you must supply a repository name"
-  exit 1
-fi
+echo "${yellow}Here are the current workspace repositories:${reset}"
+ls -al "${HOME}/workspace"
+echo
+echo
+echo "${yellow}What is the ${red}namespace${yellow} of the GitHub repository you want to fork?${reset}"
+read repo_namespace
+echo
+echo "${yellow}What is the ${red}name${yellow} of the GitHub repository you want to fork?${reset}"
+read repo_name
+echo
 
 if [[ "$(pwd)" != "${HOME}/workspace" ]];
 then
