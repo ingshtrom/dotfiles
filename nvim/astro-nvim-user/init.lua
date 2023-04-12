@@ -5,29 +5,26 @@
 -- normal format is "key = value". These also handle array like data structures
 -- where a value with no key simply has an implicit numeric key
 local config = {
-
   -- Configure AstroNvim updates
   updater = {
-    remote = "origin", -- remote to use
-    channel = "stable", -- "stable" or "nightly"
-    version = "latest", -- "latest", tag name, or regex search like "v1.*" to only do updates before v2 (STABLE ONLY)
-    branch = "main", -- branch name (NIGHTLY ONLY)
-    commit = nil, -- commit hash (NIGHTLY ONLY)
-    pin_plugins = nil, -- nil, true, false (nil will pin plugins on stable only)
-    skip_prompts = false, -- skip prompts about breaking changes
+    remote = "origin",     -- remote to use
+    channel = "stable",    -- "stable" or "nightly"
+    version = "latest",    -- "latest", tag name, or regex search like "v1.*" to only do updates before v2 (STABLE ONLY)
+    branch = "main",       -- branch name (NIGHTLY ONLY)
+    commit = nil,          -- commit hash (NIGHTLY ONLY)
+    pin_plugins = nil,     -- nil, true, false (nil will pin plugins on stable only)
+    skip_prompts = false,  -- skip prompts about breaking changes
     show_changelog = true, -- show the changelog after performing an update
-    auto_reload = false, -- automatically reload and sync packer after a successful update
-    auto_quit = false, -- automatically quit the current session after a successful update
+    auto_reload = false,   -- automatically reload and sync packer after a successful update
+    auto_quit = false,     -- automatically quit the current session after a successful update
     -- remotes = { -- easily add new remotes to track
     --   ["remote_name"] = "https://remote_url.come/repo.git", -- full remote url
     --   ["remote2"] = "github_user/repo", -- GitHub user/repo shortcut,
     --   ["remote3"] = "github_user", -- GitHub user assume AstroNvim fork
     -- },
   },
-
   -- Set colorscheme to use
   colorscheme = "catppuccin-frappe",
-
   -- Add highlight groups in any theme
   highlights = {
     -- init = { -- this table overrides highlights in all themes
@@ -37,26 +34,25 @@ local config = {
     --   Normal = { bg = "#000000" },
     -- },
   },
-
   -- set vim options here (vim.<first_key>.<second_key> = value)
   options = {
     opt = {
       -- set to true or false etc.
       relativenumber = true, -- sets vim.opt.relativenumber
-      number = true, -- sets vim.opt.number
-      spell = false, -- sets vim.opt.spell
-      signcolumn = "auto", -- sets vim.opt.signcolumn to auto
-      wrap = false, -- sets vim.opt.wrap
+      number = true,         -- sets vim.opt.number
+      spell = false,         -- sets vim.opt.spell
+      signcolumn = "auto",   -- sets vim.opt.signcolumn to auto
+      wrap = false,          -- sets vim.opt.wrap
     },
     g = {
-      mapleader = " ", -- sets vim.g.mapleader
-      autoformat_enabled = true, -- enable or disable auto formatting at start (lsp.formatting.format_on_save must be enabled)
-      cmp_enabled = true, -- enable completion at start
-      autopairs_enabled = true, -- enable autopairs at start
-      diagnostics_enabled = true, -- enable diagnostics at start
+      mapleader = " ",                   -- sets vim.g.mapleader
+      autoformat_enabled = true,         -- enable or disable auto formatting at start (lsp.formatting.format_on_save must be enabled)
+      cmp_enabled = true,                -- enable completion at start
+      autopairs_enabled = true,          -- enable autopairs at start
+      diagnostics_enabled = true,        -- enable diagnostics at start
       status_diagnostics_enabled = true, -- enable diagnostics in statusline
-      icons_enabled = true, -- disable icons in the UI (disable if no nerd font is available, requires :PackerSync after changing)
-      ui_notifications_enabled = true, -- disable notifications when toggling UI elements
+      icons_enabled = true,              -- disable icons in the UI (disable if no nerd font is available, requires :PackerSync after changing)
+      ui_notifications_enabled = true,   -- disable notifications when toggling UI elements
     },
   },
   -- If you need more control, you can use the function()...end notation
@@ -83,7 +79,6 @@ local config = {
     "    ██  ██ ██  ██  ██  ██ ██  ██  ██",
     "    ██   ████   ████   ██ ██      ██",
   },
-
   -- Default theme configuration
   default_theme = {
     -- Modify the color palette for the default theme
@@ -127,23 +122,21 @@ local config = {
       ["which-key"] = true,
     },
   },
-
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
     virtual_text = true,
     underline = true,
   },
-
   -- Extend LSP configuration
   lsp = {
     -- enable servers that you already have installed without mason
     servers = {
-      "terraform-ls",
+      -- "terraform-ls",
     },
     formatting = {
       -- control auto formatting on save
       format_on_save = {
-        enabled = true, -- enable or disable format on save globally
+        enabled = true,     -- enable or disable format on save globally
         allow_filetypes = { -- enable format on save for specified filetypes only
           -- "go",
           -- "tf",
@@ -180,20 +173,20 @@ local config = {
     -- Add overrides for LSP server settings, the keys are the name of the server
     ["server-settings"] = {
       -- doesn't even matter b/c terraform-ls is timing out all the time
-      ["terraform-ls"] = {
-        cmd = {"terraform-ls","--serve"},
-        filetypes = {"tf","terraform"},
-        root_dir = require("lspconfig.util").root_pattern("pack.pl"),
-        settings = {
-          terraform = {
-            timeout = "5s",
-          },
-          ignoreSingleFileWarning = true,
-          experimentalFeatures = {
-            validateOnSave = false,
-          },
-        },
-      },
+      -- ["terraform"] = {
+      --   cmd = { "terraform-ls", "--serve" },
+      --   filetypes = { "tf", "terraform" },
+      --   -- root_dir = require("lspconfig.util").root_pattern("pack.pl"),
+      --   settings = {
+      --     terraform = {
+      --       timeout = "5s",
+      --     },
+      --     ignoreSingleFileWarning = true,
+      --     experimentalFeatures = {
+      --       validateOnSave = false,
+      --     },
+      --   },
+      -- },
       -- example for addings schemas to yamlls
       -- yamlls = { -- override table for require("lspconfig").yamlls.setup({...})
       --   settings = {
@@ -208,7 +201,6 @@ local config = {
       -- },
     },
   },
-
   -- Mapping data with "desc" stored directly by vim.keymap.set().
   --
   -- Please use this mappings table to set keyboard mapping since this is the
@@ -225,8 +217,13 @@ local config = {
       ["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
       ["<leader>gy"] = { "<cmd>lua require('gitlinker').get_buf_range_url('n')<cr>", desc = "Copy GitHub URL" },
       ["<leader>gY"] = { "<cmd>lua require'gitlinker'.get_repo_url()<cr>", desc = "Copy Repo Home" },
-      ["<leader>go"] = { '<cmd>lua require"gitlinker".get_buf_range_url("v", {action_callback = require"gitlinker.actions".open_in_browser})<cr>', desc = "Open GitHub URL" },
-      ["<leader>gO"] = { '<cmd>lua require"gitlinker".get_repo_url({action_callback = require"gitlinker.actions".open_in_browser})<cr>', desc = "Open Repo Home" },
+      ["<leader>go"] = {
+        '<cmd>lua require"gitlinker".get_buf_range_url("v", {action_callback = require"gitlinker.actions".open_in_browser})<cr>', desc =
+      "Open GitHub URL" },
+      ["<leader>gO"] = {
+        '<cmd>lua require"gitlinker".get_repo_url({action_callback = require"gitlinker.actions".open_in_browser})<cr>', desc =
+      "Open Repo Home" },
+      -- ["<leader>bt"] = { ':let _save_pos=getpos(".") <Bar> \| :let _s=@/ <Bar> \| :%s/\s\+$//e <Bar> \| :let @/=_s <Bar> \| :nohl <Bar> \| :unlet _s<Bar> \| :call setpos(".", _save_pos)<Bar> | :unlet _save_pos<CR><CR>', desc = "Remove Trailing Whitespace" },
       -- quick save
       -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
     },
@@ -235,89 +232,87 @@ local config = {
       -- ["<esc>"] = false,
     },
   },
-
   -- Configure plugins
   plugins = {
-    init = {
-      { "Joorem/vim-haproxy" },
-      {
-        "ruifm/gitlinker.nvim",
-        config = function()
-          require("gitlinker").setup({
-            mappings = nil
-          })
-        end,
-      },
-      {
-        "catppuccin/nvim",
-        as = "catppuccin",
-        config = function()
-          require("catppuccin").setup({
-            flavour = "frappe",
-          })
-        end,
-      },
-      {
-        "kylechui/nvim-surround",
-        tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-        config = function()
-            require("nvim-surround").setup({
-                -- Configuration here, or leave empty to use defaults
-            })
-        end
-      }
-      -- You can disable default plugins as follows:
-      -- ["goolord/alpha-nvim"] = { disable = true },
-
-      -- You can also add new plugins here as well:
-      -- Add plugins, the packer syntax without the "use"
-      -- { "andweeb/presence.nvim" },
-      -- {
-      --   "ray-x/lsp_signature.nvim",
-      --   event = "BufRead",
-      --   config = function()
-      --     require("lsp_signature").setup()
-      --   end,
-      -- },
-
-      -- We also support a key value style plugin definition similar to NvChad:
-      -- ["ray-x/lsp_signature.nvim"] = {
-      --   event = "BufRead",
-      --   config = function()
-      --     require("lsp_signature").setup()
-      --   end,
-      -- },
+    -- init = {
+    "Joorem/vim-haproxy",
+    {
+      "ruifm/gitlinker.nvim",
+      config = function()
+        require("gitlinker").setup({
+          mappings = nil
+        })
+      end,
     },
+    {
+      "catppuccin/nvim",
+      -- as = "catppuccin",
+      config = function()
+        require("catppuccin").setup({
+          flavour = "frappe",
+        })
+      end,
+    },
+    --   {
+    --     "kylechui/nvim-surround",
+    --     -- tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+    --     config = function()
+    --         require("nvim-surround").setup({
+    --             -- Configuration here, or leave empty to use defaults
+    --         })
+    --     end
+    --   }
+    -- You can disable default plugins as follows:
+    -- ["goolord/alpha-nvim"] = { disable = true },
+
+    -- You can also add new plugins here as well:
+    -- Add plugins, the packer syntax without the "use"
+    -- { "andweeb/presence.nvim" },
+    -- {
+    --   "ray-x/lsp_signature.nvim",
+    --   event = "BufRead",
+    --   config = function()
+    --     require("lsp_signature").setup()
+    --   end,
+    -- },
+
+    -- We also support a key value style plugin definition similar to NvChad:
+    -- ["ray-x/lsp_signature.nvim"] = {
+    --   event = "BufRead",
+    --   config = function()
+    --     require("lsp_signature").setup()
+    --   end,
+    -- },
+    -- },
     -- All other entries override the require("<key>").setup({...}) call for default plugins
-    ["null-ls"] = function(config) -- overrides `require("null-ls").setup(config)`
-      -- config variable is the default configuration table for the setup function call
-      local null_ls = require "null-ls"
+    -- ["null-ls"] = function(config) -- overrides `require("null-ls").setup(config)`
+    --   -- config variable is the default configuration table for the setup function call
+    --   local null_ls = require "null-ls"
 
-      -- Check supported formatters and linters
-      -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
-      -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
-      config.sources = {
-        null_ls.builtins.formatting.terraform_fmt,
-        null_ls.builtins.diagnostics.tfsec,
-        -- Set a formatter
-        -- null_ls.builtins.formatting.stylua,
-        -- null_ls.builtins.formatting.prettier,
-      }
-      return config -- return final config table
-    end,
-    treesitter = { -- overrides `require("treesitter").setup(...)`
-      -- ensure_installed = { "lua" },
-    },
+    --   -- Check supported formatters and linters
+    --   -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
+    --   -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
+    --   config.sources = {
+    --     null_ls.builtins.formatting.terraform_fmt,
+    --     null_ls.builtins.diagnostics.tfsec,
+    --     -- Set a formatter
+    --     -- null_ls.builtins.formatting.stylua,
+    --     -- null_ls.builtins.formatting.prettier,
+    --   }
+    --   return config -- return final config table
+    -- end,
+    -- treesitter = { -- overrides `require("treesitter").setup(...)`
+    --   -- ensure_installed = { "lua" },
+    -- },
     -- use mason-lspconfig to configure LSP installations
-    ["mason-lspconfig"] = { -- overrides `require("mason-lspconfig").setup(...)`
-      -- ensure_installed = { "sumneko_lua" },
-    },
-    -- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
-    ["mason-null-ls"] = { -- overrides `require("mason-null-ls").setup(...)`
-      -- ensure_installed = { "prettier", "stylua" },
-    },
+    -- ["mason-lspconfig"] = { -- overrides `require("mason-lspconfig").setup(...)`
+    --   -- ensure_installed = { "sumneko_lua" },
+    -- },
+    -- -- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
+    -- ["mason-null-ls"] = { -- overrides `require("mason-null-ls").setup(...)`
+    --   -- ensure_installed = { "prettier", "stylua" },
+    -- },
   },
-
   -- LuaSnip Options
   luasnip = {
     -- Extend filetypes
@@ -330,7 +325,6 @@ local config = {
       paths = {},
     },
   },
-
   -- CMP Source Priorities
   -- modify here the priorities of default cmp sources
   -- higher value == higher priority
@@ -345,7 +339,6 @@ local config = {
       path = 250,
     },
   },
-
   -- Modify which-key registration (Use this with mappings table in the above.)
   ["which-key"] = {
     -- Add bindings which show up as group name
@@ -361,7 +354,6 @@ local config = {
       },
     },
   },
-
   -- This function is run last and is a good place to configuring
   -- augroups/autocommands and custom filetypes also this just pure lua so
   -- anything that doesn't fit in the normal config locations above can go here
