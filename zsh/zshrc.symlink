@@ -109,7 +109,7 @@ alias gwl='git worktree list'
 alias gwr='c $(git worktree list | grep "bare" | cut -d" " -f1)'
 alias gwd='function() { local x=$(git worktree list | grep -v "bare" | grep -v "\[main\]" | fzf | cut -d" " -f1); test -z $x || ( git worktree remove $x) }'
 alias gwa='function() { __git_worktree_add $@ }'
-alias gwk='function() { local x=$(ls -al ~/workspace --no-user --no-time --no-permissions | sed --express="s/^- //g" | fzf); test -z $x || c $x}'
+alias gwk='function() { local x=$(ls -al ~/workspace --no-user --no-time --no-permissions | sed --express="s/^- //g" | fzf); test -z $x || c "${HOME}/workspace/${x}" }'
 # alias gps='docker run --rm --name=gitleaks -v $(git rev-parse --show-toplevel):/tmp zricethezav/gitleaks -v --repo-path=/tmp && git push'
 alias gs='git status'
 alias ga='git add --all'
@@ -123,16 +123,11 @@ alias gcpr='function(){gh pr create $@ && gh pr view --json url | jq -r ".url" |
 alias cls="clear && printf '\e[3J'" # clear screen AND history. BOOM!
 
 alias cur='aws iam list-account-aliases | jq ".AccountAliases[0]"'
-#alias ad='aws-okta exec dockerinc.main -- docker run --env AWS_ACCESS_KEY_ID --env AWS_SECRET_ACCESS_KEY --env AWS_SESSION_TOKEN --env AWS_SECURITY_TOKEN --rm -it amazon/aws-cli' # aws in docker
-#alias a='awsd'
-alias a='export AWS_PROFILE=$(aws configure list-profiles | fzf)'
 alias ae='aws-sso exec -p $(aws configure list-profiles | fzf)'
 
 
 # START `infra-cli aliases`
-# alias k="kubectl"
 alias d="docker"
-# alias kn="kubens"
 alias a='export AWS_PROFILE=$(aws configure list-profiles | fzf)'
 alias ar='infra-cli aws init -y'
 alias al='infra-cli aws login -y'
