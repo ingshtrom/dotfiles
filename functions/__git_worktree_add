@@ -31,5 +31,8 @@ __git_worktree_add() {
   git worktree add ../${worktree_name}
 
   cd ../${worktree_name}
+
+  # make sure the new branch/worktree it updated as well
+  git-up
 }
 
