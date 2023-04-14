@@ -16,19 +16,12 @@ set -e
 
 PULL_ARGS="$@"
 
-# when invoked as git-reup, run as `git pull --rebase'
-test "$(basename $0)" = "git-reup" &&
-PULL_ARGS="--rebase $PULL_ARGS"
+if [[ -z $PULL_ARGS ]];
+then
+    PULL_ARGS="upstream main"
+fi
 
-git pull $PULL_ARGS
-
-# show diffstat of all changes if we're pulling with --rebase. not
-# sure why git-pull only does this when merging.
-test "$(basename $0)" = "git-reup" && {
-    echo "Diff:"
-    git --no-pager diff --color --stat HEAD@{1}.. |
-    sed 's/^/ /'
-}
+git pull --no-edit $PULL_ARGS
 
 # show an abbreviated commit log of stuff that was just merged.
 echo "Log:"

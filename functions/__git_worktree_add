@@ -12,7 +12,7 @@ __git_worktree_add() {
   cd $(git worktree list | grep '\[main\]' | cut -d' ' -f1)
 
   # update everything
-  git-ups
+  git-up
 
   echo "${yellow}Here are the current worktrees:${reset}"
   git worktree list
@@ -29,5 +29,7 @@ __git_worktree_add() {
   worktree_name="${ticket_id}_${worktree_description}"
   echo "Creating new worktree ${green}'$(pwd)/../${worktree_name}'${reset}"
   git worktree add ../${worktree_name}
+
+  cd ../${worktree_name}
 }
 
