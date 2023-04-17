@@ -29,7 +29,7 @@ brew 'ed'
 brew 'exa'  # a better ls as-per https://medium.com/@timonbimon/yet-another-step-by-step-guide-for-a-better-terminal-setup-6c5e879d4c8c # noqa
 brew 'fd'  # fd is a better find
 brew 'findutils'
-brew 'font-jetbrains-mono-nerd-font'  # font used for my terminal
+# brew 'font-jetbrains-mono-nerd-font'  # font used for my terminal
 brew 'fzf'  # awesome fuzzy finder
 brew 'gawk'
 brew 'gh'

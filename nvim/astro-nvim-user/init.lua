@@ -1,3 +1,13 @@
+-- local parser_config = require 'nvim-treesitter.parsers'.get_parser_configs()
+-- parser_config.gotmpl = {
+--   install_info = {
+--     url = "https://github.com/ngalaiko/tree-sitter-go-template",
+--     files = { "src/parser.c" }
+--   },
+--   filetype = "gotmpl",
+--   used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl", "yaml" }
+-- }
+
 --              AstroNvim Configuration Table
 -- All configuration changes should go inside of the table below
 
@@ -348,20 +358,20 @@ local config = {
     },
   },
   -- Modify which-key registration (Use this with mappings table in the above.)
-  ["which-key"] = {
-    -- Add bindings which show up as group name
-    register = {
-      -- first key is the mode, n == normal mode
-      n = {
-        -- second key is the prefix, <leader> prefixes
-        ["<leader>"] = {
-          -- third key is the key to bring up next level and its displayed
-          -- group name in which-key top level menu
-          ["b"] = { name = "Buffer" },
-        },
-      },
-    },
-  },
+  -- ["which-key"] = {
+  --   -- Add bindings which show up as group name
+  --   register = {
+  --     -- first key is the mode, n == normal mode
+  --     n = {
+  --       -- second key is the prefix, <leader> prefixes
+  --       ["<leader>"] = {
+  --         -- third key is the key to bring up next level and its displayed
+  --         -- group name in which-key top level menu
+  --         ["b"] = { name = "Buffer" },
+  --       },
+  --     },
+  --   },
+  -- },
   -- This function is run last and is a good place to configuring
   -- augroups/autocommands and custom filetypes also this just pure lua so
   -- anything that doesn't fit in the normal config locations above can go here
@@ -369,6 +379,16 @@ local config = {
     vim.api.nvim_set_keymap("n", ";", ":", { noremap = true })
     vim.api.nvim_set_keymap("n", ";", ":", { noremap = true })
 
+    -- add gotmpl support, which is useful for Helm template highlighting
+    local parser_config = require 'nvim-treesitter.parsers'.get_parser_configs()
+    parser_config.gotmpl = {
+      install_info = {
+        url = "https://github.com/ngalaiko/tree-sitter-go-template",
+        files = { "src/parser.c" }
+      },
+      filetype = "gotmpl",
+      used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl", "yaml" }
+    }
 
     -- Set up custom filetypes
     -- vim.filetype.add {

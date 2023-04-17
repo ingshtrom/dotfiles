@@ -57,7 +57,7 @@ fi
 # copy over the AstroNvim init.lua user modification script
 mkdir -p ~/.config/nvim/lua/user
 ln -s -f ~/.dotfiles/nvim/astro-nvim-user/init.lua ~/.config/nvim/lua/user/init.lua
-nvim +PackerSync
+nvim --headless "+Lazy! sync" +qa
 # }
 
 
