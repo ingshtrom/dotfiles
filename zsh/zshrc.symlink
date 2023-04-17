@@ -145,6 +145,7 @@ alias eks='infra-cli aws configEks'
 # END 
 
 alias tf=terraform
+alias tff='gs -s | sed --express="s/^ M //g" | xargs -L1 terraform fmt -write=true'
 
 alias python='python3'
 
