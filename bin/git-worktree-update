@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+#
+# Usage: git-worktree-update
+#
+# - Clean up old Git worktrees based on merged branches
+# - Update the main worktree to the latest changes
+#
+
+# set -x
+
+red=`tput setaf 1`
+green=`tput setaf 2`
+yellow=`tput setaf 3`
+reset=`tput sgr0`
+
+
+# get worktrees
+# check each one for open pull requests
+#   - if the pull request was merged, then mark it for being closed
+
+if git status 2>&1 | grep "not a git repository" 2>&1 > /dev/null;
+then
+  echo "${yellow}No worktrees to cleanup (not a git repository)${reset}"
+  exit 1
+fi
+
+if [[ $(git worktree list | wc -l) -lt 2 ]];
+then
+  echo "${green}No worktrees to cleanup${reset}"
+  exit 0
+fi
+
+IFS=$'\n'
+for wt in $(git worktree list)
+do
+  wt_dir=$(echo $wt | cut -d' ' -f1)
+  echo -n "$wt { "
+  # set -x
+  
+  cd $wt_dir
+  # if it is the main worktree, always keep it
+  if echo $wt | grep -E '\[main\]$' 2>&1 /dev/null;
+  then
+    git-up
+    echo "${green}KEEP"
+  fi
+  # if it is the bare worktree, always keep it
+  if echo $wt | grep -E '\(bare\)$' 2>&1 /dev/null;
+  then
+    echo "${green}KEEP"
+  fi
+   
+  if [[ "$(gh pr status --json=state,author | jq -r '.currentBranch | [.author.login,.state] | @csv')" == '"ingshtrom","MERGED"' ]];
+  then
+    echo -n "${red}DELETE${reset}"
+    cd $(git worktree list | grep "bare" | cut -d" " -f1)
+    git worktree remove "$wt_dir"
+  else
+    echo -n "${green}KEEP${reset}"
+    cd $(git worktree list | grep "bare" | cut -d" " -f1)
+  fi
+  
+  echo " }"
+done

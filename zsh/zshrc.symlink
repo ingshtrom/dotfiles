@@ -116,6 +116,8 @@ alias gwd='function() { local x=$(git worktree list | grep -v "bare" | grep -v "
 alias gwa='function() { __git_worktree_add $@ }'
 # git workspace kchange... the k is silent 😜
 alias gwk='function() { local x=$(ls -al ~/workspace --no-user --no-time --no-permissions | sed --express="s/^- //g" | fzf); test -z $x || cd "${HOME}/workspace/${x}" }'
+# git workspace update
+alias gwu='git-worktree-update'
 # alias gps='docker run --rm --name=gitleaks -v $(git rev-parse --show-toplevel):/tmp zricethezav/gitleaks -v --repo-path=/tmp && git push'
 alias gs='git status'
 alias ga='git add --all'
@@ -145,7 +147,12 @@ alias eks='infra-cli aws configEks'
 # END 
 
 alias tf=terraform
-alias tff='gs -s | sed --express="s/^ M //g" | xargs -L1 terraform fmt -write=true'
+# terraform format for everything
+alias tfa='echo "Terraform fmt the whole repository..."; find . -type f | grep ".tf\$" | grep -v ".terraform" | xargs -L1 terraform fmt -write=true'
+# terraform format for a git branch
+alias tfb='git diff upstream/main --name-only | grep 'tf$' | xargs -L1 terraform fmt -write=true'
+# terraform format for git [status]
+alias tfg='gs -s | sed --express="s/^ M //g" | xargs -L1 terraform fmt -write=true'
 
 alias python='python3'
 
