@@ -33,32 +33,32 @@ fi
 IFS=$'\n'
 for wt in $(git worktree list)
 do
+  wt_less_space=$(echo $wt | tr -s ' ')
   wt_dir=$(echo $wt | cut -d' ' -f1)
-  echo -n "$wt { "
+  echo -n "$wt_less_space = "
   # set -x
   
   cd $wt_dir
   # if it is the main worktree, always keep it
-  if echo $wt | grep -E '\[main\]$' 2>&1 /dev/null;
-  then
-    git-up
-    echo "${green}KEEP"
-  fi
   # if it is the bare worktree, always keep it
-  if echo $wt | grep -E '\(bare\)$' 2>&1 /dev/null;
+  if echo $wt | grep '\[main\]' 2>&1 > /dev/null;
   then
-    echo "${green}KEEP"
-  fi
-   
-  if [[ "$(gh pr status --json=state,author | jq -r '.currentBranch | [.author.login,.state] | @csv')" == '"ingshtrom","MERGED"' ]];
+    echo "${green}UPDATE${reset}"
+    echo 
+    git-up
+  elif echo $wt | grep '\(bare\)' 2>&1 > /dev/null;
   then
-    echo -n "${red}DELETE${reset}"
-    cd $(git worktree list | grep "bare" | cut -d" " -f1)
-    git worktree remove "$wt_dir"
+    echo "${green}KEEP${reset}"
   else
-    echo -n "${green}KEEP${reset}"
-    cd $(git worktree list | grep "bare" | cut -d" " -f1)
+    if [[ "$(gh pr status --json=state,author | jq -r '.currentBranch | [.author.login,.state] | @csv')" == '"ingshtrom","MERGED"' ]];
+    then
+      echo -n "${red}DELETE${reset}"
+      cd $(git worktree list | grep "bare" | cut -d" " -f1)
+      git worktree remove "$wt_dir"
+    else
+      echo -n "${green}KEEP${reset}"
+      cd $(git worktree list | grep "bare" | cut -d" " -f1)
+    fi
   fi
-  
-  echo " }"
+  echo
 done
