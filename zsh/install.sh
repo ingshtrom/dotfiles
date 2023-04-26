@@ -4,7 +4,7 @@
 #set -o nounset
 #set -o errexit
 
-## Oh My Zsh automatically checks for upgrades itself :)
+# Oh My Zsh automatically checks for upgrades itself :)
 
 if [[ "$(uname)" == "Linux" ]]; then
   echo 'need SUDO to install zsh'
@@ -55,8 +55,6 @@ mkdir -p "$HOME/.config/bat"
 touch "$HOME/.config/bat/config"
 
 ln -s -f "$DOTFILES/zsh/bat-config.$(uname)" "$HOME/.config/bat/config"
-
-ZSH=$HOME/.oh-my-zsh sh $ZSH/tools/upgrade.sh
 
 source ~/.dotfiles/zsh/zshrc.symlink
 
