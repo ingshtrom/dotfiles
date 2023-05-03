@@ -11,14 +11,22 @@
 #
 # Stolen from Ryan Tomayko
 # http://github.com/rtomayko/dotfiles/blob/rtomayko/bin/git-up
+#
+# Edited by Alex Hokanson
 
 set -e
 
 PULL_ARGS="$@"
 
+remote_name='upstream'
+if ! git remote 2>&1 | grep 'upstream' 2>&1 > /dev/null;
+then
+    remote_name='origin'
+fi
+
 if [[ -z $PULL_ARGS ]];
 then
-    PULL_ARGS="upstream main"
+    PULL_ARGS="${remote_name} main"
 fi
 
 git pull --no-edit $PULL_ARGS

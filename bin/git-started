@@ -39,7 +39,12 @@ fi
 # 2. clone --bar the repo
 # 3. set up remotes with origin and upstream
 # 4. git worktree add main and cd into it
-gh repo fork "${repo_namespace}/${repo_name}" --clone=false
+did_fork_fail="false"
+if ! gh repo fork "${repo_namespace}/${repo_name}" --clone=false;
+then
+  echo 'fork is likely disabled, moving forward 😀'
+  did_fork_fail="true"
+fi
 
 git clone --bare "git@github.com:${repo_namespace}/${repo_name}" "${repo_name}"
 
@@ -49,14 +54,18 @@ git worktree add main
 
 cd main
 
-git remote remove origin
+if [[ "$did_fork_fail" == "false" ]];
+then
+  git remote remove origin
 
-git remote add origin git@github.com:ingshtrom/${repo_name}.git
-git remote add upstream git@github.com:${repo_namespace}/${repo_name}.git
+  git remote add origin git@github.com:ingshtrom/${repo_name}.git
+  git remote add upstream git@github.com:${repo_namespace}/${repo_name}.git
 
-gh repo set-default ${repo_namespace}/${repo_name}
+  gh repo set-default ${repo_namespace}/${repo_name}
+fi
 
-git-ups
+
+git-up
 
 echo
 echo '----------------------------'
@@ -66,64 +75,3 @@ echo $reset
 echo "name: ${repo_name}"
 echo "path: ${HOME}/workspace/${repo_name}"
 
-# # make sure there are no changes to the current branch before attempting to switch
-# if ! ( git diff --exit-code > /dev/null 2>&1 && git diff --cached --exit-code > /dev/null 2>&1 )
-# then
-#   git status
-#   echo
-#   echo -n $yellow
-#   echo '-------------------------------------------------------------------------------------'
-#   echo -n $red
-#   echo "🔥 Cannot sync the main/master branch when there are changes in the current branch"
-#   echo -n $green
-#   echo '🤔 You could always create a new worktree if you need to work on something and leave this code as-is'
-#   exit 1
-# fi
-#
-# MAIN_BRANCH='unknown'
-# MAIN_REMOTE='unknown'
-#
-# # if we are not on main/master, then switch to it
-# # we already know we do not have changes in our current branch
-# branches=$(git branch)
-# if echo $branches | grep 'main' 2>&1 > /dev/null; then
-#   MAIN_BRANCH='main'
-# elif echo $branches | grep 'master' 2>&1 > /dev/null; then
-#   MAIN_BRANCH='master'
-# fi
-#
-# if [[ "$MAIN_BRANCH" == "unknown" ]]; then
-#   echo "main or master not found in branch listing"
-#   exit 1
-# fi
-#
-# remotes=$(git remote -v)
-# if echo $remotes | grep 'upstream' 2>&1 > /dev/null;
-# then
-#   MAIN_REMOTE='upstream'
-# elif echo $remotes | grep 'origin' 2>&1 > /dev/null;
-# then
-#   MAIN_REMOTE='origin'
-# fi
-#
-# if [[ "$MAIN_REMOTE" == "unknown" ]]; then
-#   echo "upstream or origin not found in remote listing"
-#   exit 1
-# fi
-#
-# COMMIT=$(git log -1 --oneline | sed 's/\n//g' | cut -d' ' -f1)
-#
-# git fetch $MAIN_REMOTE --tags --quiet
-#
-# git checkout "${MAIN_BRANCH}" --quiet
-# git reset --hard "${MAIN_REMOTE}/${MAIN_BRANCH}" --quiet
-#
-# # make sure our forked main/master is up to date with the latest changes too
-# if [[ "$MAIN_REMOTE" == "upstream" ]]; then
-#   git push --force origin "$MAIN_BRANCH" --quiet
-# else
-#   echo "not pushing because we are not on a fork"
-# fi
-#
-# git --no-pager log --color --oneline "${COMMIT}..${MAIN_REMOTE}/${MAIN_BRANCH}" --oneline
-#  the end!
