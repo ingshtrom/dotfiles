@@ -53,6 +53,15 @@ local config = {
       spell = false,         -- sets vim.opt.spell
       signcolumn = "auto",   -- sets vim.opt.signcolumn to auto
       wrap = false,          -- sets vim.opt.wrap
+      -- it seems to set the property as expected, but Neovim doesn't actually use those properties 🤷
+      -- listchars = {
+      --   eol = "↲",
+      --   space = "·",
+      --   tab = "» ",
+      --   extends = "›",
+      --   precedes = "‹",
+      --   nbsp = "␣",
+      -- },
     },
     g = {
       mapleader = " ",                   -- sets vim.g.mapleader
@@ -249,6 +258,12 @@ local config = {
       -- setting a mapping to false will disable it
       -- ["<esc>"] = false,
     },
+    v = {
+      ["<leader>gy"] = { "<cmd>lua require('gitlinker').get_buf_range_url('v')<cr>", desc = "Copy GitHub URL" },
+      ["<leader>go"] = {
+        '<cmd>lua require"gitlinker".get_buf_range_url("v", {action_callback = require"gitlinker.actions".open_in_browser})<cr>', desc =
+      "Open GitHub URL" },
+    },
   },
   -- Configure plugins
   plugins = {
@@ -258,7 +273,17 @@ local config = {
       "ruifm/gitlinker.nvim",
       config = function()
         require("gitlinker").setup({
-          mappings = nil
+          opts = {
+            remote = "upstream", -- force the use of a specific remote
+            -- adds current line nr in the url for normal mode
+            add_current_line_on_normal_mode = true,
+            -- callback for what to do with the url
+            action_callback = require "gitlinker.actions".copy_to_clipboard,
+            -- print the url after performing the action
+            print_url = true,
+          },
+          -- default mapping to call url generation with action_callback
+          mappings = "<leader>gy"
         })
       end,
     },
@@ -389,6 +414,9 @@ local config = {
       filetype = "gotmpl",
       used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl", "yaml" }
     }
+
+    -- for debugging the listchars
+    -- print(vim.inspect(vim.opt.listchars:get()))
 
     -- Set up custom filetypes
     -- vim.filetype.add {
