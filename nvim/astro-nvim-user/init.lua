@@ -157,10 +157,11 @@ local config = {
       format_on_save = {
         enabled = false,    -- enable or disable format on save globally
         allow_filetypes = { -- enable format on save for specified filetypes only
-          -- "go",
-          -- "tf",
-          -- "terraform",
-          -- "python",
+          "go",
+          "tf",
+          "terraform",
+          "yaml",
+          "json",
         },
         ignore_filetypes = { -- disable format on save for specified filetypes
           -- "python",
@@ -207,17 +208,17 @@ local config = {
       --   },
       -- },
       -- example for addings schemas to yamlls
-      -- yamlls = { -- override table for require("lspconfig").yamlls.setup({...})
-      --   settings = {
-      --     yaml = {
-      --       schemas = {
-      --         ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*.{yml,yaml}",
-      --         ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
-      --         ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/*.{yml,yaml}",
-      --       },
-      --     },
-      --   },
-      -- },
+      yamlls = { -- override table for require("lspconfig").yamlls.setup({...})
+        settings = {
+          yaml = {
+            schemas = {
+              ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*.{yml,yaml}",
+              ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
+              ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/*.{yml,yaml}",
+            },
+          },
+        },
+      },
     },
   },
   -- Mapping data with "desc" stored directly by vim.keymap.set().
@@ -269,6 +270,7 @@ local config = {
   plugins = {
     -- init = {
     "Joorem/vim-haproxy",
+    "editorconfig/editorconfig-vim",
     {
       "ruifm/gitlinker.nvim",
       config = function()
