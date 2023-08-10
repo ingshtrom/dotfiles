@@ -26,6 +26,10 @@ defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 # disable press-and-hold for VSCode
 defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool true
 
+# ensure app-switcher is on all screens
+defaults write com.apple.dock appswitcher-all-displays -bool true
+killall Dock
+
 # faster mouse movement
 # NOTE don't need it with logitech since the scaling
 #      is done in the app
