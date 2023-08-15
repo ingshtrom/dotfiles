@@ -211,14 +211,14 @@ noremap <Leader>b :Buffers<CR>
 
 " remove trailing whitespace
 " while keeping cursor position
-nnoremap <Leader>t :let _save_pos=getpos(".") <Bar>
-      \ :let _s=@/ <Bar>
-      \ :%s/\s\+$//e <Bar>
-      \ :let @/=_s <Bar>
-      \ :nohl <Bar>
-      \ :unlet _s<Bar>
-      \ :call setpos('.', _save_pos)<Bar>
-      \ :unlet _save_pos<CR><CR>
+" nnoremap <Leader>t :let _save_pos=getpos(".") <Bar>
+"       \ :let _s=@/ <Bar>
+"       \ :%s/\s\+$//e <Bar>
+"       \ :let @/=_s <Bar>
+"       \ :nohl <Bar>
+"       \ :unlet _s<Bar>
+"       \ :call setpos('.', _save_pos)<Bar>
+"       \ :unlet _save_pos<CR><CR>
 
 nmap <silent> gh :ToGithub docker<CR>
 nmap <silent> gb :Git blame<CR>

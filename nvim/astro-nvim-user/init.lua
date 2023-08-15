@@ -54,6 +54,8 @@ local config = {
       signcolumn = "auto",   -- sets vim.opt.signcolumn to auto
       wrap = false,          -- sets vim.opt.wrap
       -- it seems to set the property as expected, but Neovim doesn't actually use those properties 🤷
+      list = true,
+      listchars = { tab = "│→", extends = "⟩", precedes = "⟨", trail = "·", nbsp = "␣" },
       -- listchars = {
       --   eol = "↲",
       --   space = "·",
@@ -116,6 +118,8 @@ local config = {
       hl.DiagnosticInfo.italic = true
       hl.DiagnosticWarn.italic = true
 
+      hl.ExtraWhitespace = { fg = C.bg, bg = C.fg }
+
       return hl
     end,
     -- enable or disable highlighting for extra plugins
@@ -155,7 +159,7 @@ local config = {
     formatting = {
       -- control auto formatting on save
       format_on_save = {
-        enabled = true,    -- enable or disable format on save globally
+        enabled = true,     -- enable or disable format on save globally
         allow_filetypes = { -- enable format on save for specified filetypes only
           "go",
           "tf",
@@ -177,9 +181,7 @@ local config = {
     },
     -- easily add or disable built in mappings added during LSP attaching
     mappings = {
-      n = {
-        -- ["<leader>lf"] = false -- disable formatting keymap
-      },
+      n = {},
     },
     -- add to the global LSP on_attach function
     -- on_attach = function(client, bufnr)
@@ -239,6 +241,8 @@ local config = {
         function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
         desc = "Previous buffer"
       },
+      -- vim.keymap.set('n', '<Leader>wt', [[:%s/\s\+$//e<cr>]])
+      ["<leader>.t"] = { ":StripWhitespace<cr>", desc = "Trim whitespace" },
       ["<leader>bb"] = { "<cmd>tabnew<cr>", desc = "New tab" },
       ["<leader>bc"] = { "<cmd>BufferLinePickClose<cr>", desc = "Pick to close" },
       ["<leader>bj"] = { "<cmd>BufferLinePick<cr>", desc = "Pick to jump" },
@@ -251,9 +255,17 @@ local config = {
       ["<leader>gO"] = {
         '<cmd>lua require"gitlinker".get_repo_url({action_callback = require"gitlinker.actions".open_in_browser})<cr>', desc =
       "Open Repo Home" },
-      -- ["<leader>bt"] = { ':let _save_pos=getpos(".") <Bar> \| :let _s=@/ <Bar> \| :%s/\s\+$//e <Bar> \| :let @/=_s <Bar> \| :nohl <Bar> \| :unlet _s<Bar> \| :call setpos(".", _save_pos)<Bar> | :unlet _save_pos<CR><CR>', desc = "Remove Trailing Whitespace" },
       -- quick save
       -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+      --
+      ["<leader>c"] = {
+        function()
+          local bufs = vim.fn.getbufinfo { buflisted = true }
+          require("astronvim.utils.buffer").close(bufs[0])
+          if require("astronvim.utils").is_available "alpha-nvim" and not bufs[2] then require("alpha").start(true) end
+        end,
+        desc = "Close buffer",
+      },
     },
     t = {
       -- setting a mapping to false will disable it
@@ -297,6 +309,10 @@ local config = {
           flavour = "frappe",
         })
       end,
+    },
+    {
+      'ntpeters/vim-better-whitespace',
+      lazy = false,
     },
     --   {
     --     "kylechui/nvim-surround",
@@ -417,8 +433,6 @@ local config = {
       used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl", "yaml" }
     }
 
-    -- for debugging the listchars
-    -- print(vim.inspect(vim.opt.listchars:get()))
 
     -- Set up custom filetypes
     -- vim.filetype.add {
