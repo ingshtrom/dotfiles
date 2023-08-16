@@ -314,6 +314,16 @@ local config = {
       'ntpeters/vim-better-whitespace',
       lazy = false,
     },
+    {
+      -- nginx syntax highlighting
+      'chr4/nginx.vim',
+      ft = 'nginx'
+    },
+    {
+      -- haproxy syntax highlighting
+      'Joorem/vim-haproxy',
+      ft = 'haproxy',
+    },
     --   {
     --     "kylechui/nvim-surround",
     --     -- tag = "*", -- Use for stability; omit to use `main` branch for the latest features

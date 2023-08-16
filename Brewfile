@@ -90,6 +90,7 @@ brew 'hashicorp/tap/terraform-ls'
 brew 'the_silver_searcher'  # ripgrep alternative prior to rg being written. Not as fast, but some tools still use it # noqa
 brew 'tfenv'  # Terraform version manager
 brew 'tfsec'  # Terraform static analyzer => https://github.com/aquasecurity/tfsec
+brew 'tilt'  # local dev on k8s
 brew 'tmux'
 brew 'hashicorp/tap/vault'  # Hashicorp Vault
 brew 'vegeta'  # load testing
