@@ -48,7 +48,7 @@ local config = {
   options = {
     opt = {
       -- set to true or false etc.
-      relativenumber = true, -- sets vim.opt.relativenumber
+      relativenumber = false, -- sets vim.opt.relativenumber
       number = true,         -- sets vim.opt.number
       spell = false,         -- sets vim.opt.spell
       signcolumn = "auto",   -- sets vim.opt.signcolumn to auto
@@ -164,7 +164,6 @@ local config = {
           "go",
           "tf",
           "terraform",
-          "yaml",
           "json",
         },
         ignore_filetypes = { -- disable format on save for specified filetypes
@@ -249,6 +248,7 @@ local config = {
       ["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
       ["<leader>gy"] = { "<cmd>lua require('gitlinker').get_buf_range_url('n')<cr>", desc = "Copy GitHub URL" },
       ["<leader>gY"] = { "<cmd>lua require'gitlinker'.get_repo_url()<cr>", desc = "Copy Repo Home" },
+      ["<leader>ff"] = { ":Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=❯<cr>", desc="Find files"},
       ["<leader>go"] = {
         '<cmd>lua require"gitlinker".get_buf_range_url("v", {action_callback = require"gitlinker.actions".open_in_browser})<cr>', desc =
       "Open GitHub URL" },
@@ -441,6 +441,16 @@ local config = {
       },
       filetype = "gotmpl",
       used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl", "yaml" }
+    }
+
+    require("telescope").setup {
+      pickers = {
+        live_grep = {
+          additional_args = function()
+            return {"--hidden"}
+          end
+        },
+      },
     }
 
 
