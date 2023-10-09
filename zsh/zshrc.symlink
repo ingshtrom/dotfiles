@@ -39,7 +39,7 @@ export ZSH=$HOME/.oh-my-zsh
 export DOTFILES=$HOME/.dotfiles
 export TERM="screen-256color"
 export GOPATH=$PROJECTS/go
-export PATH="$DOTFILES/bin:/opt/homebrew/bin:/opt/homebrew/opt/gnu-sed/libexec/gnubin:/usr/local/go/bin:${GOPATH}/bin:${HOME}/.bin:$HOME/.arkade/bin:$HOME/.linkerd2/bin:./bin:/usr/local/bin:/usr/local/sbin:$HOME/.cargo/bin:$HOME/src/dockops/shell:$PATH"
+export PATH="$HOME/.tfenv/bin:$DOTFILES/bin:/opt/homebrew/bin:/opt/homebrew/opt/gnu-sed/libexec/gnubin:/usr/local/go/bin:${GOPATH}/bin:${HOME}/.bin:$HOME/.arkade/bin:$HOME/.linkerd2/bin:./bin:/usr/local/bin:/usr/local/sbin:$HOME/.cargo/bin:$HOME/src/dockops/shell:$PATH"
 export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
 export EDITOR='nvim'
 export VISUAL='nvim'
@@ -90,6 +90,7 @@ fi
 ################################################################################################
 # ALIASES
 
+alias mkpasswd='function(){docker run -it --rm alpine mkpasswd "$@"}'
 alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
 alias h='hstr'
 alias ls='exa'
@@ -117,7 +118,7 @@ alias gwa='function() { __git_worktree_add $@ }'
 # git workspace "kchange"... the k is silent 😜
 alias gwk='function() { local x=$(ls ~/workspace --no-user --no-time --no-permissions | sed --express="s/^- //g" | fzf); test -z $x || cd "${HOME}/workspace/${x}" }'
 # git workspace main (go to the main worktree)
-alias gwm='cd $(git worktree list | grep "main" | cut -d" " -f1)'
+alias gwm='cd $(git worktree list | grep "\[main\]" | cut -d" " -f1)'
 # git workspace update
 alias gwu='gwr && git-worktree-update'
 # alias gps='docker run --rm --name=gitleaks -v $(git rev-parse --show-toplevel):/tmp zricethezav/gitleaks -v --repo-path=/tmp && git push'
@@ -183,19 +184,6 @@ alias veracrypt="/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt --text"
 
 # colors
 alias print_colors='for i in {0..255}; do print -Pn "%K{$i} %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%8)):#7}:+\\n}; done'
-
-# alias aol='aws-okta login'
-# alias aold='aws-okta login dockerinc.main'
-# alias aoe='function(){aws-okta exec "$1" "${@:2}"}'
-# alias ao='aws-okta'
-# alias aod='aws-okta dockerinc.main'
-# alias aox='function(){eval $(aws-okta env "$@" | sed "s/^/export /")}'
-# alias aoxd='function(){eval $(aws-okta env dockerinc.main | sed "s/^/export /")}'
-# alias am='aoxd'
-# alias aa='infra-cli admin && source /tmp/adminAws && rm /tmp/adminAws && export AWS_OKTA_SESSION_EXPIRATION=$(date -v+15M +%s) && export AWS_OKTA_PROFILE=dockerinc.ADMIN'
-# alias verify_am="$DOTFILES/raycast-scripts/aws-okta-login.sh"
-
-alias lpass_search='lpass ls | grep -i "$@"'
 
 alias ecr_login='aws ecr get-login-password --region us-east-1 | docker login 710015040892.dkr.ecr.us-east-1.amazonaws.com --username AWS --password-stdin'
 alias regctl_ecr_login='regctl registry login 710015040892.dkr.ecr.us-east-1.amazonaws.com -u AWS -p $(aws ecr get-authorization-token | jq -r '"'"'.authorizationData[0].authorizationToken'"'"' | base64 --decode | cut -d: -f2)'
