@@ -34,15 +34,23 @@ local config = {
     -- },
   },
   -- Set colorscheme to use
+  -- DARK THEME
   colorscheme = "catppuccin-frappe",
+  -- LIGHT THEME
+  -- colorscheme = "dayfox",
   -- Add highlight groups in any theme
   highlights = {
-    -- init = { -- this table overrides highlights in all themes
-    --   Normal = { bg = "#000000" },
-    -- }
+    init = { -- this table overrides highlights in all themes
+      HighlightURL = { underline = true },
+    },
     -- duskfox = { -- a table of overrides/changes to the duskfox theme
     --   Normal = { bg = "#000000" },
     -- },
+    -- dayfox = {
+    --   Cursor = {
+    --     bg = "#000000"
+    --   }
+    -- }
   },
   -- set vim options here (vim.<first_key>.<second_key> = value)
   options = {
@@ -138,7 +146,7 @@ local config = {
       ["nvim-tree"] = false,
       ["nvim-web-devicons"] = true,
       rainbow = true,
-      symbols_outline = false,
+      symbols_outline = true,
       telescope = true,
       treesitter = true,
       vimwiki = false,
@@ -280,6 +288,38 @@ local config = {
   },
   -- Configure plugins
   plugins = {
+    {
+      "EdenEast/nightfox.nvim",
+      config = function()
+        require("nightfox").setup {
+          -- disable extra plugins that AstroNvim doesn't use (this is optional)
+          modules = { 
+            barbar = false,
+            dashboard = false,
+            fern = false,
+            fidget = false,
+            gitgutter = false,
+            glyph_palette = false,
+            illuminate = false,
+            lightspeed = false,
+            lsp_saga = false,
+            lsp_trouble = false,
+            modes = false,
+            neogit = false,
+            nvimtree = false,
+            pounce = false,
+            sneak = false,
+            symbols_outline = false,
+          },
+          groups = {
+            all = {
+              -- add highlight group for AstroNvim's built in URL highlighting
+              HighlightURL = { style = "underline" },
+            },
+          },
+        }
+      end,
+    },
     -- init = {
     "Joorem/vim-haproxy",
     "editorconfig/editorconfig-vim",
@@ -324,6 +364,12 @@ local config = {
       'Joorem/vim-haproxy',
       ft = 'haproxy',
     },
+    {
+      'towolf/vim-helm',
+    },
+    {
+      'gpanders/editorconfig.nvim',
+    }
     --   {
     --     "kylechui/nvim-surround",
     --     -- tag = "*", -- Use for stability; omit to use `main` branch for the latest features

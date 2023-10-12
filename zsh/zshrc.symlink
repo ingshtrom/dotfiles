@@ -32,7 +32,7 @@ export PROJECTS="$HOME/src"
 export ZSH_AUTOSUGGEST_USE_ASYNC=true
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=blue,bold'
 export HYPHEN_INSENSITIVE="false"
-export UPDATE_ZSH_DAYS=1
+export UPDATE_ZSH_DAYS=7
 export ENABLE_CORRECTION="false" # do not autocomplete without me being prompted
 export COMPLETION_WAITING_DOTS="true"
 export ZSH=$HOME/.oh-my-zsh
@@ -58,11 +58,10 @@ export COMPOSE_DOCKER_CLI_BUILD=1
 export CHAMBER_SECRET_BACKEND=ssm
 export CHAMBER_KMS_KEY_ALIAS=aws/ssm
 export TFENV_ARCH=arm64
-# export AWS_PROFILE=DockerIncInfraMain-710015040892-DockerMain
 # LIGHT_THEME
-#export BAT_THEME=OneHalfLight
+export BAT_THEME=OneHalfLight
 # DARK_THEME
-export BAT_THEME=Dracula
+# export BAT_THEME=Dracula
 # these are needed for the Clangd LSP server, I think 🤷
 export LDFLAGS="-L/usr/local/opt/llvm/lib"
 export CPPFLAGS="-I/usr/local/opt/llvm/include"
@@ -249,19 +248,19 @@ alias c=z # try out using z without changing my muscle memory
 export PATH="$PATH:/Users/alexhokanson/.local/bin"
 
 # ZPLUG stuff
-export ZPLUG_HOME=/opt/homebrew/opt/zplug
-source $ZPLUG_HOME/init.zsh
+# export ZPLUG_HOME=/opt/homebrew/opt/zplug
+# source $ZPLUG_HOME/init.zsh
 
 #zplug "dracula/zsh", as:theme
-if ! which zplug 2>&1 > /dev/null; then
-    echo "zplug not found, please install it"
-elif ! zplug check --verbose; then
-    printf "Install plugins? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
-zplug load
+# if ! which zplug 2>&1 > /dev/null; then
+#     echo "zplug not found, please install it"
+# elif ! zplug check --verbose; then
+#     printf "Install plugins? [y/N]: "
+#     if read -q; then
+#         echo; zplug install
+#     fi
+# fi
+# zplug load
 
 ############################################################
 ## STARSHIP PROMPT INIT

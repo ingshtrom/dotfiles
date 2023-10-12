@@ -141,14 +141,14 @@ bind P choose-buffer # choose which buffer to paste from
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
 # DARK_THEME
-set -g @plugin 'dracula/tmux'
-set -g @themepack 'dracula'
-set -g @dracula-show-powerline true
-set -g @dracula-refresh-rate 30
-set -g @dracula-plugins " "
+# set -g @plugin 'dracula/tmux'
+# set -g @themepack 'dracula'
+# set -g @dracula-show-powerline true
+# set -g @dracula-refresh-rate 30
+# set -g @dracula-plugins " "
 # LIGHT_THEME
-#set -g @plugin 'andersondanilo/tmux-onehalf-theme'
-#set -g @themepack 'onehalf'
+set -g @plugin 'andersondanilo/tmux-onehalf-theme'
+set -g @themepack 'onehalf'
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'
@@ -188,8 +188,8 @@ set-option -wg window-status-bell-style bg="#e06c75",fg="#2a2f39"
 set-option -wg window-status-current-style bg="#40a14f",fg="#fafafa"
 
 # pane border
-set-option -g pane-active-border-style fg="#40a14f"
-set-option -g pane-border-style fg="#383a42"
+set-option -g pane-active-border-style fg="#40a14f",bg="#40a14f"
+set-option -g pane-border-style fg="#383a42",bg="#383a43"
 
 # message info
 set-option -g message-style bg="#383a42",fg="#fafafa"
@@ -211,8 +211,8 @@ set-option -g display-panes-colour "#2a2f39"
 %endif
 
 # statusbar formatting
-set-option -g status-left "#{?client_prefix,#[bg=#fafafa],#[bg=#fafafa]}#[fg=#2a2f39] # "
-set-option -g status-right " #{?client_prefix,#[bg=#fafafa],#[bg=#fafafa]}#[fg=#2a2f39] #{session_name} "
+# set-option -g status-left "#{?client_prefix,#[bg=#fafafa],#[bg=#fafafa]}#[fg=#2a2f39] # "
+# set-option -g status-right " #{?client_prefix,#[bg=#fafafa],#[bg=#fafafa]}#[fg=#2a2f39] #{session_name} "
 
 set-option -wg window-status-current-format "#{?window_zoomed_flag,#[fg=default bold],#[fg=default]} #{window_index} #{window_name} "
 set-option -wg window-status-format "#{?window_zoomed_flag,#[fg=default bold],#[fg=default]} #{window_index} #{window_name} "
