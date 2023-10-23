@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+#
+# Usage: git-worktree-update
+#
+# - Clean up old Git worktrees based on merged branches
+# - Update the main worktree to the latest changes
+#
+
+# set -x
+
+red=`tput setaf 1`
+green=`tput setaf 2`
+yellow=`tput setaf 3`
+reset=`tput sgr0`
+
+
+# get worktrees
+# check each one for open pull requests
+#   - if the pull request was merged, then mark it for being closed
+
+if git status 2>&1 | grep "not a git repository" 2>&1 > /dev/null;
+then
+  echo "${yellow}No worktrees to cleanup (not a git repository)${reset}"
+  exit 1
+fi
+
+pull_request=$(gh pr list | fzf)
+
+pull_request_id=$(echo $pull_request | grep -E -o '^\d+')
+
+# git worktree add
+worktree_name="${pull_request_id}_local_checkout_pr"
+echo "Creating new worktree ${green}'$(pwd)/../${worktree_name}'${reset}"
+git worktree add ./${worktree_name}
+
+set -x
+cd ./${worktree_name}
+
+# gh pr checkout $pull_request_id
+gh pr checkout "$pull_request_id"
+

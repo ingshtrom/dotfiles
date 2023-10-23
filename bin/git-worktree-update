@@ -37,14 +37,14 @@ do
   wt_dir=$(echo $wt | cut -d' ' -f1)
   echo -n "$wt_less_space = "
   # set -x
-  
+
   cd $wt_dir
   # if it is the main worktree, always keep it
   # if it is the bare worktree, always keep it
   if echo $wt | grep '\[main\]' 2>&1 > /dev/null;
   then
     echo "${green}UPDATE${reset}"
-    echo 
+    echo
     git-up
   elif echo $wt | grep '\(bare\)' 2>&1 > /dev/null;
   then

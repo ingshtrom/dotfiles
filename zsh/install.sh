@@ -60,8 +60,8 @@ source ~/.dotfiles/zsh/zshrc.symlink
 
 omz update
 
-zplug install
-zplug update
-zplug clean
-zplug status
+# zplug install
+# zplug update
+# zplug clean
+# zplug status
 

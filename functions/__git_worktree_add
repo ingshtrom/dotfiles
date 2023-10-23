@@ -7,7 +7,7 @@ __git_worktree_add() {
   green=`tput setaf 2`
   yellow=`tput setaf 3`
   reset=`tput sgr0`
-  
+
   # go into the main worktree
   cd $(git worktree list | grep '\[main\]' | cut -d' ' -f1)
 
