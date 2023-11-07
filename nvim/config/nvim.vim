@@ -162,9 +162,9 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-treesitter/nvim-treesitter'
 
 " DARK_THEME
-" Plug 'dracula/vim',{'as':'dracula'}
+Plug 'dracula/vim',{'as':'dracula'}
 " LIGHT_THEME
-" Plug 'sonph/onehalf', {'rtp': 'vim/'}
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
 
 "Plug 'github/copilot.vim'
 

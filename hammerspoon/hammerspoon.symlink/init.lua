@@ -132,11 +132,11 @@ local mash = { "alt", "ctrl", "cmd" }
 
 -- hotkeys to be like vim
 foreach({
-	{ key = 'n', mod = { "ctrl" }, dst = "down" },
+	-- { key = 'n', mod = { "ctrl" }, dst = "down" },
+	-- { key = 'p', mod = { "ctrl" }, dst = "up" },
 	{ key = 'j', mod = { "ctrl" }, dst = "down" },
-	{ key = 'p', mod = { "ctrl" }, dst = "up" },
 	{ key = 'k', mod = { "ctrl" }, dst = "up" },
-	-- { key='h', mod={"ctrl"}, dst="left" }, -- breaks keybinding in neovim for opening NERDTree
+	{ key = 'h', mod = { "ctrl" }, dst = "left" }, -- breaks keybinding in neovim for opening NERDTree
 	{ key = 'l', mod = { "ctrl" }, dst = "right" },
 }, function(b)
 	hs.hotkey.bind(

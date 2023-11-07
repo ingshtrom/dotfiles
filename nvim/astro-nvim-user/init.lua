@@ -37,7 +37,7 @@ local config = {
   -- DARK THEME
   colorscheme = "catppuccin-frappe",
   -- LIGHT THEME
-  -- colorscheme = "dayfox",
+  -- colorscheme = "onehalflight",
   -- Add highlight groups in any theme
   highlights = {
     init = { -- this table overrides highlights in all themes
