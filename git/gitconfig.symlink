@@ -25,8 +25,7 @@
   excludesfile = ~/.gitignore
   editor = nvim
 [pager]
-  diff = Kaleidoscope
-  # diff  = delta
+  diff  = delta
   show  = delta
   log   = delta
   stack = delta
