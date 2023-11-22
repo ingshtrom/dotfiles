@@ -136,7 +136,7 @@ foreach({
 	-- { key = 'p', mod = { "ctrl" }, dst = "up" },
 	{ key = 'j', mod = { "ctrl" }, dst = "down" },
 	{ key = 'k', mod = { "ctrl" }, dst = "up" },
-	{ key = 'h', mod = { "ctrl" }, dst = "left" }, -- breaks keybinding in neovim for opening NERDTree
+	{ key = 'h', mod = { "ctrl" }, dst = "left" }, -- breaks keybinding for zellij, if using that
 	{ key = 'l', mod = { "ctrl" }, dst = "right" },
 }, function(b)
 	hs.hotkey.bind(

@@ -98,6 +98,7 @@ brew 'watch'
 brew 'wget'  # curl alternative
 brew 'xsv'  # csv cli tool => https://github.com/BurntSushi/xsv
 brew 'xz'
+brew 'xh'  # better curl
 brew 'ykman'  # CLI for YubiKey Authenticator mgmt
 brew 'zoxide'  # better changing directories https://github.com/ajeetdsouza/zoxide # noqa
 brew 'zsh'

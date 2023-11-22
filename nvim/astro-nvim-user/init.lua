@@ -289,11 +289,62 @@ local config = {
   -- Configure plugins
   plugins = {
     {
+      "zbirenbaum/copilot.lua",
+      event = "BufRead",
+      config = function()
+        vim.defer_fn(function()
+          require("copilot").setup({
+            panel = {
+              enabled = true,
+              auto_refresh = true,
+              keymap = {
+                jump_prev = "[[",
+                jump_next = "]]",
+                accept = "<CR>",
+                refresh = "gr",
+                open = "<M-CR>"
+              },
+              layout = {
+                position = "bottom", -- | top | left | right
+                ratio = 0.3
+              },
+            },
+            suggestion = {
+              enabled = true,
+              auto_trigger = true,
+              debounce = 75,
+              keymap = {
+                accept = "<M-l>",
+                accept_word = false,
+                accept_line = false,
+                next = "<M-]>",
+                prev = "<M-[>",
+                dismiss = "<C-]>",
+              },
+            },
+            filetypes = {
+              yaml = true,
+              markdown = false,
+              help = false,
+              gitcommit = false,
+              gitrebase = false,
+              hgcommit = false,
+              svn = false,
+              cvs = false,
+              ["."] = false,
+            },
+            copilot_node_command = 'node', -- Node.js version must be > 18.x
+            server_opts_overrides = {},
+          })
+        end, 100)
+      end,
+    },
+    {
       "EdenEast/nightfox.nvim",
       config = function()
         require("nightfox").setup {
           -- disable extra plugins that AstroNvim doesn't use (this is optional)
-          modules = { 
+          modules = {
             barbar = false,
             dashboard = false,
             fern = false,
@@ -369,7 +420,7 @@ local config = {
     },
     {
       'gpanders/editorconfig.nvim',
-    }
+    },
     --   {
     --     "kylechui/nvim-surround",
     --     -- tag = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -486,7 +537,7 @@ local config = {
         files = { "src/parser.c" }
       },
       filetype = "gotmpl",
-      used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl", "yaml" }
+      used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl" }
     }
 
     require("telescope").setup {

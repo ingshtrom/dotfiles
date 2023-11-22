@@ -52,12 +52,13 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob '"'"'!.git/*'"'"
 export PAGER="less --RAW-CONTROL-CHARS"
 export LESS="-F -X $LESS" # make sure not to page if less than a page
 export BAT_PAGER="$PAGER"
-export AWS_PAGER=""
+unset AWS_PAGER
 export DOCKER_BUILDKIT=1
 export COMPOSE_DOCKER_CLI_BUILD=1
 export CHAMBER_SECRET_BACKEND=ssm
 export CHAMBER_KMS_KEY_ALIAS=aws/ssm
 export TFENV_ARCH=arm64
+export ZELLIJ_CONFIG_DIR=$HOME/.dotfiles/zellij
 # LIGHT_THEME
 # export BAT_THEME=OneHalfLight
 # DARK_THEME
@@ -231,6 +232,8 @@ fi
 # nvm startup
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+nvm use --lts --silent
 
 # Zoxide startup
 eval "$(zoxide init zsh)"

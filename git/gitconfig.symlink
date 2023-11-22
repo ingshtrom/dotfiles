@@ -24,10 +24,9 @@
 [core]
   excludesfile = ~/.gitignore
   editor = nvim
-#pager = delta
 [pager]
-#blame = true
-  diff  = delta
+  diff = Kaleidoscope
+  # diff  = delta
   show  = delta
   log   = delta
   stack = delta
