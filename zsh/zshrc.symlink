@@ -26,6 +26,7 @@ setopt HIST_REDUCE_BLANKS
 
 unsetopt complete_aliases
 
+export ASDF_DIR="$HOME/.asdf"
 export AWS_REGION=us-east-1
 export AWS_DEFAULT_REGION=us-east-1
 export PROJECTS="$HOME/src"
@@ -73,7 +74,7 @@ export SHELL=/opt/homebrew/bin/zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-fpath=( $fpath /opt/homebrew/share/zsh-completions $DOTFILES/functions )
+fpath=( $DOTFILES/functions /opt/homebrew/share/zsh-completions ${ASDF_DIR}/completions $fpath )
 
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
@@ -142,7 +143,8 @@ alias ae='aws-sso exec -p $(aws configure list-profiles | fzf)'
 
 # START `infra-cli aliases`
 alias d="docker"
-alias a='export AWS_PROFILE=$(aws configure list-profiles | fzf)'
+# alias a='export AWS_PROFILE=$(aws configure list-profiles | fzf)'
+alias a='export AWS_PROFILE=$(cat ~/.aws/config | grep "\[" | grep -v "\[default\]" | sed -e "s/\[profile//g" | sed -e "s/\]$//g" | fzf | tr -d " ")'
 alias ar='infra-cli aws init -y'
 alias al='infra-cli aws login -y'
 alias ac='eval $(aws configure export-credentials --format env)'
@@ -285,3 +287,6 @@ source /Users/alexhokanson/.config/broot/launcher/bash/br
 # for zellij, remove ctrl + p and ctrl + n keybindings
 bindkey -r "^n"
 bindkey -r "^p"
+
+# ASDF
+. "$HOME/.asdf/asdf.sh"
