@@ -107,3 +107,4 @@ brew 'zplug'
 
 # cask 'alacritty'
 cask 'kitty'
+cask 'hammerspoon'
