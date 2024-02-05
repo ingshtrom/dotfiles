@@ -1,0 +1,71 @@
+<!-- from https://maximevaillancourt.com/blog/github-email-notifications-gmail-filters -->
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns='http://www.w3.org/2005/Atom' xmlns:apps='http://schemas.google.com/apps/2006'>
+  <title>GitHub filters</title>
+  <entry>
+    <category term='filter'></category>
+    <content></content>
+    <apps:property name='hasTheWord' value='Merged into'/>
+    <apps:property name='label' value='Merged'/>
+    <apps:property name='sizeOperator' value='s_sl'/>
+    <apps:property name='sizeUnit' value='s_smb'/>
+  </entry>
+  <entry>
+    <category term='filter'></category>
+    <content></content>
+    <apps:property name='hasTheWord' value='&quot;@ingshtrom&quot;'/>
+    <apps:property name='label' value='Mention'/>
+    <apps:property name='sizeOperator' value='s_sl'/>
+    <apps:property name='sizeUnit' value='s_smb'/>
+  </entry>
+  <entry>
+    <category term='filter'></category>
+    <content></content>
+    <apps:property name='hasTheWord' value='because you authored the thread'/>
+    <apps:property name='label' value='Author'/>
+    <apps:property name='sizeOperator' value='s_sl'/>
+    <apps:property name='sizeUnit' value='s_smb'/>
+  </entry>
+  <entry>
+    <category term='filter'></category>
+    <content></content>
+    <apps:property name='hasTheWord' value='modified the open/close state'/>
+    <apps:property name='label' value='Reopened'/>
+    <apps:property name='sizeOperator' value='s_sl'/>
+    <apps:property name='sizeUnit' value='s_smb'/>
+  </entry>
+  <entry>
+    <category term='filter'></category>
+    <content></content>
+    <apps:property name='hasTheWord' value='&quot;requested review from @docker/infra&quot;'/>
+    <apps:property name='label' value='Team review request'/>
+    <apps:property name='sizeOperator' value='s_sl'/>
+    <apps:property name='sizeUnit' value='s_smb'/>
+  </entry>
+  <entry>
+    <category term='filter'></category>
+    <content></content>
+    <apps:property name='hasTheWord' value='&quot;because you are on a team that was mentioned&quot; AND &quot;You can view, comment on, or merge this pull request online at&quot;'/>
+    <apps:property name='label' value='Team review request'/>
+    <apps:property name='sizeOperator' value='s_sl'/>
+    <apps:property name='sizeUnit' value='s_smb'/>
+  </entry>
+  <entry>
+    <category term='filter'></category>
+    <content></content>
+    <apps:property name='from' value='github'/>
+    <apps:property name='hasTheWord' value='&quot;Closed \#&quot; &quot;You are receiving this because&quot;'/>
+    <apps:property name='doesNotHaveTheWord' value='dependabot'/>
+    <apps:property name='label' value='Closed'/>
+    <apps:property name='sizeOperator' value='s_sl'/>
+    <apps:property name='sizeUnit' value='s_smb'/>
+  </entry>
+  <entry>
+    <category term='filter'></category>
+    <content></content>
+    <apps:property name='hasTheWord' value='&quot;requested your review on&quot;'/>
+    <apps:property name='label' value='Direct review request'/>
+    <apps:property name='sizeOperator' value='s_sl'/>
+    <apps:property name='sizeUnit' value='s_smb'/>
+  </entry>
+</feed>

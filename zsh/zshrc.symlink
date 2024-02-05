@@ -94,9 +94,9 @@ fi
 alias mkpasswd='function(){docker run -it --rm alpine mkpasswd "$@"}'
 alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
 alias h='hstr'
-alias ls='exa'
-alias ll='exa -alh'
-alias lt='exa -alhT'
+alias ls='eza'
+alias ll='eza -alh'
+alias lt='eza -alhT'
 alias s='function(){rg -p $@}'
 
 # The rest of my fun git aliases
