@@ -314,11 +314,11 @@ local config = {
               auto_trigger = true,
               debounce = 75,
               keymap = {
-                accept = "<M-l>",
+                accept = "<M-l>",  -- cmd + l
                 accept_word = false,
                 accept_line = false,
-                next = "<M-]>",
-                prev = "<M-[>",
+                next = "<M-]>", -- cmd + ]
+                prev = "<M-[>", -- cmd + [
                 dismiss = "<C-]>",
               },
             },

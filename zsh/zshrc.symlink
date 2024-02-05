@@ -156,11 +156,9 @@ alias eks='infra-cli aws configEks'
 
 alias tf=terraform
 # terraform format for everything
-alias tfa='echo "Terraform fmt the whole repository..."; find . -type f | grep ".tf\$" | grep -v ".terraform" | xargs -L1 terraform fmt -write=true'
-# terraform format for a git branch
-alias tfb='git diff upstream/main --name-only | grep 'tf$' | xargs -L1 terraform fmt -write=true'
+alias tfa='echo "Terraform fmt the whole repository..."; find . -type f | grep -E ".tf$" | grep -v ".terraform" | xargs -L1 terraform fmt -write=true'
 # terraform format for git [status]
-alias tfg='gs -s | sed --express="s/^ M //g" | xargs -L1 terraform fmt -write=true'
+alias tfg='gs -s | sed --express="s/^ M //g" | grep -E ".tf$" | xargs -L1 terraform fmt -write=true'
 
 alias python='python3'
 
@@ -289,4 +287,4 @@ bindkey -r "^n"
 bindkey -r "^p"
 
 # ASDF
-. "$HOME/.asdf/asdf.sh"
+# . "$HOME/.asdf/asdf.sh"
