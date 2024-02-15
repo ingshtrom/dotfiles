@@ -26,7 +26,6 @@ brew 'coreutils'
 brew 'dep'
 brew 'direnv'  # load .envrc from a directory just by entering and existing the directory # noqa
 brew 'ed'
-brew 'exa'  # a better ls as-per https://medium.com/@timonbimon/yet-another-step-by-step-guide-for-a-better-terminal-setup-6c5e879d4c8c # noqa
 brew 'fd'  # fd is a better find
 brew 'findutils'
 # brew 'font-jetbrains-mono-nerd-font'  # font used for my terminal
