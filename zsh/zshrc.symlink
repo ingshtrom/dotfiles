@@ -160,8 +160,6 @@ alias tfa='echo "Terraform fmt the whole repository..."; find . -type f | grep -
 # terraform format for git [status]
 alias tfg='gs -s | sed --express="s/^ M //g" | grep -E ".tf$" | xargs -L1 terraform fmt -write=true'
 
-alias python='python3'
-
 # Pipe my public key to my clipboard.
 alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
 alias saa="ssh-add $HOME/.ssh/dckr-default && ssh-add $HOME/.ssh/dckr-infra && ssh-add $HOME/.ssh/dckr-swarm && ssh-add $HOME/.ssh/dckr-nautilus"

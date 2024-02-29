@@ -65,19 +65,19 @@ function toggleZoomMute()
 	local zoom = hs.appfinder.appFromName("zoom.us")
 
 	if (zoom == nil) then
-		hs.alert.show("Zoom NOT RUNNING")
+		hs.alert.show("ahokanson: Zoom NOT RUNNING")
 		return
 	end
 
-	local unmute = { "Meeting", "Unmute Audio" }
-	local mute = { "Meeting", "Mute Audio" }
+	local unmute = { "Meeting", "Unmute audio" }
+	local mute = { "Meeting", "Mute audio" }
 
 	if (zoom:findMenuItem(mute)) then
 		zoom:selectMenuItem(mute)
-		-- hs.alert.show("Zoom Muted")
+		hs.alert.show("ahokanson: Zoom Muted")
 	elseif (zoom:findMenuItem(unmute)) then
 		zoom:selectMenuItem(unmute)
-		-- hs.alert.show("Zoom Unmuted")
+		hs.alert.show("ahokanson: Zoom Unmuted")
 	end
 end
 
@@ -93,10 +93,10 @@ function toggleZoomVideo()
 
 	if (zoom:findMenuItem(start)) then
 		zoom:selectMenuItem(start)
-		hs.alert.show("Video started")
+		hs.alert.show("ahokanson: Video started")
 	elseif (zoom:findMenuItem(stop)) then
 		zoom:selectMenuItem(stop)
-		hs.alert.show("Video stopped")
+		hs.alert.show("ashokanson: Video stopped")
 	end
 end
 
@@ -170,123 +170,6 @@ end
 -- 		hs.window.focusedWindow():move(units.maximum, nil, false)
 -- 	end
 -- )
-
--- done with zoom meeting
-hs.hotkey.bind(
-	mash,
-	"y",
-	function()
-		local isBoomRunning = false
-		local isSpotifyRunning = false
-		hs.printf("Getting ready to listen to some music.")
-		-- kill zoom
-		foreach(
-			hs.application.runningApplications(),
-			function(app)
-				name = app:name()
-				if name == "zoom.us"
-				then
-					hs.printf("killing applications %s", name)
-					app:kill()
-				end
-
-				if name == "Boom 3D"
-				then
-					isBoomRunning = true
-				end
-
-				if name == "Spotify"
-				then
-					isSpotifyRunning = true
-				end
-			end
-		)
-		-- make sure default output (headphone jack) is being used
-		device = hs.audiodevice.findDeviceByName("Built-in Output")
-		result = "nil"
-		if device ~= nil then
-			result = device:setDefaultOutputDevice()
-		end
-		if result == "nil" then
-			device = hs.audiodevice.findDeviceByName("External Headphones")
-			if device ~= nil then
-				result = device:setDefaultOutputDevice()
-			end
-		end
-		hs.printf("Did enable headphone audio output?: %s", result)
-
-		-- start boom3d
-		if isBoomRunning == false
-		then
-			local didStartBoom3D = hs.application.launchOrFocus("Boom 3D")
-			hs.printf("Boom 3D was not already running. Did start Boom 3D?: %s", didStartBoom3D)
-
-			-- NOTE: shouldn't need to wait for the focused window since we don't try to start
-			--       Boom 3D if it's already running.
-			--
-			--local win = waitForFocusedWindowByName("Boom 3D")
-			--if win ~= nil then
-			--    hs.printf("found window for boom 3d. closing it")
-			--    win:close()
-			--end
-		else
-			hs.printf("Boom 3D is already running.")
-		end
-
-		-- start spotify
-		local didStartSpotify = hs.application.launchOrFocus("spotify")
-		hs.printf("Did start/focus Spotify?: %s", didStartSpotify)
-
-		foreach(
-			hs.screen.allScreens(),
-			function(s)
-				hs.alert.show("Enjoy your music 😄", s)
-			end
-		)
-	end
-)
--- get ready for meeting by killing boom
-hs.hotkey.bind(
-	mash,
-	"z",
-	function()
-		local isZoomRunning = false
-		hs.printf("Getting ready for a meeting!")
-		-- kill boom 3d
-		foreach(
-			hs.application.runningApplications(),
-			function(app)
-				name = app:name()
-				if name == "Spotify"
-				then
-					hs.printf("killing %s to avoid background music", name)
-					app:kill()
-				end
-				if name == "zoom.us"
-				then
-					isZoomRunning = true
-				end
-			end
-		)
-
-		-- start zoom
-		if isZoomRunning == false
-		then
-			local didStart = hs.application.launchOrFocus("zoom.us")
-			hs.printf("Zoom was not already running. Did start zoom?: %s", didStart)
-		else
-			hs.printf("Zoom was already running")
-		end
-
-		foreach(
-			hs.screen.allScreens(),
-			function(s)
-				hs.alert.show("Meeting time! 😄", s)
-			end
-		)
-	end
-)
-
 
 -- reload functions
 hs.hotkey.bind(

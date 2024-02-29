@@ -76,6 +76,7 @@ brew 'redis'
 brew 'ripgrep'  # osx only, awesome fast searching
 brew 'ruby'
 brew 'ruby-build'
+brew 'sad'  # find and replace within lots of files. https://github.com/ms-jpq/sad
 brew 'shellcheck'
 brew 'slides'  # slideshow in the terminal
 brew 'spaceman-diff'

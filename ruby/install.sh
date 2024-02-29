@@ -4,11 +4,10 @@ set -o pipefail
 set -o nounset
 set -o errexit
 
-version=2.7.1
+asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
+asdf install ruby latest
+asdf global ruby latest
 
-eval "$(rbenv init -)"
-RUBY_CFLAGS="-Wno-error=implicit-function-declaration" rbenv install -s "$version"
-rbenv global "$version"
 gem install bundler
 gem install lolcat
 gem install cowsay

@@ -16,6 +16,7 @@
   lg = !"git lg1"
   fetchforcemaster = "!f() { git fetch upstream && git checkout master && git reset --hard upstream/master && git push -f origin master; }; f"
   fetchforce = "!f() { git fetch upstream && git checkout main && git reset --hard upstream/main && git push -f origin main; }; f"
+	stash = stash --all
 [color]
   diff = auto
   status = auto
@@ -68,8 +69,15 @@
 [delta "decorations"]
   file-style = green
   file-decoration-style = none
-
 [init]
 	defaultBranch = main
 [gpg]
 	program = /opt/homebrew/bin/gpg
+[rerere]
+	enabled = true
+[branch]
+	sort = -committerdate
+[maintenance]
+	repo = /Users/alexhokanson/workspace/infra-terraform
+	repo = /Users/alexhokanson/workspace/infra-terraform-modules
+	repo = /Users/alexhokanson/workspace/infra-manifests
