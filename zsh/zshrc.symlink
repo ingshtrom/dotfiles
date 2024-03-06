@@ -40,7 +40,7 @@ export ZSH=$HOME/.oh-my-zsh
 export DOTFILES=$HOME/.dotfiles
 export TERM="screen-256color"
 export GOPATH=$PROJECTS/go
-export PATH="$HOME/.tfenv/bin:$DOTFILES/bin:/opt/homebrew/bin:/opt/homebrew/opt/gnu-sed/libexec/gnubin:/usr/local/go/bin:${GOPATH}/bin:${HOME}/.bin:$HOME/.arkade/bin:$HOME/.linkerd2/bin:./bin:/usr/local/bin:/usr/local/sbin:$HOME/.cargo/bin:$HOME/src/dockops/shell:$PATH"
+export PATH="$DOTFILES/bin:/opt/homebrew/bin:/opt/homebrew/opt/gnu-sed/libexec/gnubin:/usr/local/go/bin:${GOPATH}/bin:${HOME}/.bin:$HOME/.arkade/bin:$HOME/.linkerd2/bin:./bin:/usr/local/bin:/usr/local/sbin:$HOME/.cargo/bin:$HOME/src/dockops/shell:$PATH"
 export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
 export EDITOR='nvim'
 export VISUAL='nvim'
@@ -152,7 +152,7 @@ alias aws-sso-init='infra-cli aws init'
 alias aws-sso-login='infra-cli aws login'
 alias aws-sso-temp-creds='aws configure export-credentials --format env'
 alias eks='infra-cli aws configEks'
-# END 
+# END
 
 alias tf=terraform
 # terraform format for everything

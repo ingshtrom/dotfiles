@@ -10,6 +10,7 @@ tap 'cantino/mcfly'
 # tap 'jesseduffield/lazygit/lazygit'
 tap 'nvie/tap'
 tap 'synfinatic/aws-sso-cli'
+tap 'tofuutils/tap'  # opentofu tooling
 
 brew 'gofireflyio/aiac/aiac'  # AI for IaC -> https://github.com/gofireflyio/aiac
 brew 'ack'
@@ -23,6 +24,7 @@ brew 'cmake'
 brew 'colordiff'  # add color to your diffs ;)
 brew 'hashicorp/tap/consul'  # consul.io CLI
 brew 'coreutils'
+brew 'cosign'  # container signing and verification
 brew 'dep'
 brew 'direnv'  # load .envrc from a directory just by entering and existing the directory # noqa
 brew 'ed'
@@ -88,7 +90,7 @@ brew 'go-task/tap/go-task'  # https://taskfile.dev
 brew 'terminal-notifier'  # allow sending notifications from cli
 brew 'hashicorp/tap/terraform-ls'
 brew 'the_silver_searcher'  # ripgrep alternative prior to rg being written. Not as fast, but some tools still use it # noqa
-brew 'tfenv'  # Terraform version manager
+brew 'tenv'  # better Terraform env mgmt
 brew 'tfsec'  # Terraform static analyzer => https://github.com/aquasecurity/tfsec
 brew 'tilt'  # local dev on k8s
 brew 'tmux'
