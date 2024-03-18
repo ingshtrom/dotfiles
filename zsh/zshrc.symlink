@@ -1,3 +1,5 @@
+# CodeWhisperer pre block. Keep at the top of this file.
+[[ -f "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.pre.zsh"
 #!/opt/homebrew/bin/zsh
 #PS4='+ $(date "+%s.%N")\011 '
 #exec 3>&2 2>/tmp/bashstart.$$.log
@@ -286,3 +288,6 @@ bindkey -r "^p"
 
 # ASDF
 . "$HOME/.asdf/asdf.sh"
+
+# CodeWhisperer post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh"

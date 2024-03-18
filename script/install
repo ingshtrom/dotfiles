@@ -26,11 +26,9 @@ perform_task 'brew upgrade'
 
 perform_task 'brew bundle'
 
-perform_task 'brew update'
+perform_task 'brew cleanup'
 
-perform_task 'brew upgrade'
-
-perform_task 'brew cleanup --prune-prefix'
+perform_task 'brew autoremove'
 
 echo "››› files to run during installation: \n$(find $DOTFILES -iname "install.sh")"
 for file in $(find $DOTFILES -iname "install.sh"); do
