@@ -219,3 +219,9 @@ set-option -wg window-status-format "#{?window_zoomed_flag,#[fg=default bold],#[
 
 # automatically rename each tmux window to current path
 set-option -g automatic-rename-format '#{b:pane_current_path}'
+
+# turn off the right-click menu
+unbind -n MouseDown3Pane
+
+# Stay in copy mode on drag end.
+unbind-key -T copy-mode-vi MouseDragEnd1Pane
