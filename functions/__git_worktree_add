@@ -4,12 +4,12 @@ __git_worktree_add() {
   # debugging purposes
   # set -x
 
-  green=`tput setaf 2`
-  yellow=`tput setaf 3`
-  reset=`tput sgr0`
+  green=$(tput setaf 2)
+  yellow=$(tput setaf 3)
+  reset=$(tput sgr0)
 
   # go into the main worktree
-  cd $(git worktree list | grep '\[main\]' | cut -d' ' -f1)
+  cd "$(git worktree list | grep '\[main\]' | cut -d' ' -f1)" || exit
 
   # update everything
   git-up
@@ -19,10 +19,10 @@ __git_worktree_add() {
   echo
   echo
   echo "${yellow}What ticket are you working on?${reset}"
-  read ticket_id
+  read -r ticket_id
   echo
   echo "${yellow}What are you doing in here?${reset}"
-  read worktree_description
+  read -r worktree_description
   worktree_description=$(echo $worktree_description | sed --expression='s/ /-/g' | sed --expression='s/'"'"'//g')
   echo
 

@@ -53,11 +53,13 @@ fi
 if ! test -d ~/.config/nvim;
 then
   git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
+  git clone https://github.com/ingshtrom/astronvim_config ~/.config/nvim
 fi
+git -C ~/.config/nvim pull origin main 
 # copy over the AstroNvim init.lua user modification script
-mkdir -p ~/.config/nvim/lua/user
-ln -s -f ~/.dotfiles/nvim/astro-nvim-user/init.lua ~/.config/nvim/lua/user/init.lua
-nvim --headless "+Lazy! sync" +qa
+# mkdir -p ~/.config/nvim/lua/user
+# ln -s -f ~/.dotfiles/nvim/astro-nvim-user/init.lua ~/.config/nvim/lua/user/init.lua
+# nvim --headless "+Lazy! sync" +qa
 # }
 
 

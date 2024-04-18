@@ -1,3 +1,4 @@
+# vi: set ft=zsh
 # CodeWhisperer pre block. Keep at the top of this file.
 [[ -f "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.pre.zsh"
 #!/opt/homebrew/bin/zsh
@@ -93,12 +94,14 @@ fi
 ################################################################################################
 # ALIASES
 
+# shellcheck disable=SC2142
 alias mkpasswd='function(){docker run -it --rm alpine mkpasswd "$@"}'
 alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
 alias h='hstr'
 alias ls='eza'
 alias ll='eza -alh'
 alias lt='eza -alhT'
+# shellcheck disable=SC2142
 alias s='function(){rg -p $@}'
 
 # The rest of my fun git aliases
@@ -109,6 +112,7 @@ alias gw='git worktree'
 alias gb='gh branch'
 alias gcom='git commit -s'
 # git worktree change/checkout
+# shellcheck disable=SC2154
 alias gwc='function() { local x=$(git worktree list | fzf | cut -d" " -f1); test -z $x || cd $x }'
 # git worktree list
 alias gwl='git worktree list'
@@ -120,6 +124,7 @@ alias gwpc='__git_worktree_pull_request_checkout'
 # git worktree delete
 alias gwd='function() { local x=$(git worktree list | grep -v "bare" | grep -v "\[main\]" | fzf | cut -d" " -f1); test -z $x || ( git worktree remove -f $x) }'
 # git worktree add
+# shellcheck disable=SC2142
 alias gwa='function() { __git_worktree_add $@ }'
 # git workspace "kchange"... the k is silent 😜
 alias gwk='function() { local x=$(ls ~/workspace --no-user --no-time --no-permissions | sed --express="s/^- //g" | fzf); test -z $x || cd "${HOME}/workspace/${x}" }'
@@ -135,6 +140,7 @@ alias gg='cd $(git rev-parse --show-toplevel || echo ".")'
 alias gup='git ups'
 alias gu='git up'
 alias gp='git push'
+# shellcheck disable=SC2142
 alias gcpr='function(){gh pr create $@ && gh pr view --json url | jq -r ".url" | pbcopy && echo "Pull Request URL copied to clipboard!" && gh pr view -w}'
 
 alias cls="clear && printf '\e[3J'" # clear screen AND history. BOOM!
@@ -165,6 +171,7 @@ alias tfg='gs -s | sed --express="s/^ M //g" | grep -E ".tf$" | xargs -L1 terraf
 # Pipe my public key to my clipboard.
 alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
 alias saa="ssh-add $HOME/.ssh/dckr-default && ssh-add $HOME/.ssh/dckr-infra && ssh-add $HOME/.ssh/dckr-swarm && ssh-add $HOME/.ssh/dckr-nautilus"
+# shellcheck disable=SC2142
 alias ssh-add-pub-key='function(){ set -e; chmod 400 $1; ssh-add $1; }'
 
 alias aws_admin_user='unset_aws && eval "$(cat ~/.localrc | grep AWS | grep export | sed '"'"'s/^#//g'"'"')"'
@@ -172,6 +179,7 @@ alias aws_admin_user='unset_aws && eval "$(cat ~/.localrc | grep AWS | grep expo
 alias k="kubectl.docker"
 alias kc="kubectx"
 #alias kn="kubens"
+# shellcheck disable=SC2142
 alias kn='function(){kubectl config set-context --current --namespace="$1"}'
 alias kt="kubetail"
 
@@ -186,20 +194,24 @@ alias veracrypt="/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt --text"
 
 
 # colors
+# shellcheck disable=SC2142
 alias print_colors='for i in {0..255}; do print -Pn "%K{$i} %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%8)):#7}:+\\n}; done'
 
 alias ecr_login='aws ecr get-login-password --region us-east-1 | docker login 710015040892.dkr.ecr.us-east-1.amazonaws.com --username AWS --password-stdin'
 alias regctl_ecr_login='regctl registry login 710015040892.dkr.ecr.us-east-1.amazonaws.com -u AWS -p $(aws ecr get-authorization-token | jq -r '"'"'.authorizationData[0].authorizationToken'"'"' | base64 --decode | cut -d: -f2)'
+# shellcheck disable=SC2142
 alias regctl_get_tags='function(){regctl tag ls 710015040892.dkr.ecr.us-east-1.amazonaws.com/infra/$1 | grep release | sort}'
 
-alias gpg_list_encrypted_with='gpg --batch --list-packets $1 2>&1'
-
+# shellcheck disable=SC2142
 alias whats-my-ip='dig TXT +short o-o.myaddr.l.google.com @ns1.google.com -4 | awk -F'"'"'"'"'"' '"'"'{ print $2}'"'"' && dig TXT +short o-o.myaddr.l.google.com @ns1.google.com -6 | awk -F'"'"'"'"'"' '"'"'{ print $2}'"'"''
 alias ip='whats-my-ip'
+# shellcheck disable=SC2142
 alias ipinfo='function(){curl "http://api.ipstack.com/${1}?access_key=${IPSTACK_API_ACCESS_CODE}" | jq .}'
 alias i="infra-cli"
 
+# shellcheck disable=SC2142
 alias p='function(){infra-cli params $@}'
+# shellcheck disable=SC2142
 alias pc='function(){infra-cli params $@ | grep val | cut -d'=' -f2 | tr -d '"'"'[:space:]'"'"' | pbcopy}'
 
 autoload -U $DOTFILES/functions/*(:t)
@@ -237,8 +249,8 @@ nvm use --lts --silent
 
 # Zoxide startup
 eval "$(zoxide init zsh)"
-alias cd=z # try out using z without changing my muscle memory
-alias ci=zi # try out using z without changing my muscle memory
+# alias cd=z # try out using z without changing my muscle memory
+# alias ci=zi # try out using z without changing my muscle memory
 alias c=z # try out using z without changing my muscle memory
 
 # McFly startup

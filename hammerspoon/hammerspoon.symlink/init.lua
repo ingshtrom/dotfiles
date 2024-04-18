@@ -131,23 +131,23 @@ local mash = { "alt", "ctrl", "cmd" }
 -- )
 
 -- hotkeys to be like vim
--- foreach({
--- 	-- { key = 'n', mod = { "ctrl" }, dst = "down" },
--- 	-- { key = 'p', mod = { "ctrl" }, dst = "up" },
--- 	{ key = 'j', mod = { "ctrl" }, dst = "down" },
--- 	{ key = 'k', mod = { "ctrl" }, dst = "up" },
--- 	{ key = 'h', mod = { "ctrl" }, dst = "left" }, -- breaks keybinding for zellij, if using that
--- 	{ key = 'l', mod = { "ctrl" }, dst = "right" },
--- }, function(b)
--- 	hs.hotkey.bind(
--- 		b.mod,
--- 		b.key,
--- 		function() hs.eventtap.keyStroke({}, hs.keycodes.map[b.dst], 0) end,
--- 		nil,
--- 		function() hs.eventtap.keyStroke({}, hs.keycodes.map[b.dst], 0) end
--- 	)
--- end
--- )
+foreach({
+	-- { key = 'n', mod = { "ctrl" }, dst = "down" },
+	-- { key = 'p', mod = { "ctrl" }, dst = "up" },
+	{ key = 'j', mod = { "ctrl" }, dst = "down" },
+	{ key = 'k', mod = { "ctrl" }, dst = "up" },
+	{ key = 'h', mod = { "ctrl" }, dst = "left" }, -- breaks keybinding for zellij, if using that
+	{ key = 'l', mod = { "ctrl" }, dst = "right" },
+}, function(b)
+	hs.hotkey.bind(
+		b.mod,
+		b.key,
+		function() hs.eventtap.keyStroke({}, hs.keycodes.map[b.dst], 0) end,
+		nil,
+		function() hs.eventtap.keyStroke({}, hs.keycodes.map[b.dst], 0) end
+	)
+end
+)
 
 -- NOTE: replaced with Raycast!
 --

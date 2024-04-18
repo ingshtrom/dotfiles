@@ -1,5 +1,5 @@
-#!/bin/sh
-#
+#!/bin/bash --norc
+
 # Usage: git-up
 #        git-reup
 #
@@ -19,7 +19,7 @@ set -e
 PULL_ARGS="$@"
 
 remote_name='upstream'
-if ! git remote 2>&1 | grep 'upstream' 2>&1 > /dev/null;
+if ! git remote 2>&1 | grep 'upstream' > /dev/null 2>&1;
 then
     remote_name='origin'
 fi

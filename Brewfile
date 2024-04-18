@@ -26,6 +26,7 @@ brew 'hashicorp/tap/consul'  # consul.io CLI
 brew 'coreutils'
 brew 'cosign'  # container signing and verification
 brew 'dep'
+brew 'duckdb'  # in-memory SQL db for querying JSON data
 brew 'direnv'  # load .envrc from a directory just by entering and existing the directory # noqa
 brew 'ed'
 brew 'fd'  # fd is a better find
@@ -70,7 +71,7 @@ brew 'neovim'  # , args: ["HEAD"]  # better vim, don't install the one from Ubun
 brew 'openssl'
 brew 'packer'  # most of my jobs will likely use Packer, I presume
 brew 'pinentry-mac'  # better popup and mgmt of auth prompts in gpg2 in osx
-brew 'pipx'
+brew 'pipx'  # way to run pip packages in isolated environments
 brew 'pssh'  # ssh in parallel
 brew 'rbenv'
 brew 'readline'
