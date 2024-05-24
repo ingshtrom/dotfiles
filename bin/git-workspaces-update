@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# Directory to iterate over
+dir=~/workspace
+
+# Check if directory exists
+if [[ ! -d $dir ]]; then
+  echo "Directory $dir does not exist."
+  exit 1
+fi
+
+# Iterate over all directories in the specified directory
+for d in "$dir"/*; do
+  # Check if it is a directory
+  if [[ -d $d ]]; then
+    # Change to the directory
+    cd "$d" || exit
+
+    # Run git-worktree-update
+    git-worktree-update
+  fi
+done

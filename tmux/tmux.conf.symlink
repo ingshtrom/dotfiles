@@ -4,7 +4,7 @@ set-option -g default-shell /opt/homebrew/bin/zsh
 
 set-option -sa terminal-overrides ',screen-256color:RGB'
 set -g -a terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'
-set -g default-terminal "screen-256color" # colors!
+
 setw -g xterm-keys on
 set -s escape-time 10                     # faster command sequences
 set -sg repeat-time 600                   # increase repeat timeout
@@ -137,6 +137,7 @@ bind P choose-buffer # choose which buffer to paste from
 
 
 # -- TPM -------------------------------------------------------------------
+set -g @tpm_path '~/.tmux/plugins/tpm'
 # List of plugins
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'

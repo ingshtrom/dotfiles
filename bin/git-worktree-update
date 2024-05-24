@@ -45,7 +45,7 @@ do
   then
     echo "${green}UPDATE${reset}"
     echo
-    git-up
+    git-up-quiet
   elif echo $wt | grep '\(bare\)' > /dev/null 2>&1;
   then
     echo "${green}KEEP${reset}"
@@ -53,11 +53,12 @@ do
     if [[ "$(gh pr status --json=state,author | jq -r '.currentBranch | [.state] | @csv')" == '"MERGED"' ]];
     then
       echo -n "${red}DELETE${reset}"
-      cd "$(git worktree list | grep 'bare' | cut -d' ' -f1)" || exit 1
+      cd "$(git worktree-list | grep 'bare' | cut -d' ' -f1)" || exit 1
       git worktree remove "$wt_dir"
     else
-      echo -n "${green}KEEP${reset}"
+      echo -n "${green}UPDATE${reset}"
       cd "$(git worktree list | grep 'bare' | cut -d' ' -f1)" || exit 1
+      git-up-quiet
     fi
   fi
   echo

@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+#
+# Usage: git-worktree-update-list-with-updates
+#
+# - Get a list of worktrees with the branch and the most recent commit date
+#
+
+# set -x
+
+# List all worktrees
+worktrees=$(git worktree list --porcelain)
+
+# Variables to store current worktree path and branch
+current_path=""
+current_branch=""
+
+# Array to store the output
+output=()
+
+# Loop through each worktree
+while read -r line; do
+    if [[ $line == "worktree "* ]]; then
+        if [[ -n $current_path ]]; then
+            # Get the most recent commit date for the current worktree
+            recent_commit_date=$(git -C "$current_path" log -1 --format=%cd)
+            output+=("$current_path $current_branch $recent_commit_date")
+        fi
+        # Extract the new worktree path
+        current_path=${line#worktree }
+    elif [[ $line == "branch "* ]]; then
+        # Extract the branch name
+        current_branch=${line#branch }
+    elif [[ $line == "bare"* ]]; then
+        current_branch="(bare)"
+    fi
+done <<< "$worktrees"
+
+# Output for the last worktree
+if [[ -n $current_path ]]; then
+    recent_commit_date=$(git -C "$current_path" log -1 --format=%cd)
+    output+=("$current_path $current_branch $recent_commit_date")
+fi
+
+# Find the maximum lengths for each column
+max_path_length=0
+max_branch_length=0
+for entry in "${output[@]}"; do
+    path=$(echo "$entry" | awk '{print $1}')
+    branch=$(echo "$entry" | awk '{print $2}')
+    if [[ ${#path} -gt $max_path_length ]]; then
+        max_path_length=${#path}
+    fi
+    if [[ ${#branch} -gt $max_branch_length ]]; then
+        max_branch_length=${#branch}
+    fi
+done
+
+# Print the formatted output
+# printf "%-${max_path_length}s %-${max_branch_length}s %s\n" "Worktree Path" "Branch" "Recent Commit Date"
+for entry in "${output[@]}"; do
+    path=$(echo "$entry" | awk '{print $1}')
+    branch=$(echo "$entry" | awk '{print $2}')
+    date=$(echo "$entry" | awk '{for (i=3; i<=NF; i++) printf $i " "; print ""}')
+    printf "%-${max_path_length}s %-${max_branch_length}s %s\n" "$path" "$branch" "$date"
+done
+
