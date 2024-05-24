@@ -18,6 +18,8 @@ set -e
 
 PULL_ARGS="$@"
 
+remote_head=$(git-remote-head-name)
+
 remote_name='upstream'
 if ! git remote 2>&1 | grep 'upstream' > /dev/null 2>&1;
 then
@@ -26,7 +28,7 @@ fi
 
 if [[ -z $PULL_ARGS ]];
 then
-    PULL_ARGS="${remote_name} main"
+    PULL_ARGS="${remote_name} ${remote_head}"
 fi
 
 git pull --no-edit $PULL_ARGS

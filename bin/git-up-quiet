@@ -15,7 +15,7 @@
 
 set -e
 
-PULL_ARGS="$@"
+PULL_ARGS="$*"
 
 remote_name='upstream'
 if ! git remote 2>&1 | grep 'upstream' > /dev/null 2>&1;

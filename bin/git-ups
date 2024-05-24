@@ -10,28 +10,15 @@
 
 # set -x
 
-red=`tput setaf 1`
-green=`tput setaf 2`
-yellow=`tput setaf 3`
-reset=`tput sgr0`
+red=$(tput setaf 1)
+green=$(tput setaf 2)
+yellow=$(tput setaf 3)
+reset=$(tput sgr0)
 
 
 
-MAIN_WORKTREE='unknown'
-MAIN_REMOTE='unknown'
-
-# we already know we do not have changes in our current branch
-worktrees=$(git worktree list)
-if echo $worktrees | grep '\[main\]' 2>&1 > /dev/null; then
-  MAIN_WORKTREE='main'
-elif echo $worktrees | grep '\[master\]' 2>&1 > /dev/null; then
-  MAIN_WORKTREE='master'
-fi
-
-if [[ "$MAIN_WORKTREE" == "unknown" ]]; then
-  echo "main or master not found in branch listing"
-  exit 1
-fi
+MAIN_WORKTREE=$(git-remote-head-name)
+MAIN_REMOTE=$(git-remote-head-name)
 
 remotes=$(git remote -v)
 if echo $remotes | grep 'upstream' 2>&1 > /dev/null;
@@ -40,11 +27,6 @@ then
 elif echo $remotes | grep 'origin' 2>&1 > /dev/null;
 then
   MAIN_REMOTE='origin'
-fi
-
-if [[ "$MAIN_REMOTE" == "unknown" ]]; then
-  echo "upstream or origin not found in remote listing"
-  exit 1
 fi
 
 COMMIT=$(git log -1 --oneline | sed 's/\n//g' | cut -d' ' -f1)

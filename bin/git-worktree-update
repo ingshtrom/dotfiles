@@ -13,26 +13,22 @@ green=$(tput setaf 2)
 yellow=$(tput setaf 3)
 reset=$(tput sgr0)
 
-
 # get worktrees
 # check each one for open pull requests
 #   - if the pull request was merged, then mark it for being closed
 
-if git status 2>&1 | grep "not a git repository" > /dev/null 2>&1;
-then
+if git status 2>&1 | grep "not a git repository" >/dev/null 2>&1; then
   echo "${yellow}No worktrees to cleanup (not a git repository)${reset}"
   exit 1
 fi
 
-if [[ $(git worktree list | wc -l) -lt 2 ]];
-then
+if [[ $(git worktree list | wc -l) -lt 2 ]]; then
   echo "${green}No worktrees to cleanup${reset}"
   exit 0
 fi
 
 IFS=$'\n'
-for wt in $(git worktree list)
-do
+for wt in $(git worktree list); do
   wt_less_space=$(echo $wt | tr -s ' ')
   wt_dir=$(echo $wt | cut -d' ' -f1)
   echo -n "$wt_less_space = "
@@ -40,26 +36,21 @@ do
 
   cd $wt_dir || exit 1
   # if it is the main worktree, always keep it
-  # if it is the bare worktree, always keep it
-  if echo $wt | grep '\[main\]' > /dev/null 2>&1;
-  then
+  if echo $wt | grep '\[main\]' >/dev/null 2>&1; then
     echo "${green}UPDATE${reset}"
-    echo
     git-up-quiet
-  elif echo $wt | grep '\(bare\)' > /dev/null 2>&1;
-  then
+  elif echo $wt | grep '\(bare\)' >/dev/null 2>&1; then
     echo "${green}KEEP${reset}"
   else
-    if [[ "$(gh pr status --json=state,author | jq -r '.currentBranch | [.state] | @csv')" == '"MERGED"' ]];
-    then
-      echo -n "${red}DELETE${reset}"
-      cd "$(git worktree-list | grep 'bare' | cut -d' ' -f1)" || exit 1
-      git worktree remove "$wt_dir"
-    else
-      echo -n "${green}UPDATE${reset}"
+    if [[ "$(gh pr status --json=state,author | jq -r '.currentBranch | [.state] | @csv')" == '"MERGED"' ]]; then
+      echo "${red}DELETE${reset}"
       cd "$(git worktree list | grep 'bare' | cut -d' ' -f1)" || exit 1
+      git worktree remove "$wt_dir" --force
+    else
+      echo "${green}UPDATE${reset}"
       git-up-quiet
     fi
   fi
+  cd "$(git worktree list | grep 'bare' | cut -d' ' -f1)" || exit 1
   echo
 done

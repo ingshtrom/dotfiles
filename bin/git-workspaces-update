@@ -13,6 +13,7 @@ fi
 for d in "$dir"/*; do
   # Check if it is a directory
   if [[ -d $d ]]; then
+    echo "--- 📂 $d ---"
     # Change to the directory
     cd "$d" || exit
 

@@ -1,0 +1,15 @@
+#!/bin/bash --norc
+
+# Replace with your remote name
+remote="origin"
+
+# Get the default branch of the remote repository
+default_branch=$(git ls-remote --symref "$remote" HEAD | sed -n 's/.*refs\/heads\/\(.*\)/\1/p')
+
+if [[ "$default_branch" == "main"* ]]; then
+  echo 'main'
+elif [[ "$default_branch" == "master"*  ]]; then
+  echo 'master'
+else
+  echo "$default_branch" | awk '{print tolower($1)}'
+fi
