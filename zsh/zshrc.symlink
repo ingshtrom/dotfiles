@@ -122,14 +122,14 @@ alias gwr='cd $(git worktree-list-with-updates | grep "bare" | cut -d" " -f1)'
 # alias gwpc='git-worktree-pull-request-checkout'
 alias gwpc='__git_worktree_pull_request_checkout'
 # git worktree delete
-alias gwd='function() { local x=$(git worktree-list-with-updates | grep -v "bare" | grep -v "\[main\]" | fzf | cut -d" " -f1); test -z $x || ( git worktree remove -f $x) }'
+alias gwd='function() { local x=$(git worktree-list-with-updates | grep -v "bare" | grep -v "main" | fzf | cut -d" " -f1); test -z $x || ( git worktree remove -f $x) }'
 # git worktree add
 # shellcheck disable=SC2142
 alias gwa='function() { __git_worktree_add $@ }'
 # git workspace "kchange"... the k is silent 😜
 alias gwk='function() { local x=$(ls ~/workspace --no-user --no-time --no-permissions | sed --express="s/^- //g" | fzf); test -z $x || cd "${HOME}/workspace/${x}" }'
 # git workspace main (go to the main worktree)
-alias gwm='cd $(git worktree-list-with-updates | grep "\[main\]" | cut -d" " -f1)'
+alias gwm='cd $(git worktree list | grep "\[main\]" | cut -d" " -f1)'
 # git workspace update
 alias gwu='gwr && git-worktree-update'
 # alias gps='docker run --rm --name=gitleaks -v $(git rev-parse --show-toplevel):/tmp zricethezav/gitleaks -v --repo-path=/tmp && git push'
@@ -177,8 +177,8 @@ alias ssh-add-pub-key='function(){ set -e; chmod 400 $1; ssh-add $1; }'
 alias aws_admin_user='unset_aws && eval "$(cat ~/.localrc | grep AWS | grep export | sed '"'"'s/^#//g'"'"')"'
 
 alias k="kubectl.docker"
-alias kc="kubectx"
-#alias kn="kubens"
+alias kc='aws eks list-clusters | jq -r '"'.clusters[]'"' | fzf | xargs -L1 aws eks update-kubeconfig --name'
+#akias kn="kubens"
 # shellcheck disable=SC2142
 alias kn='function(){kubectl config set-context --current --namespace="$1"}'
 alias kt="kubetail"
@@ -293,10 +293,6 @@ if [ -f '/Users/alexhokanson/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . 
 if [ -f '/Users/alexhokanson/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/alexhokanson/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
 source /Users/alexhokanson/.config/broot/launcher/bash/br
-
-# for zellij, remove ctrl + p and ctrl + n keybindings
-bindkey -r "^n"
-bindkey -r "^p"
 
 # ASDF
 . "$HOME/.asdf/asdf.sh"

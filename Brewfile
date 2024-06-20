@@ -95,6 +95,7 @@ brew 'tenv'  # better Terraform env mgmt
 brew 'tfsec'  # Terraform static analyzer => https://github.com/aquasecurity/tfsec
 brew 'tilt'  # local dev on k8s
 brew 'tmux'
+brew 'up'  # ultimate plumber => https://github.com/akavel/up
 brew 'hashicorp/tap/vault'  # Hashicorp Vault
 brew 'vegeta'  # load testing
 brew 'watch'
