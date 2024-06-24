@@ -3,8 +3,8 @@
 
 echo 'Setting reasonable defaults for OSX...'
 
-# Disable press-and-hold for keys in favor of key repeat.
-defaults write -g ApplePressAndHoldEnabled -bool true
+# Enable press-and-hold for key
+defaults write -g ApplePressAndHoldEnabled 0
 
 # Use AirDrop over every interface. srsly this should be a default.
 defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1
@@ -17,7 +17,7 @@ defaults write com.apple.finder AppleShowAllFiles YES
 chflags -R nohidden $HOME 2> /dev/null
 
 # Set a really fast key repeat.
-defaults write NSGlobalDomain KeyRepeat -int 1
+# defaults write NSGlobalDomain KeyRepeat -int 1
 
 # Set the Finder prefs for showing a few different volumes on the Desktop.
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
