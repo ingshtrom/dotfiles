@@ -22,7 +22,7 @@ while read -r line; do
     if [[ $line == "worktree "* ]]; then
         if [[ -n $current_path ]]; then
             # Get the most recent commit date for the current worktree
-            recent_commit_date=$(git -C "$current_path" log -1 --format=%cd)
+            recent_commit_date=$(git -C "$current_path" log -1 --format=%cd --date=format:'%Y-%m-%d %H:%M:%S')
             output+=("$current_path $current_branch $recent_commit_date")
         fi
         # Extract the new worktree path
@@ -37,14 +37,17 @@ done <<< "$worktrees"
 
 # Output for the last worktree
 if [[ -n $current_path ]]; then
-    recent_commit_date=$(git -C "$current_path" log -1 --format=%cd)
+    recent_commit_date=$(git -C "$current_path" log -1 --format=%cd --date=format:'%Y-%m-%d %H:%M:%S')
     output+=("$current_path $current_branch $recent_commit_date")
 fi
+
+# Sort the output based on the most recent commit date
+IFS=$'\n' sorted_output=($(sort -r -k3,3 -k4,4 -k5,5 <<<"${output[*]}"))
 
 # Find the maximum lengths for each column
 max_path_length=0
 max_branch_length=0
-for entry in "${output[@]}"; do
+for entry in "${sorted_output[@]}"; do
     path=$(echo "$entry" | awk '{print $1}')
     branch=$(echo "$entry" | awk '{print $2}')
     if [[ ${#path} -gt $max_path_length ]]; then
@@ -57,10 +60,9 @@ done
 
 # Print the formatted output
 # printf "%-${max_path_length}s %-${max_branch_length}s %s\n" "Worktree Path" "Branch" "Recent Commit Date"
-for entry in "${output[@]}"; do
+for entry in "${sorted_output[@]}"; do
     path=$(echo "$entry" | awk '{print $1}')
     branch=$(echo "$entry" | awk '{print $2}')
     date=$(echo "$entry" | awk '{for (i=3; i<=NF; i++) printf $i " "; print ""}')
-    printf "%-${max_path_length}s %-${max_branch_length}s %s\n" "$path" "$branch" "$date"
+    printf "%-${max_path_length}s %-${max_branch_length}s %s\n" "$path" "$branch" "$(gdate -d $date +'%a, %d %b %Y %T %z')"
 done
-

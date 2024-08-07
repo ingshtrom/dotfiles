@@ -136,28 +136,6 @@ bind p paste-buffer  # paste from the top paste buffer
 bind P choose-buffer # choose which buffer to paste from
 
 
-# -- TPM -------------------------------------------------------------------
-set -g @tpm_path '~/.tmux/plugins/tpm'
-# List of plugins
-set -g @plugin 'tmux-plugins/tpm'
-set -g @plugin 'tmux-plugins/tmux-sensible'
-# DARK_THEME
-set -g @plugin 'dracula/tmux'
-set -g @themepack 'dracula'
-set -g @dracula-show-powerline true
-set -g @dracula-refresh-rate 30
-set -g @dracula-plugins " "
-# LIGHT_THEME
-# set -g @plugin 'andersondanilo/tmux-onehalf-theme'
-# set -g @themepack 'onehalf'
-
-# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-run '~/.tmux/plugins/tpm/tpm'
-
-
-# LIGHT_THEME
-# onehalflight made by myself
-
 # window separators
 set-option -wg window-status-separator "|"
 
@@ -226,3 +204,20 @@ unbind -n MouseDown3Pane
 
 # Stay in copy mode on drag end.
 unbind-key -T copy-mode-vi MouseDragEnd1Pane
+
+# -- TPM -------------------------------------------------------------------
+# List of plugins
+# set -g @plugin 'https://git::@github.com/tmux-plugins/tpm'
+# set -g @plugin 'https://git::@github.com/tmux-plugins/tmux-sensible'
+# DARK_THEME
+# set -g @plugin 'dracula/tmux'
+# set -g @themepack 'dracula'
+# set -g @dracula-show-powerline true
+# set -g @dracula-refresh-rate 30
+# set -g @dracula-plugins " "
+# LIGHT_THEME
+# set -g @plugin 'andersondanilo/tmux-onehalf-theme'
+# set -g @themepack 'onehalf'
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+# run '~/.tmux/plugins/tpm/tpm'

@@ -208,6 +208,7 @@ alias ip='whats-my-ip'
 # shellcheck disable=SC2142
 alias ipinfo='function(){curl "http://api.ipstack.com/${1}?access_key=${IPSTACK_API_ACCESS_CODE}" | jq .}'
 alias i="infra-cli"
+alias g="goland"
 
 # shellcheck disable=SC2142
 alias p='function(){infra-cli params $@}'

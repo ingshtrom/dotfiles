@@ -11,7 +11,8 @@ then
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
-git -C ~/.tmux/plugins/tpm pull --force
-~/.tmux/plugins/tpm/bin/clean_plugins
-~/.tmux/plugins/tpm/bin/install_plugins
-~/.tmux/plugins/tpm/bin/update_plugins all
+git -C ~/.tmux/plugins/tpm reset --hard
+# git -C ~/.tmux/plugins/tpm pull --force
+# # ~/.tmux/plugins/tpm/bin/clean_plugins
+# ~/.tmux/plugins/tpm/bin/install_plugins
+# ~/.tmux/plugins/tpm/bin/update_plugins all
