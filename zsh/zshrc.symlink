@@ -63,10 +63,6 @@ export CHAMBER_SECRET_BACKEND=ssm
 export CHAMBER_KMS_KEY_ALIAS=aws/ssm
 export TFENV_ARCH=arm64
 export ZELLIJ_CONFIG_DIR=$HOME/.dotfiles/zellij
-# LIGHT_THEME
-# export BAT_THEME=OneHalfLight
-# DARK_THEME
-export BAT_THEME=Dracula
 # these are needed for the Clangd LSP server, I think 🤷
 export LDFLAGS="-L/usr/local/opt/llvm/lib"
 export CPPFLAGS="-I/usr/local/opt/llvm/include"
