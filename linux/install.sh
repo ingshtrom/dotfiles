@@ -6,7 +6,7 @@
 
 
 if [[ "$(uname)" == "Linux" ]]; then
-  # misc tools
+  # misc tool-sync
   # NOTE: do not install neovim, it's super outdated
   #
   # pcscd => PC/SC Smart Card Daemon for usage with Yubico-related apps

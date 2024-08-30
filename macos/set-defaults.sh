@@ -4,10 +4,10 @@
 echo 'Setting reasonable defaults for OSX...'
 
 # Enable press-and-hold for key
-defaults write -g ApplePressAndHoldEnabled 0
+# defaults write -g ApplePressAndHoldEnabled 0
 
 # Use AirDrop over every interface. srsly this should be a default.
-defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1
+# defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1
 
 # Always open everything in Finder's list view. This is important.
 defaults write com.apple.Finder FXPreferredViewStyle Nlsv
@@ -24,7 +24,7 @@ defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
 # disable press-and-hold for VSCode
-defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool true
+# defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool true
 
 # ensure app-switcher is on all screens
 defaults write com.apple.dock appswitcher-all-displays -bool true

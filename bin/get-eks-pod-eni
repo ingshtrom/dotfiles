@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Input: Pod name and Namespace
+POD_NAME=$1
+NAMESPACE=$2
+
+# Step 1: Get the node name where the pod is running
+NODE_NAME=$(kubectl get pod $POD_NAME -n $NAMESPACE -o jsonpath='{.spec.nodeName}')
+
+if [ -z "$NODE_NAME" ]; then
+    echo "Pod not found or unable to determine the node name."
+    exit 1
+fi
+
+# Step 2: Get the instance ID of the node
+INSTANCE_ID=$(kubectl get node $NODE_NAME -o jsonpath='{.spec.providerID}' | cut -d'/' -f5)
+
+if [ -z "$INSTANCE_ID" ]; then
+    echo "Unable to determine the instance ID."
+    exit 1
+fi
+
+# Step 3: Get the pod's IP address
+POD_IP=$(kubectl get pod $POD_NAME -n $NAMESPACE -o jsonpath='{.status.podIP}')
+
+if [ -z "$POD_IP" ]; then
+    echo "Unable to determine the pod's IP address."
+    exit 1
+fi
+
+# Step 4: Get the ENI ID associated with the pod's IP
+ENI_ID=$(aws ec2 describe-network-interfaces --filters "Name=attachment.instance-id,Values=$INSTANCE_ID" --query 'NetworkInterfaces[?PrivateIpAddress==`'"$POD_IP"'`].NetworkInterfaceId' --output text)
+
+if [ -z "$ENI_ID" ]; then
+    echo "No ENI found for the specified pod."
+    exit 1
+fi
+
+# Output the ENI ID
+echo "The ENI ID for pod $POD_NAME in namespace $NAMESPACE is: $ENI_ID"

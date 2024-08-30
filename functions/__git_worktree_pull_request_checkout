@@ -29,15 +29,18 @@ __git_worktree_pull_request_checkout() {
 
   pull_request_id=$(echo $pull_request | grep -E -o '^\d+')
 
-  # git worktree add
-  worktree_name="${pull_request_id}_local_checkout_pr"
-  echo "Creating new worktree ${green}'$(pwd)/../${worktree_name}'${reset}"
-  git worktree add ./${worktree_name}
+  if [ -z "$pull_request_id" ]; then
+    echo "${red}No pull request selected${reset}"
+  else
+    # git worktree add
+    worktree_name="${pull_request_id}_local_checkout_pr"
+    echo "Creating new worktree ${green}'$(pwd)/../${worktree_name}'${reset}"
+    git worktree add ./${worktree_name}
 
-  cd ./${worktree_name}
+    cd ./${worktree_name}
 
-  # gh pr checkout $pull_request_id
-  gh pr checkout "$pull_request_id"
-
+    # gh pr checkout $pull_request_id
+    gh pr checkout "$pull_request_id"
+  fi
 }
 

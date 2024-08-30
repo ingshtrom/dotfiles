@@ -115,7 +115,6 @@ alias gwl='git worktree-list-with-updates'
 # git worktree root -- e.g. move to the "bare" git workspace
 alias gwr='cd $(git worktree-list-with-updates | grep "bare" | cut -d" " -f1)'
 # git worktree pull-request checkout
-# alias gwpc='git-worktree-pull-request-checkout'
 alias gwpc='__git_worktree_pull_request_checkout'
 # git worktree delete
 alias gwd='function() { local x=$(git worktree-list-with-updates | grep -v "bare" | grep -v "main" | fzf | cut -d" " -f1); test -z $x || ( git worktree remove -f $x) }'
