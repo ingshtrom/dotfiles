@@ -69,7 +69,7 @@ export CPPFLAGS="-I/usr/local/opt/llvm/include"
 export DISABLE_AUTO_TITLE="true" # don't have the cmd output twice in zsh
 export HOMEBREW_NO_INSTALL_CLEANUP=1
 export SHELL=/opt/homebrew/bin/zsh
-
+export GOPRIVATE=github.com/docker/*
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

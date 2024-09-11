@@ -22,6 +22,7 @@ brew 'binutils'
 brew 'bottom'  # process monitor
 brew 'cmake'
 brew 'colordiff'  # add color to your diffs ;)
+brew 'docker-credential-helper-ecr'  # manage ECR login creds for me automatically
 brew 'hashicorp/tap/consul'  # consul.io CLI
 brew 'coreutils'
 brew 'cosign'  # container signing and verification
