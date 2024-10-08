@@ -17,7 +17,7 @@
   fetchforcemaster = "!f() { git fetch upstream && git checkout master && git reset --hard upstream/master && git push -f origin master; }; f"
   fetchforce = "!f() { git fetch upstream && git checkout main && git reset --hard upstream/main && git push -f origin main; }; f"
 	stash = stash --all
-  up = "!f() { git pull --rebase --prune $@ && git log --pretty=format:\"%Cred%ae %Creset- %C(yellow)%s %Creset(%ar)\" HEAD@{1}..; }; f"
+  up = "!f() { git pull --prune $@ && git log --pretty=format:\"%Cred%ae %Creset- %C(yellow)%s %Creset(%ar)\" HEAD@{1}..; }; f"
   test = "!f() { echo 'hello'; }; f"
 [color]
   diff = auto
