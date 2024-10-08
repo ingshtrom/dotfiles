@@ -38,7 +38,7 @@ for wt in $(git worktree list); do
   # if it is the main worktree, always keep it
   if echo $wt | grep '\[main\]' >/dev/null 2>&1; then
     echo "${green}UPDATE${reset}"
-    git-up-quiet
+    git up upstream main
   elif echo $wt | grep '\(bare\)' >/dev/null 2>&1; then
     echo "${green}KEEP${reset}"
   else
@@ -48,7 +48,7 @@ for wt in $(git worktree list); do
       git worktree remove "$wt_dir" --force
     else
       echo "${green}UPDATE${reset}"
-      git-up-quiet
+      git up upstream main
     fi
   fi
   cd "$(git worktree list | grep 'bare' | cut -d' ' -f1)" || exit 1

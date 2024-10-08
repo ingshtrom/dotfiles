@@ -132,8 +132,7 @@ alias gs='git status'
 alias ga='git add --all'
 #alias gl='docker run --rm --name=gitleaks -v $(git rev-parse --show-toplevel):/tmp zricethezav/gitleaks -v --repo-path=/tmp'
 alias gg='cd $(git rev-parse --show-toplevel || echo ".")'
-alias gup='git ups'
-alias gu='git up'
+alias gu='git up upstream main'
 alias gp='git push'
 # shellcheck disable=SC2142
 alias gcpr='function(){gh pr create $@ && gh pr view --json url | jq -r ".url" | pbcopy && echo "Pull Request URL copied to clipboard!" && gh pr view -w}'
@@ -206,9 +205,7 @@ alias i="infra-cli"
 alias g="goland"
 
 # shellcheck disable=SC2142
-alias p='function(){infra-cli params $@}'
-# shellcheck disable=SC2142
-alias pc='function(){infra-cli params $@ | grep val | cut -d'=' -f2 | tr -d '"'"'[:space:]'"'"' | pbcopy}'
+alias p='function(){easy-params $@}'
 
 autoload -U $DOTFILES/functions/*(:t)
 autoload -Uz compinit
@@ -295,3 +292,8 @@ source /Users/alexhokanson/.config/broot/launcher/bash/br
 
 # CodeWhisperer post block. Keep at the bottom of this file.
 [[ -f "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh"
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/alexhokanson/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
